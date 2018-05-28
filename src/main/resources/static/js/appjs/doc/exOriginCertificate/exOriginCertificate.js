@@ -49,7 +49,7 @@ function load() {
 								},
 																{
 									field : 'exOriginCertificateId', 
-									title : '主键' 
+									title : '主键呵呵' 
 								},
 																{
 									field : 'certificateType', 
