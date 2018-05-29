@@ -47,9 +47,29 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
+								{
+									field : 'invoiceNo', 
+									title : '发票号码' 
+								},
+								{
+									field : '', //此处待修改
+									title : '委托方' 
+								},
+								{
+									field : '', //此处待修改
+									title : '运输方式' 
+								},
+								{
+									field : '', //此处待修改
+									title : '制单人' 
+								},
+								{
+									field : 'gmtCreate', 
+									title : '制作时间' //title : '创建时间' 
+								},
+																/*{
 									field : 'exOriginCertificateId', 
-									title : '主键呵呵' 
+									title : '主键' 
 								},
 																{
 									field : 'certificateType', 
@@ -58,10 +78,6 @@ function load() {
 																{
 									field : 'certificateNo', 
 									title : '证书编号' 
-								},
-																{
-									field : 'invoiceNo', 
-									title : '发票号' 
 								},
 																{
 									field : 'invoiceDate', 
@@ -118,7 +134,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

@@ -52,45 +52,78 @@ function load() {
                         checkbox : true
                     },
                     {
+                        field : 'exportInvoiceNo',
+                        title : '出口发票号'
+                    },
+                    {
+                        field : 'ftClientId',
+                        title : '委托方名称'
+                    },
+                    {
+                        field : 'deliveryDate',
+                        title : '交货日期'
+                    },
+                    {
+                        field: '',//此处待修改
+                        title: '运输方式'
+                    },
+                    {
+                        field: '',//此处待修改
+                        title: '目的港'
+                    },
+                    {
+                        visible : true,
+                        field : 'gmtCreate',
+                        title : '创建时间'
+                    },
+                    {
                         field: 'operatorName',
-                        title: '操作人'
+                        title: '操作人员'
                     },
                     {
                         field: 'isShipOrder',
-                        title: '已制作托单',
+                        title: '托单',//已制作或者未制作
                         formatter : function(value, row, index) {
                             return TRUE_FALSE[value];
                         }
                     },
                     {
                         field: 'isCustomsInspection',
-                        title: '已制作报检',
+                        title: '报检',//已制作或者未制作
                         formatter : function(value, row, index) {
                             return TRUE_FALSE[value];
                         }
                     },
                     {
                         field: 'isCustomsDeclaration',
-                        title: '已制作报关',
+                        title: '报关',//已制作或者未制作
                         formatter : function(value, row, index) {
                             return TRUE_FALSE[value];
                         }
                     },
                     {
                         field: 'isOriginCertificate',
-                        title: '已制作产地证',
+                        title: '产地证',//已制作或者未制作
                         formatter : function(value, row, index) {
                             return TRUE_FALSE[value];
                         }
                     },
                     {
                         field: 'isNegotiation',
-                        title: '已制作议付单证',
+                        title: '议付单证',//已制作或者未制作
                         formatter : function(value, row, index) {
                             return TRUE_FALSE[value];
                         }
                     },
                     {
+                        visible : true,
+                        field : 'auditStatus',
+                        title : '状态',//原名审核状态
+                        formatter : function(value, row, index) {
+                            return AUDIT_STATUS[value];
+                        }
+                    },
+                   /* {
                         field: 'isCollection',
                         title: '已制作托收',
                         formatter : function(value, row, index) {
@@ -109,23 +142,14 @@ function load() {
                         field : 'exOrderHeaderId',
                         title : 'ID'
                     },
-                    {
-                        field : 'ftClientId',
-                        title : '委托方'
-                    },
-                    {
-                        field : 'exportInvoiceNo',
-                        title : '出口发票号'
-                    },
+                    
+                    
                     {
                         visible : false,
                         field : 'exportContractNo',
                         title : '外销合同号'
                     },
-                    {
-                        field : 'deliveryDate',
-                        title : '交货日期'
-                    },
+                    
                     {
                         visible : false,
                         field : 'consignee',
@@ -159,29 +183,18 @@ function load() {
                             return IS_SETTLED[value];
                         }
                     },
-                    {
-                        visible : false,
-                        field : 'auditStatus',
-                        title : '审核状态',
-                        formatter : function(value, row, index) {
-                            return AUDIT_STATUS[value];
-                        }
-                    },
+                    
                     {
                         visible : false,
                         field : 'isDeleted',
                         title : '是否已删除'
                     },
-                    {
-                        visible : false,
-                        field : 'gmtCreate',
-                        title : '创建时间'
-                    },
+                    
                     {
                         visible : false,
                         field : 'gmtModified',
                         title : '修改时间'
-                    },
+                    },*/
                     {
                         visible : false,
                         title : '操作',

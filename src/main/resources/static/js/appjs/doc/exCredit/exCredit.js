@@ -44,16 +44,38 @@ function load() {
 						// sortOrder.
 						// 返回false将会终止请求
 						columns : [
+								{checkbox : true},
 								{
-									checkbox : true
-								},
-																{
-									field : 'exCreditId', 
-									title : '主键' 
-								},
-																{
 									field : 'creditNo', 
 									title : '信用证号' 
+								},
+								{
+									field : 'opener', 
+									title : '开证人' 
+								},
+								{
+									field : 'ftClientId', 
+									title : '委托方' 
+								},
+								{
+									field : 'issueDate', 
+									title : '开证日期' 
+								},
+								{
+									field : 'currency', 
+									title : '币别' 
+								},
+								{
+									field : '', //此处待修改
+									title : '开证金额' 
+								},
+								{
+									field : 'creditAmount',
+									title : '信用证余额' 
+								},
+								/*{
+									field : 'exCreditId', 
+									title : '主键' 
 								},
 																{
 									field : 'advisingBank', 
@@ -62,24 +84,7 @@ function load() {
 																{
 									field : 'noticeDate', 
 									title : '通知日期' 
-								},
-																{
-									field : 'currency', 
-									title : '币别' 
-								},
-																{
-									field : 'creditAmount', 
-									title : '信用证金额' 
-								},
-																{
-									field : 'opener', 
-									title : '开证人' 
-								},
-																{
-									field : 'issueDate', 
-									title : '开证日期' 
-								},
-																{
+								},{
 									field : 'issueCountry', 
 									title : '开证国家' 
 								},
@@ -122,7 +127,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

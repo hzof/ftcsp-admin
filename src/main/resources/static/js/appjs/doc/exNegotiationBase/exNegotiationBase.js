@@ -47,14 +47,67 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
-									field : 'exNegotiationBaseId', 
-									title : '主键' 
-								},
-																{
+								{
 									field : 'invoiceNo', 
 									title : '发票号' 
 								},
+								{
+									field : 'customerCompanyName', 
+									title : '委托方名称' //title : '客户公司抬头' 是否正确？
+								},
+								{
+									field : 'payment_type', //待核实字段是否正确？
+									title : '付款方式',
+									formatter : function(value, row, index) {
+										var AUDIT_STATUS={'0':'到付','1':'预付'};
+									    return AUDIT_STATUS[value];
+									}
+								},
+								{
+									field : 'departurePort', 
+									title : '起运港' 
+								},
+								{
+									field : 'destinationPort', 
+									title : '目的港' 
+								},
+								{
+									field : 'negotiationStatus', 
+									title : '议付状态' ,
+									formatter : function(value, row, index) {
+										var AUDIT_STATUS={'0':'未议付','1':'正常议付','2':'异常议付'};
+									    return AUDIT_STATUS[value];
+									}
+								},
+								{
+									field : 'negotiationDate', 
+									title : '议付日期' 
+								},
+								{
+									field : 'export_invoice_no', //此处待修改
+									title : '商业发票' //选项  已产生或者未产生
+								},
+								{
+									field : 'packing_list_num', //此处待修改
+									title : '装箱单' //选项  已产生或者未产生
+								},
+								{
+									field : '', //此处待修改
+									title : '不符点担保书' //选项  已产生或者未产生
+								},
+								{
+									field : '', //此处待修改
+									title : '制单人' 
+								},
+								{
+									field : 'gmtCreate', 
+									title : '制单时间' //title : '创建时间' 
+								},
+																/*{
+									field : 'exNegotiationBaseId', 
+									title : '主键' 
+								},
+																
 																{
 									field : 'creditLetter', 
 									title : '信用证号' 
@@ -71,10 +124,7 @@ function load() {
 									field : 'exportMerchant', 
 									title : '出口商' 
 								},
-																{
-									field : 'customerCompanyName', 
-									title : '客户公司抬头' 
-								},
+									
 																{
 									field : 'shipDate', 
 									title : '出运日期' 
@@ -91,26 +141,13 @@ function load() {
 									field : 'transportPayTerms', 
 									title : '运输与付款条款' 
 								},
-																{
-									field : 'departurePort', 
-									title : '起运港' 
-								},
-																{
-									field : 'destinationPort', 
-									title : '目的港' 
-								},
+																
 																{
 									field : 'currency', 
 									title : '币别' 
 								},
-																{
-									field : 'negotiationStatus', 
-									title : '议付状态：0-未议付，1-正常议付，2-异常议付' 
-								},
-																{
-									field : 'negotiationDate', 
-									title : '议付日期' 
-								},
+																
+																
 																{
 									field : 'gmtCreate', 
 									title : '创建时间' 
@@ -118,7 +155,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

@@ -47,7 +47,40 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
+								{
+									field : 'invoiceNo', 
+									title : '发票号' 
+								},
+								{
+									field : 'gmtCreate',//此处待修改
+									title : '委托方' //委托方是个公司名称
+								},
+								{
+									field : 'departurePort', 
+									title : '起运港' 
+								},
+								{
+									field : 'destinationPort', 
+									title : '目的港' 
+								},
+								{
+									field : '', //此处待修改
+									title : '状态' ,
+									formatter : function(value, row, index) {
+										var STATE={'0':'未发布','1':'已发布'}
+									    return STATE[value];
+									}
+								},
+								{
+									field : 'gmtCreate',//此处待修改
+									title : '制单人' 
+								},
+								{
+									field : '',//此处待修改
+									title : '制单时间' 
+								},
+								
+																/*{
 									field : 'exShipOrderId', 
 									title : '主键' 
 								},
@@ -62,10 +95,6 @@ function load() {
 																{
 									field : 'notifyParty', 
 									title : '通知人' 
-								},
-																{
-									field : 'invoiceNo', 
-									title : '发票号' 
 								},
 																{
 									field : 'contractNo', 
@@ -87,25 +116,15 @@ function load() {
 									field : 'shipCompanyName', 
 									title : '船公司名称' 
 								},
-																{
-									field : 'departurePort', 
-									title : '起运港' 
-								},
+																
 																{
 									field : 'transitPort', 
 									title : '转运港' 
 								},
-																{
-									field : 'destinationPort', 
-									title : '目的港' 
-								},
+																
 																{
 									field : 'expiryDate', 
 									title : '有效期限' 
-								},
-																{
-									field : 'deliveryDate', 
-									title : '交货日期' 
 								},
 																{
 									field : 'encasementType', 
@@ -159,14 +178,11 @@ function load() {
 									field : 'announcement', 
 									title : '注意事项' 
 								},
-																{
-									field : 'gmtCreate', 
-									title : '创建时间' 
-								},
+																
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',
