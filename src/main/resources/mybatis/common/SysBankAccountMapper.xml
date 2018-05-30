@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.common.dao.SysBankAccountDao">
+
+	<select id="get" resultType="com.cloudht.common.domain.SysBankAccountDO">
+		select `sys_bank_account_id`,`sys_bank_info_id`,`account_no`,`currency`,`account_type`,`accounting_code`,`accounting_subject`,`purpose`,`gmt_create`,`gmt_modified`,`is_delete` from sys_bank_account where sys_bank_account_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.common.domain.SysBankAccountDO">
+		select `sys_bank_account_id`,`sys_bank_info_id`,`account_no`,`currency`,`account_type`,`accounting_code`,`accounting_subject`,`purpose`,`gmt_create`,`gmt_modified`,`is_delete` from sys_bank_account
+        <where>  
+		  		  <if test="sysBankAccountId != null and sysBankAccountId != ''"> and sys_bank_account_id = #{sysBankAccountId} </if>
+		  		  <if test="sysBankInfoId != null and sysBankInfoId != ''"> and sys_bank_info_id = #{sysBankInfoId} </if>
+		  		  <if test="accountNo != null and accountNo != ''"> and account_no = #{accountNo} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="accountType != null and accountType != ''"> and account_type = #{accountType} </if>
+		  		  <if test="accountingCode != null and accountingCode != ''"> and accounting_code = #{accountingCode} </if>
+		  		  <if test="accountingSubject != null and accountingSubject != ''"> and accounting_subject = #{accountingSubject} </if>
+		  		  <if test="purpose != null and purpose != ''"> and purpose = #{purpose} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by sys_bank_account_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_bank_account
+		 <where>  
+		  		  <if test="sysBankAccountId != null and sysBankAccountId != ''"> and sys_bank_account_id = #{sysBankAccountId} </if>
+		  		  <if test="sysBankInfoId != null and sysBankInfoId != ''"> and sys_bank_info_id = #{sysBankInfoId} </if>
+		  		  <if test="accountNo != null and accountNo != ''"> and account_no = #{accountNo} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="accountType != null and accountType != ''"> and account_type = #{accountType} </if>
+		  		  <if test="accountingCode != null and accountingCode != ''"> and accounting_code = #{accountingCode} </if>
+		  		  <if test="accountingSubject != null and accountingSubject != ''"> and accounting_subject = #{accountingSubject} </if>
+		  		  <if test="purpose != null and purpose != ''"> and purpose = #{purpose} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.common.domain.SysBankAccountDO" useGeneratedKeys="true" keyProperty="sysBankAccountId">
+		insert into sys_bank_account
+		(
+			`sys_bank_info_id`, 
+			`account_no`, 
+			`currency`, 
+			`account_type`, 
+			`accounting_code`, 
+			`accounting_subject`, 
+			`purpose`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{sysBankInfoId}, 
+			#{accountNo}, 
+			#{currency}, 
+			#{accountType}, 
+			#{accountingCode}, 
+			#{accountingSubject}, 
+			#{purpose}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.common.domain.SysBankAccountDO">
+		update sys_bank_account 
+		<set>
+			<if test="sysBankInfoId != null">`sys_bank_info_id` = #{sysBankInfoId}, </if>
+			<if test="accountNo != null">`account_no` = #{accountNo}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="accountType != null">`account_type` = #{accountType}, </if>
+			<if test="accountingCode != null">`accounting_code` = #{accountingCode}, </if>
+			<if test="accountingSubject != null">`accounting_subject` = #{accountingSubject}, </if>
+			<if test="purpose != null">`purpose` = #{purpose}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where sys_bank_account_id = #{sysBankAccountId}
+	</update>
+	
+	<delete id="remove">
+		delete from sys_bank_account where sys_bank_account_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from sys_bank_account where sys_bank_account_id in 
+		<foreach item="sysBankAccountId" collection="array" open="(" separator="," close=")">
+			#{sysBankAccountId}
+		</foreach>
+	</delete>
+
+</mapper>
