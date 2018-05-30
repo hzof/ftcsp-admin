@@ -41,7 +41,7 @@ public class SalaryServiceImpl implements SalaryService {
 	@Override
 	public int save(SalaryDO salary){
 			salary.setId(UUID.randomUUID().toString().replace("-",""));
-			actTaskService.startProcess(ActivitiConstant.ACTIVITI_SALARY[0],ActivitiConstant.ACTIVITI_SALARY[1],salary.getId(),salary.getContent(),new HashMap<>());
+			actTaskService.startProcess(ActivitiConstant.ACTIVITI_SALARY[0],ActivitiConstant.ACTIVITI_SALARY[1],salary.getId(),salary.getContent(),new HashMap<String,Object>());
 			return salaryDao.save(salary);
 	}
 	@Transactional(rollbackFor=Exception.class)

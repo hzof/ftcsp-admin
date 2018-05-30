@@ -84,4 +84,16 @@ public class OrderInfoController {
     String commodity(){
         return "ex/orderInfo/commodity";
     }
+    @RequestMapping("/orderInfoExpert")
+    public String orderInfoExpert() {
+    	return "ex/orderInfo/orderInfoExpert";
+    }
+    @RequestMapping("/orderInfoWait")
+    public String orderInfoWait() {
+    	return "ex/orderInfo/orderInfoWait";
+    }
+    @RequestMapping("/orderInfoFinish")
+    public String orderInfoFinish() {
+    	return "ex/orderInfo/orderInfoFinish";
+    }
 }
