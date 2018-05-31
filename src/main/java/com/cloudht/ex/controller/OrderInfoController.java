@@ -84,4 +84,19 @@ public class OrderInfoController {
     String commodity(){
         return "ex/orderInfo/commodity";
     }
+    /**
+     * 待专家受理订单
+     */
+    @RequestMapping("/orderInfoExpert")
+    public String orderInfoExpert() {
+    	return "ex/orderInfo/orderInfoExpert";
+    }
+    @RequestMapping("/orderInfoWait")
+    public String orderInfoWait() {
+    	return "ex/orderInfo/orderInfoWait";
+    }
+    @RequestMapping("/orderInfoFinish")
+    public String orderInfoFinish() {
+    	return "ex/orderInfo/orderInfoFinish";
+    }
 }
