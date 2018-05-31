@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.common.dao.SysBankInfoDao">
+
+	<select id="get" resultType="com.cloudht.common.domain.SysBankInfoDO">
+		select `sys_bank_info_id`,`bank_name`,`bank_code`,`bank_address`,`bank_swift`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from sys_bank_info where sys_bank_info_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.common.domain.SysBankInfoDO">
+		select `sys_bank_info_id`,`bank_name`,`bank_code`,`bank_address`,`bank_swift`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from sys_bank_info
+        <where>  
+		  		  <if test="sysBankInfoId != null and sysBankInfoId != ''"> and sys_bank_info_id = #{sysBankInfoId} </if>
+		  		  <if test="bankName != null and bankName != ''"> and bank_name = #{bankName} </if>
+		  		  <if test="bankCode != null and bankCode != ''"> and bank_code = #{bankCode} </if>
+		  		  <if test="bankAddress != null and bankAddress != ''"> and bank_address = #{bankAddress} </if>
+		  		  <if test="bankSwift != null and bankSwift != ''"> and bank_swift = #{bankSwift} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by sys_bank_info_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_bank_info
+		 <where>  
+		  		  <if test="sysBankInfoId != null and sysBankInfoId != ''"> and sys_bank_info_id = #{sysBankInfoId} </if>
+		  		  <if test="bankName != null and bankName != ''"> and bank_name = #{bankName} </if>
+		  		  <if test="bankCode != null and bankCode != ''"> and bank_code = #{bankCode} </if>
+		  		  <if test="bankAddress != null and bankAddress != ''"> and bank_address = #{bankAddress} </if>
+		  		  <if test="bankSwift != null and bankSwift != ''"> and bank_swift = #{bankSwift} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.common.domain.SysBankInfoDO" useGeneratedKeys="true" keyProperty="sysBankInfoId">
+		insert into sys_bank_info
+		(
+			`bank_name`, 
+			`bank_code`, 
+			`bank_address`, 
+			`bank_swift`, 
+			`remarks`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{bankName}, 
+			#{bankCode}, 
+			#{bankAddress}, 
+			#{bankSwift}, 
+			#{remarks}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.common.domain.SysBankInfoDO">
+		update sys_bank_info 
+		<set>
+			<if test="bankName != null">`bank_name` = #{bankName}, </if>
+			<if test="bankCode != null">`bank_code` = #{bankCode}, </if>
+			<if test="bankAddress != null">`bank_address` = #{bankAddress}, </if>
+			<if test="bankSwift != null">`bank_swift` = #{bankSwift}, </if>
+			<if test="remarks != null">`remarks` = #{remarks}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where sys_bank_info_id = #{sysBankInfoId}
+	</update>
+	
+	<delete id="remove">
+		delete from sys_bank_info where sys_bank_info_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from sys_bank_info where sys_bank_info_id in 
+		<foreach item="sysBankInfoId" collection="array" open="(" separator="," close=")">
+			#{sysBankInfoId}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="sys_bank_info_id" name="sys_bank_info_id" th:value="${sysBankInfo.sysBankInfoId}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">银行名称：</label>
+								<div class="col-sm-8">
+									<input id="bankName" name="bankName" th:value="${sysBankInfo.bankName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">代码：</label>
+								<div class="col-sm-8">
+									<input id="bankCode" name="bankCode" th:value="${sysBankInfo.bankCode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">银行地址：</label>
+								<div class="col-sm-8">
+									<input id="bankAddress" name="bankAddress" th:value="${sysBankInfo.bankAddress}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">银行识别代码，例BKCHCNBJ300：</label>
+								<div class="col-sm-8">
+									<input id="bankSwift" name="bankSwift" th:value="${sysBankInfo.bankSwift}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<input id="remarks" name="remarks" th:value="${sysBankInfo.remarks}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${sysBankInfo.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${sysBankInfo.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否作废，0：否，1：是：</label>
+								<div class="col-sm-8">
+									<input id="isDelete" name="isDelete" th:value="${sysBankInfo.isDelete}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/common/sysBankInfo/edit.js">
+	</script>
+</body>
+</html>
