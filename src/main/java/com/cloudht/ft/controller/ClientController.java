@@ -40,6 +40,23 @@ public class ClientController {
 	String Client(){
 	    return "ft/client/client";
 	}
+	/**
+	 * 客户资质审核页面跳转
+	 * @return
+	 */
+	@GetMapping("/clientCheck")
+	@RequiresPermissions("ft:client:client")
+	public String clientCheck() {
+		return "ft/client/clientCheck";
+	}
+	/**
+	 * 客户中心销售管理页面跳转
+	 * @return
+	 */
+	@GetMapping("/clientSalesManagement")
+	public String clientChec() {
+		return "ft/client/clientSalesManagement";
+	}
 	
 	@ResponseBody
 	@GetMapping("/list")
@@ -113,5 +130,6 @@ public class ClientController {
 		clientService.batchRemove(ftClientIds);
 		return R.ok();
 	}
+	
 	
 }
