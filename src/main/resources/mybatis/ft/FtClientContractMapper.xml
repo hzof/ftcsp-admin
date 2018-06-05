@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtClientContractDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtClientContractDO">
+		select `ft_client_contract_id`,`contract_no`,`ft_client_id`,`ft_client_compant_id`,`first_party_name`,`first_party_address`,`second_party_name`,`second_party_address`,`signed_at`,`effect_date`,`invalid_date`,`signing_date`,`remark`,`file_path`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_contract where ft_client_contract_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtClientContractDO">
+		select `ft_client_contract_id`,`contract_no`,`ft_client_id`,`ft_client_compant_id`,`first_party_name`,`first_party_address`,`second_party_name`,`second_party_address`,`signed_at`,`effect_date`,`invalid_date`,`signing_date`,`remark`,`file_path`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_contract
+        <where>  
+		  		  <if test="ftClientContractId != null and ftClientContractId != ''"> and ft_client_contract_id = #{ftClientContractId} </if>
+		  		  <if test="contractNo != null and contractNo != ''"> and contract_no = #{contractNo} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="ftClientCompantId != null and ftClientCompantId != ''"> and ft_client_compant_id = #{ftClientCompantId} </if>
+		  		  <if test="firstPartyName != null and firstPartyName != ''"> and first_party_name = #{firstPartyName} </if>
+		  		  <if test="firstPartyAddress != null and firstPartyAddress != ''"> and first_party_address = #{firstPartyAddress} </if>
+		  		  <if test="secondPartyName != null and secondPartyName != ''"> and second_party_name = #{secondPartyName} </if>
+		  		  <if test="secondPartyAddress != null and secondPartyAddress != ''"> and second_party_address = #{secondPartyAddress} </if>
+		  		  <if test="signedAt != null and signedAt != ''"> and signed_at = #{signedAt} </if>
+		  		  <if test="effectDate != null and effectDate != ''"> and effect_date = #{effectDate} </if>
+		  		  <if test="invalidDate != null and invalidDate != ''"> and invalid_date = #{invalidDate} </if>
+		  		  <if test="signingDate != null and signingDate != ''"> and signing_date = #{signingDate} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="filePath != null and filePath != ''"> and file_path = #{filePath} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_client_contract_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_client_contract
+		 <where>  
+		  		  <if test="ftClientContractId != null and ftClientContractId != ''"> and ft_client_contract_id = #{ftClientContractId} </if>
+		  		  <if test="contractNo != null and contractNo != ''"> and contract_no = #{contractNo} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="ftClientCompantId != null and ftClientCompantId != ''"> and ft_client_compant_id = #{ftClientCompantId} </if>
+		  		  <if test="firstPartyName != null and firstPartyName != ''"> and first_party_name = #{firstPartyName} </if>
+		  		  <if test="firstPartyAddress != null and firstPartyAddress != ''"> and first_party_address = #{firstPartyAddress} </if>
+		  		  <if test="secondPartyName != null and secondPartyName != ''"> and second_party_name = #{secondPartyName} </if>
+		  		  <if test="secondPartyAddress != null and secondPartyAddress != ''"> and second_party_address = #{secondPartyAddress} </if>
+		  		  <if test="signedAt != null and signedAt != ''"> and signed_at = #{signedAt} </if>
+		  		  <if test="effectDate != null and effectDate != ''"> and effect_date = #{effectDate} </if>
+		  		  <if test="invalidDate != null and invalidDate != ''"> and invalid_date = #{invalidDate} </if>
+		  		  <if test="signingDate != null and signingDate != ''"> and signing_date = #{signingDate} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="filePath != null and filePath != ''"> and file_path = #{filePath} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtClientContractDO" useGeneratedKeys="true" keyProperty="ftClientContractId">
+		insert into ft_client_contract
+		(
+			`contract_no`, 
+			`ft_client_id`, 
+			`ft_client_compant_id`, 
+			`first_party_name`, 
+			`first_party_address`, 
+			`second_party_name`, 
+			`second_party_address`, 
+			`signed_at`, 
+			`effect_date`, 
+			`invalid_date`, 
+			`signing_date`, 
+			`remark`, 
+			`file_path`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{contractNo}, 
+			#{ftClientId}, 
+			#{ftClientCompantId}, 
+			#{firstPartyName}, 
+			#{firstPartyAddress}, 
+			#{secondPartyName}, 
+			#{secondPartyAddress}, 
+			#{signedAt}, 
+			#{effectDate}, 
+			#{invalidDate}, 
+			#{signingDate}, 
+			#{remark}, 
+			#{filePath}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtClientContractDO">
+		update ft_client_contract 
+		<set>
+			<if test="contractNo != null">`contract_no` = #{contractNo}, </if>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="ftClientCompantId != null">`ft_client_compant_id` = #{ftClientCompantId}, </if>
+			<if test="firstPartyName != null">`first_party_name` = #{firstPartyName}, </if>
+			<if test="firstPartyAddress != null">`first_party_address` = #{firstPartyAddress}, </if>
+			<if test="secondPartyName != null">`second_party_name` = #{secondPartyName}, </if>
+			<if test="secondPartyAddress != null">`second_party_address` = #{secondPartyAddress}, </if>
+			<if test="signedAt != null">`signed_at` = #{signedAt}, </if>
+			<if test="effectDate != null">`effect_date` = #{effectDate}, </if>
+			<if test="invalidDate != null">`invalid_date` = #{invalidDate}, </if>
+			<if test="signingDate != null">`signing_date` = #{signingDate}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="filePath != null">`file_path` = #{filePath}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where ft_client_contract_id = #{ftClientContractId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_client_contract where ft_client_contract_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_client_contract where ft_client_contract_id in 
+		<foreach item="ftClientContractId" collection="array" open="(" separator="," close=")">
+			#{ftClientContractId}
+		</foreach>
+	</delete>
+
+</mapper>

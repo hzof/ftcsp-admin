@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtSensitiveAreaDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtSensitiveAreaDO">
+		select `ft_sensitive_area_id`,`province`,`city`,`district`,`user_id`,`remark`,`gmt_create` from ft_sensitive_area where ft_sensitive_area_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtSensitiveAreaDO">
+		select `ft_sensitive_area_id`,`province`,`city`,`district`,`user_id`,`remark`,`gmt_create` from ft_sensitive_area
+        <where>  
+		  		  <if test="ftSensitiveAreaId != null and ftSensitiveAreaId != ''"> and ft_sensitive_area_id = #{ftSensitiveAreaId} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="district != null and district != ''"> and district = #{district} </if>
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_sensitive_area_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_sensitive_area
+		 <where>  
+		  		  <if test="ftSensitiveAreaId != null and ftSensitiveAreaId != ''"> and ft_sensitive_area_id = #{ftSensitiveAreaId} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="district != null and district != ''"> and district = #{district} </if>
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtSensitiveAreaDO" useGeneratedKeys="true" keyProperty="ftSensitiveAreaId">
+		insert into ft_sensitive_area
+		(
+			`province`, 
+			`city`, 
+			`district`, 
+			`user_id`, 
+			`remark`, 
+			`gmt_create`
+		)
+		values
+		(
+			#{province}, 
+			#{city}, 
+			#{district}, 
+			#{userId}, 
+			#{remark}, 
+			#{gmtCreate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtSensitiveAreaDO">
+		update ft_sensitive_area 
+		<set>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="district != null">`district` = #{district}, </if>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}</if>
+		</set>
+		where ft_sensitive_area_id = #{ftSensitiveAreaId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_sensitive_area where ft_sensitive_area_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_sensitive_area where ft_sensitive_area_id in 
+		<foreach item="ftSensitiveAreaId" collection="array" open="(" separator="," close=")">
+			#{ftSensitiveAreaId}
+		</foreach>
+	</delete>
+
+</mapper>

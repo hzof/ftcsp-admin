@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtBtypeDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtBtypeDO">
+		select `ft_btype_id`,`ft_client_company_id`,`ft_client_id`,`btype_no`,`btype_name`,`btype_type`,`is_manufacture`,`Start_busi_date`,`close_busi_date`,`province`,`city`,`district`,`address`,`is_attention`,`attention_cause`,`status`,`remark`,`gmt_create`,`gmt_modified`,`is_delete` from ft_btype where ft_btype_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtBtypeDO">
+		select `ft_btype_id`,`ft_client_company_id`,`ft_client_id`,`btype_no`,`btype_name`,`btype_type`,`is_manufacture`,`Start_busi_date`,`close_busi_date`,`province`,`city`,`district`,`address`,`is_attention`,`attention_cause`,`status`,`remark`,`gmt_create`,`gmt_modified`,`is_delete` from ft_btype
+        <where>  
+		  		  <if test="ftBtypeId != null and ftBtypeId != ''"> and ft_btype_id = #{ftBtypeId} </if>
+		  		  <if test="ftClientCompanyId != null and ftClientCompanyId != ''"> and ft_client_company_id = #{ftClientCompanyId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="btypeNo != null and btypeNo != ''"> and btype_no = #{btypeNo} </if>
+		  		  <if test="btypeName != null and btypeName != ''"> and btype_name = #{btypeName} </if>
+		  		  <if test="btypeType != null and btypeType != ''"> and btype_type = #{btypeType} </if>
+		  		  <if test="isManufacture != null and isManufacture != ''"> and is_manufacture = #{isManufacture} </if>
+		  		  <if test="startBusiDate != null and startBusiDate != ''"> and Start_busi_date = #{startBusiDate} </if>
+		  		  <if test="closeBusiDate != null and closeBusiDate != ''"> and close_busi_date = #{closeBusiDate} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="district != null and district != ''"> and district = #{district} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="isAttention != null and isAttention != ''"> and is_attention = #{isAttention} </if>
+		  		  <if test="attentionCause != null and attentionCause != ''"> and attention_cause = #{attentionCause} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_btype_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_btype
+		 <where>  
+		  		  <if test="ftBtypeId != null and ftBtypeId != ''"> and ft_btype_id = #{ftBtypeId} </if>
+		  		  <if test="ftClientCompanyId != null and ftClientCompanyId != ''"> and ft_client_company_id = #{ftClientCompanyId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="btypeNo != null and btypeNo != ''"> and btype_no = #{btypeNo} </if>
+		  		  <if test="btypeName != null and btypeName != ''"> and btype_name = #{btypeName} </if>
+		  		  <if test="btypeType != null and btypeType != ''"> and btype_type = #{btypeType} </if>
+		  		  <if test="isManufacture != null and isManufacture != ''"> and is_manufacture = #{isManufacture} </if>
+		  		  <if test="startBusiDate != null and startBusiDate != ''"> and Start_busi_date = #{startBusiDate} </if>
+		  		  <if test="closeBusiDate != null and closeBusiDate != ''"> and close_busi_date = #{closeBusiDate} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="district != null and district != ''"> and district = #{district} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="isAttention != null and isAttention != ''"> and is_attention = #{isAttention} </if>
+		  		  <if test="attentionCause != null and attentionCause != ''"> and attention_cause = #{attentionCause} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtBtypeDO" useGeneratedKeys="true" keyProperty="ftBtypeId">
+		insert into ft_btype
+		(
+			`ft_client_company_id`, 
+			`ft_client_id`, 
+			`btype_no`, 
+			`btype_name`, 
+			`btype_type`, 
+			`is_manufacture`, 
+			`Start_busi_date`, 
+			`close_busi_date`, 
+			`province`, 
+			`city`, 
+			`district`, 
+			`address`, 
+			`is_attention`, 
+			`attention_cause`, 
+			`status`, 
+			`remark`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{ftClientCompanyId}, 
+			#{ftClientId}, 
+			#{btypeNo}, 
+			#{btypeName}, 
+			#{btypeType}, 
+			#{isManufacture}, 
+			#{startBusiDate}, 
+			#{closeBusiDate}, 
+			#{province}, 
+			#{city}, 
+			#{district}, 
+			#{address}, 
+			#{isAttention}, 
+			#{attentionCause}, 
+			#{status}, 
+			#{remark}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtBtypeDO">
+		update ft_btype 
+		<set>
+			<if test="ftClientCompanyId != null">`ft_client_company_id` = #{ftClientCompanyId}, </if>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="btypeNo != null">`btype_no` = #{btypeNo}, </if>
+			<if test="btypeName != null">`btype_name` = #{btypeName}, </if>
+			<if test="btypeType != null">`btype_type` = #{btypeType}, </if>
+			<if test="isManufacture != null">`is_manufacture` = #{isManufacture}, </if>
+			<if test="startBusiDate != null">`Start_busi_date` = #{startBusiDate}, </if>
+			<if test="closeBusiDate != null">`close_busi_date` = #{closeBusiDate}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="district != null">`district` = #{district}, </if>
+			<if test="address != null">`address` = #{address}, </if>
+			<if test="isAttention != null">`is_attention` = #{isAttention}, </if>
+			<if test="attentionCause != null">`attention_cause` = #{attentionCause}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where ft_btype_id = #{ftBtypeId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_btype where ft_btype_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_btype where ft_btype_id in 
+		<foreach item="ftBtypeId" collection="array" open="(" separator="," close=")">
+			#{ftBtypeId}
+		</foreach>
+	</delete>
+
+</mapper>

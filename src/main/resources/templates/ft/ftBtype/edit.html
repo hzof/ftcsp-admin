@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ft_btype_id" name="ft_btype_id" th:value="${ftBtype.ft_btype_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方公司主键：</label>
+								<div class="col-sm-8">
+									<input id="ftClientCompanyId" name="ftClientCompanyId" th:value="${ftBtype.ftClientCompanyId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${ftBtype.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">往来单位编号：</label>
+								<div class="col-sm-8">
+									<input id="btypeNo" name="btypeNo" th:value="${ftBtype.btypeNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">往来单位名称：</label>
+								<div class="col-sm-8">
+									<input id="btypeName" name="btypeName" th:value="${ftBtype.btypeName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">往来单位类型 0-开票单位 1-贷代 2-银行 3-保险公司 4-国外客户 5-资金往来单位：</label>
+								<div class="col-sm-8">
+									<input id="btypeType" name="btypeType" th:value="${ftBtype.btypeType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否生产企业 0-否 1-是，单位类型选择为开票单位后填写此项：</label>
+								<div class="col-sm-8">
+									<input id="isManufacture" name="isManufacture" th:value="${ftBtype.isManufacture}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">开始营业期限：</label>
+								<div class="col-sm-8">
+									<input id="startBusiDate" name="startBusiDate" th:value="${ftBtype.startBusiDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">结束营业期限：</label>
+								<div class="col-sm-8">
+									<input id="closeBusiDate" name="closeBusiDate" th:value="${ftBtype.closeBusiDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">省：</label>
+								<div class="col-sm-8">
+									<input id="province" name="province" th:value="${ftBtype.province}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">市：</label>
+								<div class="col-sm-8">
+									<input id="city" name="city" th:value="${ftBtype.city}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">区：</label>
+								<div class="col-sm-8">
+									<input id="district" name="district" th:value="${ftBtype.district}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">详细地址：</label>
+								<div class="col-sm-8">
+									<input id="address" name="address" th:value="${ftBtype.address}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否关注 0-否 1-是：</label>
+								<div class="col-sm-8">
+									<input id="isAttention" name="isAttention" th:value="${ftBtype.isAttention}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">关注原因：</label>
+								<div class="col-sm-8">
+									<input id="attentionCause" name="attentionCause" th:value="${ftBtype.attentionCause}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">状态 0-有效 1-无效：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" th:value="${ftBtype.status}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<input id="remark" name="remark" th:value="${ftBtype.remark}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${ftBtype.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${ftBtype.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否删除：0-否，1-是：</label>
+								<div class="col-sm-8">
+									<input id="isDelete" name="isDelete" th:value="${ftBtype.isDelete}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftBtype/edit.js">
+	</script>
+</body>
+</html>
