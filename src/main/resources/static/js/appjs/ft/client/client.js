@@ -75,8 +75,7 @@ function load() {
                                                                     visible : false,
 									field : 'detailedAddress', 
 									title : '详细地址' 
-								},
-																{
+								},{
 									field : 'fullName', 
 									title : '姓名' 
 								},
@@ -87,13 +86,14 @@ function load() {
 																{
 									field : 'telephone', 
 									title : '联系电话' 
-								},
-																{
+								},{
 									field : 'phone', 
 									title : '手机' 
-								},
-																{
-                                                                    visible : false,
+								},{
+									field : 'auditRemark', 
+									title : '审核备注' 
+								},{
+                                    visible : false,
 									field : 'marketerId', 
 									title : '营销人员ID' 
 								},

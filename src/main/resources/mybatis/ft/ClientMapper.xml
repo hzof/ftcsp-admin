@@ -4,24 +4,17 @@
 <mapper namespace="com.cloudht.ft.dao.ClientDao">
 
 	<select id="get" resultType="com.cloudht.ft.domain.ClientDO">
-		select `ft_client_id`,`register_type`,`company_name`,`province`,`city`,`detailed_address`,`full_name`,`sex`,`telephone`,`phone`,`marketer_id`,`audit_status`,`client_no`,`service_contract_no`,`servicer_id`,`operator_id`,`client_type`,`gmt_create`,`gmt_modified` from ft_client where ft_client_id = #{value}
+		select `ft_client_id`,`client_user_id`,`marketer_id`,`audit_status`,`audit_remark`,`client_no`,`service_contract_no`,`servicer_id`,`operator_id`,`client_type`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client where ft_client_id = #{value}
 	</select>
 
 	<select id="list" resultType="com.cloudht.ft.domain.ClientDO">
-		select `ft_client_id`,`register_type`,`company_name`,`province`,`city`,`detailed_address`,`full_name`,`sex`,`telephone`,`phone`,`marketer_id`,`audit_status`,`client_no`,`service_contract_no`,`servicer_id`,`operator_id`,`client_type`,`gmt_create`,`gmt_modified` from ft_client
+		select `ft_client_id`,`client_user_id`,`marketer_id`,`audit_status`,`audit_remark`,`client_no`,`service_contract_no`,`servicer_id`,`operator_id`,`client_type`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client
         <where>  
 		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
-		  		  <if test="registerType != null and registerType != ''"> and register_type = #{registerType} </if>
-		  		  <if test="companyName != null and companyName != ''"> and company_name = #{companyName} </if>
-		  		  <if test="province != null and province != ''"> and province = #{province} </if>
-		  		  <if test="city != null and city != ''"> and city = #{city} </if>
-		  		  <if test="detailedAddress != null and detailedAddress != ''"> and detailed_address = #{detailedAddress} </if>
-		  		  <if test="fullName != null and fullName != ''"> and full_name = #{fullName} </if>
-		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
-		  		  <if test="telephone != null and telephone != ''"> and telephone = #{telephone} </if>
-		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="clientUserId != null and clientUserId != ''"> and client_user_id = #{clientUserId} </if>
 		  		  <if test="marketerId != null and marketerId != ''"> and marketer_id = #{marketerId} </if>
 		  		  <if test="auditStatus != null and auditStatus != ''"> and audit_status = #{auditStatus} </if>
+		  		  <if test="auditRemark != null and auditRemark != ''"> and audit_remark = #{auditRemark} </if>
 		  		  <if test="clientNo != null and clientNo != ''"> and client_no = #{clientNo} </if>
 		  		  <if test="serviceContractNo != null and serviceContractNo != ''"> and service_contract_no = #{serviceContractNo} </if>
 		  		  <if test="servicerId != null and servicerId != ''"> and servicer_id = #{servicerId} </if>
@@ -29,6 +22,7 @@
 		  		  <if test="clientType != null and clientType != ''"> and client_type = #{clientType} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -47,17 +41,10 @@
 		select count(*) from ft_client
 		 <where>  
 		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
-		  		  <if test="registerType != null and registerType != ''"> and register_type = #{registerType} </if>
-		  		  <if test="companyName != null and companyName != ''"> and company_name = #{companyName} </if>
-		  		  <if test="province != null and province != ''"> and province = #{province} </if>
-		  		  <if test="city != null and city != ''"> and city = #{city} </if>
-		  		  <if test="detailedAddress != null and detailedAddress != ''"> and detailed_address = #{detailedAddress} </if>
-		  		  <if test="fullName != null and fullName != ''"> and full_name = #{fullName} </if>
-		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
-		  		  <if test="telephone != null and telephone != ''"> and telephone = #{telephone} </if>
-		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="clientUserId != null and clientUserId != ''"> and client_user_id = #{clientUserId} </if>
 		  		  <if test="marketerId != null and marketerId != ''"> and marketer_id = #{marketerId} </if>
 		  		  <if test="auditStatus != null and auditStatus != ''"> and audit_status = #{auditStatus} </if>
+		  		  <if test="auditRemark != null and auditRemark != ''"> and audit_remark = #{auditRemark} </if>
 		  		  <if test="clientNo != null and clientNo != ''"> and client_no = #{clientNo} </if>
 		  		  <if test="serviceContractNo != null and serviceContractNo != ''"> and service_contract_no = #{serviceContractNo} </if>
 		  		  <if test="servicerId != null and servicerId != ''"> and servicer_id = #{servicerId} </if>
@@ -65,75 +52,58 @@
 		  		  <if test="clientType != null and clientType != ''"> and client_type = #{clientType} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
 		  		</where>
 	</select>
 	 
 	<insert id="save" parameterType="com.cloudht.ft.domain.ClientDO" useGeneratedKeys="true" keyProperty="ftClientId">
 		insert into ft_client
 		(
-			`register_type`, 
-			`company_name`, 
-			`province`, 
-			`city`, 
-			`detailed_address`, 
-			`full_name`, 
-			`sex`, 
-			`telephone`, 
-			`phone`, 
+			`client_user_id`, 
 			`marketer_id`, 
 			`audit_status`, 
+			`audit_remark`, 
 			`client_no`, 
 			`service_contract_no`, 
 			`servicer_id`, 
 			`operator_id`, 
 			`client_type`, 
 			`gmt_create`, 
-			`gmt_modified`
+			`gmt_modified`, 
+			`is_delete`
 		)
 		values
 		(
-			#{registerType}, 
-			#{companyName}, 
-			#{province}, 
-			#{city}, 
-			#{detailedAddress}, 
-			#{fullName}, 
-			#{sex}, 
-			#{telephone}, 
-			#{phone}, 
+			#{clientUserId}, 
 			#{marketerId}, 
 			#{auditStatus}, 
+			#{auditRemark}, 
 			#{clientNo}, 
 			#{serviceContractNo}, 
 			#{servicerId}, 
 			#{operatorId}, 
 			#{clientType}, 
 			#{gmtCreate}, 
-			#{gmtModified}
+			#{gmtModified}, 
+			#{isDelete}
 		)
 	</insert>
 	 
 	<update id="update" parameterType="com.cloudht.ft.domain.ClientDO">
 		update ft_client 
 		<set>
-			<if test="registerType != null">`register_type` = #{registerType}, </if>
-			<if test="companyName != null">`company_name` = #{companyName}, </if>
-			<if test="province != null">`province` = #{province}, </if>
-			<if test="city != null">`city` = #{city}, </if>
-			<if test="detailedAddress != null">`detailed_address` = #{detailedAddress}, </if>
-			<if test="fullName != null">`full_name` = #{fullName}, </if>
-			<if test="sex != null">`sex` = #{sex}, </if>
-			<if test="telephone != null">`telephone` = #{telephone}, </if>
-			<if test="phone != null">`phone` = #{phone}, </if>
+			<if test="clientUserId != null">`client_user_id` = #{clientUserId}, </if>
 			<if test="marketerId != null">`marketer_id` = #{marketerId}, </if>
 			<if test="auditStatus != null">`audit_status` = #{auditStatus}, </if>
+			<if test="auditRemark != null">`audit_remark` = #{auditRemark}, </if>
 			<if test="clientNo != null">`client_no` = #{clientNo}, </if>
 			<if test="serviceContractNo != null">`service_contract_no` = #{serviceContractNo}, </if>
 			<if test="servicerId != null">`servicer_id` = #{servicerId}, </if>
 			<if test="operatorId != null">`operator_id` = #{operatorId}, </if>
 			<if test="clientType != null">`client_type` = #{clientType}, </if>
 			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
-			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
 		</set>
 		where ft_client_id = #{ftClientId}
 	</update>

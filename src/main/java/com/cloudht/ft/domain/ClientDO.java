@@ -10,35 +10,21 @@ import java.util.Date;
  * 
  * @author yuxueling
  * @email 980899486@qq.com
- * @date 2018-05-17 18:19:12
+ * @date 2018-06-05 09:27:00
  */
 public class ClientDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//主键
 	private Long ftClientId;
-	//公司类型：0-境外公司，1-个人注册，2-境内公司
-	private Integer registerType;
-	//公司名称
-	private String companyName;
-	//省
-	private String province;
-	//市
-	private String city;
-	//详细地址
-	private String detailedAddress;
-	//姓名
-	private String fullName;
-	//性别：0-女，1-男
-	private Integer sex;
-	//联系电话
-	private String telephone;
-	//手机
-	private String phone;
+	//委托方用户ID
+	private Long clientUserId;
 	//营销人员ID
 	private Long marketerId;
 	//审核状态:0-新注册，1-已分配营销，2-资质审核中，3-审核不通过，4-审核通过，5-已分配客服，6-已分配操作人员
 	private Integer auditStatus;
+	//审核备注
+	private String auditRemark;
 	//客户代码
 	private String clientNo;
 	//服务合同号
@@ -53,6 +39,8 @@ public class ClientDO implements Serializable {
 	private Date gmtCreate;
 	//修改时间
 	private Date gmtModified;
+	//是否删除：0-否，1-是
+	private Integer isDelete;
 
 	/**
 	 * 设置：主键
@@ -67,112 +55,16 @@ public class ClientDO implements Serializable {
 		return ftClientId;
 	}
 	/**
-	 * 设置：公司类型：0-境外公司，1-个人注册，2-境内公司
+	 * 设置：委托方用户ID
 	 */
-	public void setRegisterType(Integer registerType) {
-		this.registerType = registerType;
+	public void setClientUserId(Long clientUserId) {
+		this.clientUserId = clientUserId;
 	}
 	/**
-	 * 获取：公司类型：0-境外公司，1-个人注册，2-境内公司
+	 * 获取：委托方用户ID
 	 */
-	public Integer getRegisterType() {
-		return registerType;
-	}
-	/**
-	 * 设置：公司名称
-	 */
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-	/**
-	 * 获取：公司名称
-	 */
-	public String getCompanyName() {
-		return companyName;
-	}
-	/**
-	 * 设置：省
-	 */
-	public void setProvince(String province) {
-		this.province = province;
-	}
-	/**
-	 * 获取：省
-	 */
-	public String getProvince() {
-		return province;
-	}
-	/**
-	 * 设置：市
-	 */
-	public void setCity(String city) {
-		this.city = city;
-	}
-	/**
-	 * 获取：市
-	 */
-	public String getCity() {
-		return city;
-	}
-	/**
-	 * 设置：详细地址
-	 */
-	public void setDetailedAddress(String detailedAddress) {
-		this.detailedAddress = detailedAddress;
-	}
-	/**
-	 * 获取：详细地址
-	 */
-	public String getDetailedAddress() {
-		return detailedAddress;
-	}
-	/**
-	 * 设置：姓名
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-	/**
-	 * 获取：姓名
-	 */
-	public String getFullName() {
-		return fullName;
-	}
-	/**
-	 * 设置：性别：0-女，1-男
-	 */
-	public void setSex(Integer sex) {
-		this.sex = sex;
-	}
-	/**
-	 * 获取：性别：0-女，1-男
-	 */
-	public Integer getSex() {
-		return sex;
-	}
-	/**
-	 * 设置：联系电话
-	 */
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	/**
-	 * 获取：联系电话
-	 */
-	public String getTelephone() {
-		return telephone;
-	}
-	/**
-	 * 设置：手机
-	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	/**
-	 * 获取：手机
-	 */
-	public String getPhone() {
-		return phone;
+	public Long getClientUserId() {
+		return clientUserId;
 	}
 	/**
 	 * 设置：营销人员ID
@@ -197,6 +89,18 @@ public class ClientDO implements Serializable {
 	 */
 	public Integer getAuditStatus() {
 		return auditStatus;
+	}
+	/**
+	 * 设置：审核备注
+	 */
+	public void setAuditRemark(String auditRemark) {
+		this.auditRemark = auditRemark;
+	}
+	/**
+	 * 获取：审核备注
+	 */
+	public String getAuditRemark() {
+		return auditRemark;
 	}
 	/**
 	 * 设置：客户代码
@@ -281,5 +185,17 @@ public class ClientDO implements Serializable {
 	 */
 	public Date getGmtModified() {
 		return gmtModified;
+	}
+	/**
+	 * 设置：是否删除：0-否，1-是
+	 */
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+	/**
+	 * 获取：是否删除：0-否，1-是
+	 */
+	public Integer getIsDelete() {
+		return isDelete;
 	}
 }

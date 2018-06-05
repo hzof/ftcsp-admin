@@ -41,6 +41,24 @@ public class ClientController {
 	    return "ft/client/client";
 	}
 	/**
+	 * 客户管理-操作管理页面跳转
+	 * /ft/client/clientOperationManage
+	 * @return
+	 */
+	@GetMapping("/clientOperationManage")
+	public String clientOperationManage() {
+		return "ft/client/clientOperationManage";
+	}
+	/**
+	 * 客户管理-客服管理页面跳转
+	 * /ft/client/clientSupportStaff
+	 * @return
+	 */
+	@GetMapping("/clientSupportStaff")
+	public String clientSupportStaff() {
+		return "ft/client/clientSupportStaff";
+	}
+	/**
 	 * 客户资质审核页面跳转
 	 * @return
 	 */
