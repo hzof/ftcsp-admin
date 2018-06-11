@@ -1,5 +1,8 @@
 
-var prefix = "/ex/orderHeader"
+var prefix = "/ex/orderInfo";
+var IS_SETTLED={'0':'未结算','1':'已结算'};
+var AUDIT_STATUS={'0':'未提交','1':'待受理','2':'待专家受理','3':'拒绝受理','4':'已撤销','5':'撤回修改','6':'已受理'};
+
 $(function() {
 	load();
 });
@@ -32,7 +35,8 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
+								offset:params.offset,
+								auditStatus:2
 					           // name:$('#searchName').val(),
 					           // username:$('#searchName').val()
 							};
@@ -47,20 +51,20 @@ function load() {
 								{
 									checkbox : true
 								},{
-									field : 'exOrderHeaderId', 
-									title : 'ID' 
-								},{
 									field : 'ftClientId', 
 									title : '委托方' 
-								},{
-									field : 'exportInvoiceNo', 
-									title : '出口发票号' 
 								},{
 									field : 'exportContractNo', 
 									title : '外销合同号' 
 								},{
+									field : 'exportInvoiceNo', 
+									title : '出口发票号' 
+								},{
 									field : 'deliveryDate', 
 									title : '交货日期' 
+								},{
+									field : 'gmtCreate', 
+									title : '创建时间' 
 								},{
 									field : 'consignee', 
 									title : '收货人' 
@@ -79,21 +83,25 @@ function load() {
 								},{
 									field : 'isSettled', 
 									title : '是否已结算',
-									formatter : function(value, row, index) {  
-										var AUDIT_STATUS={'0':'未结算状态','1':'已结算状态'};  
-									    return AUDIT_STATUS[value];  
+									formatter : function(value, row, index) {
+										return IS_SETTLED[value];
 									}
 								},{
 									field : 'auditStatus', 
 									title : '审核状态',
-									formatter : function(value, row, index) {  
-										var AUDIT_STATUS={'0':'未提交','1':'待受理','2':'待专家受理','3':'拒绝受理','4':'已撤销','5':'撤回修改','6':'已受理'};  
-									    return AUDIT_STATUS[value];  
+									formatter : function(value, row, index) {
+										return AUDIT_STATUS[value];
 									}
 								},{
-									field : 'gmtCreate', 
-									title : '创建时间' 
+									visible : false,
+									field : 'exOrderHeaderId', 
+									title : 'ID' 
 								},{
+									visible : false,
+									field : 'isDeleted', 
+									title : '是否已删除'
+								},{
+									visible : false,
 									field : 'gmtModified', 
 									title : '修改时间' 
 								},{
@@ -119,17 +127,29 @@ function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
 }
 function add() {
-	layer.open({
+	var perLayer=layer.open({
 		type : 2,
-		title : '增加',
+		title : '添加-货物出运明细',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
 		content : prefix + '/add' // iframe的url
 	});
+    layer.full(perLayer);
+}
+function commodity() {
+	var perLayer=layer.open({
+		type : 2,
+		title : '添加-订单商品',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/commodity' // iframe的url
+	});
+    layer.full(perLayer);
 }
 function edit(id) {
-	layer.open({
+    var perLayer=layer.open({
 		type : 2,
 		title : '编辑',
 		maxmin : true,
@@ -137,6 +157,7 @@ function edit(id) {
 		area : [ '800px', '520px' ],
 		content : prefix + '/edit/' + id // iframe的url
 	});
+    layer.full(perLayer);
 }
 function remove(id) {
 	layer.confirm('确定要删除选中的记录？', {

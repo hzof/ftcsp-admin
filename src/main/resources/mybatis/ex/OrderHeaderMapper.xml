@@ -26,6 +26,7 @@
 		  		  <if test="isDeleted != null and isDeleted != ''"> and is_deleted = #{isDeleted} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">

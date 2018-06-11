@@ -1,5 +1,10 @@
+var prefix = "/ex/orderInfo";
+var IS_SETTLED={'0':'未结算','1':'已结算'};
+var AUDIT_STATUS={'0':'未提交','1':'待受理','2':'待专家受理','3':'拒绝受理','4':'已撤销','5':'撤回修改','6':'已受理'};
+/**
+ * 待受理订单页面的js文件
+ */
 
-var prefix = "/ex/orderHeader"
 $(function() {
 	load();
 });
@@ -32,7 +37,8 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
+								offset:params.offset,
+								auditStatus:1
 					           // name:$('#searchName').val(),
 					           // username:$('#searchName').val()
 							};
@@ -47,20 +53,20 @@ function load() {
 								{
 									checkbox : true
 								},{
-									field : 'exOrderHeaderId', 
-									title : 'ID' 
-								},{
 									field : 'ftClientId', 
 									title : '委托方' 
-								},{
-									field : 'exportInvoiceNo', 
-									title : '出口发票号' 
 								},{
 									field : 'exportContractNo', 
 									title : '外销合同号' 
 								},{
+									field : 'exportInvoiceNo', 
+									title : '出口发票号' 
+								},{
 									field : 'deliveryDate', 
 									title : '交货日期' 
+								},{
+									field : 'gmtCreate', 
+									title : '创建时间' 
 								},{
 									field : 'consignee', 
 									title : '收货人' 
@@ -79,21 +85,25 @@ function load() {
 								},{
 									field : 'isSettled', 
 									title : '是否已结算',
-									formatter : function(value, row, index) {  
-										var AUDIT_STATUS={'0':'未结算状态','1':'已结算状态'};  
-									    return AUDIT_STATUS[value];  
+									formatter : function(value, row, index) {
+										return IS_SETTLED[value];
 									}
 								},{
 									field : 'auditStatus', 
 									title : '审核状态',
-									formatter : function(value, row, index) {  
-										var AUDIT_STATUS={'0':'未提交','1':'待受理','2':'待专家受理','3':'拒绝受理','4':'已撤销','5':'撤回修改','6':'已受理'};  
-									    return AUDIT_STATUS[value];  
+									formatter : function(value, row, index) {
+										return AUDIT_STATUS[value];
 									}
 								},{
-									field : 'gmtCreate', 
-									title : '创建时间' 
+									visible : false,
+									field : 'exOrderHeaderId', 
+									title : 'ID' 
 								},{
+									visible : false,
+									field : 'isDeleted', 
+									title : '是否已删除'
+								},{
+									visible : false,
 									field : 'gmtModified', 
 									title : '修改时间' 
 								},{
@@ -107,9 +117,9 @@ function load() {
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
 												+ row.exOrderHeaderId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
+										var f = '<a class="btn btn-success btn-sm '+s_remove_h+'" href="#" title="处理订单"  mce_href="#" onclick="acceptance(\''
 												+ row.exOrderHeaderId
-												+ '\')"><i class="fa fa-key"></i></a> ';
+												+ '\')"><i class="fa fa-acceptance"></i></a> ';
 										return e + d ;
 									}
 								} ]
@@ -119,17 +129,29 @@ function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
 }
 function add() {
-	layer.open({
+	var perLayer=layer.open({
 		type : 2,
-		title : '增加',
+		title : '添加-货物出运明细',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
 		content : prefix + '/add' // iframe的url
 	});
+    layer.full(perLayer);
+}
+function commodity() {
+	var perLayer=layer.open({
+		type : 2,
+		title : '添加-订单商品',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/commodity' // iframe的url
+	});
+    layer.full(perLayer);
 }
 function edit(id) {
-	layer.open({
+    var perLayer=layer.open({
 		type : 2,
 		title : '编辑',
 		maxmin : true,
@@ -137,6 +159,7 @@ function edit(id) {
 		area : [ '800px', '520px' ],
 		content : prefix + '/edit/' + id // iframe的url
 	});
+    layer.full(perLayer);
 }
 function remove(id) {
 	layer.confirm('确定要删除选中的记录？', {
@@ -161,6 +184,26 @@ function remove(id) {
 }
 
 function resetPwd(id) {
+}
+/**
+ * 处理订单按钮的单击事件
+ * @returns
+ */
+function acceptance(id) {
+	var rows = $('#exampleTable').bootstrapTable('getSelections');
+	if (rows.length == 0 || rows.length > 1 ) {
+		layer.msg("未选择行或选中超过一行");
+		return;
+	}
+	var perLayer=layer.open({
+		type : 2,
+		title : '订单处理',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/handle/' + id // iframe的url
+	});
+    layer.full(perLayer);
 }
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组

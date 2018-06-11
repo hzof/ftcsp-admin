@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- 订单中心-出口订单-已受理订单 -->
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -11,10 +12,10 @@
 					<a href="/ex/orderInfo">代理下单</a>
 				</li>
 				<li>
-					<a href="orderInfo/orderInfoWait">待受理订单</a>
+					<a href="/ex/orderInfo/orderInfoWait">待受理订单</a>
 				</li>
 				<li >
-					<a href="orderInfo/orderInfoExpert">待专家受理订单</a>
+					<a href="/ex/orderInfo/orderInfoExpert">待专家受理订单</a>
 				</li>
 				<li class="active">
 					<a href="#">已受理订单</a>
@@ -75,6 +76,6 @@
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/ex/orderInfo/orderInfo.js"></script>
+	<script type="text/javascript" src="/js/appjs/ex/orderInfo/orderInfoFinish.js"></script>
 </body>
 </html>

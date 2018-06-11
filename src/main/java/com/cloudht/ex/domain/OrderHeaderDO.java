@@ -12,7 +12,7 @@ import java.util.Date;
  * @email 980899486@qq.com
  * @date 2018-05-25 17:57:46
  */
-public class OrderHeaderDO implements Serializable {
+public class OrderHeaderDO extends OrderBaseDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//ID
@@ -47,6 +47,14 @@ public class OrderHeaderDO implements Serializable {
 	private Date gmtCreate;
 	//修改时间
 	private Date gmtModified;
+	//创建人Id
+	private Long createBy;
+	public Long getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(Long createBy) {
+		this.createBy = createBy;
+	}
 
 	/**
 	 * 设置：ID

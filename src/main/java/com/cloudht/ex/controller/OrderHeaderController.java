@@ -47,7 +47,7 @@ public class OrderHeaderController {
 //		PageUtils pageUtils = new PageUtils(orderHeaderList, total);
 //		return pageUtils;
 //	}
-
+	
 	@GetMapping("/add")
 //	@RequiresPermissions("ex:orderHeader:add")
 	String add(){
@@ -68,12 +68,13 @@ public class OrderHeaderController {
 	@ResponseBody
 	@PostMapping("/save")
 //	@RequiresPermissions("ex:orderHeader:add")
-	public R save( @RequestBody OrderHeaderDO orderHeader){
+	public void save( @RequestBody OrderHeaderDO orderHeader){
+		///ex/orderHeader/save
 //		if(orderHeaderService.save(orderHeader)>0){
 //			return R.ok();
 //		}
 		System.out.printf(orderHeader.toString());
-		return R.ok();
+		//return R.ok();
 	}
 	/**
 	 * 修改

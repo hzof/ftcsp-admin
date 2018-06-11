@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- 订单中心-出口订单-待受理订单 -->
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -8,16 +9,16 @@
 		<div class="col-md-12 column">
 			<ul class="nav nav-tabs">
 				<li>
-					<a href="orderInfo">代理下单</a>
+					<a href="/ex/orderInfo">代理下单</a>
 				</li>
 				<li class="active">
 					<a href="#">待受理订单</a>
 				</li>
 				<li >
-					<a href="orderInfo/orderInfoExpert">待专家受理订单</a>
+					<a href="/ex/orderInfo/orderInfoExpert">待专家受理订单</a>
 				</li>
 				<li >
-					<a href="orderInfo/orderInfoFinish">已受理订单</a>
+					<a href="/ex/orderInfo/orderInfoFinish">已受理订单</a>
 				</li>
 				<li >
 					<a href="#">预约发票号码</a>
@@ -35,10 +36,10 @@
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
-
 						<div class="columns pull-right">
 							<button class="btn btn-success" onclick="reLoad()">查询</button>
 						</div>
+						
 						<div class="columns pull-right col-md-2 nopadding">
 							<input id="searchName" type="text" class="form-control"
 								placeholder="">
@@ -75,6 +76,6 @@
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/ex/orderInfo/orderInfo.js"></script>
+	<script type="text/javascript" src="/js/appjs/ex/orderInfo/orderInfoWait.js"></script>
 </body>
 </html>

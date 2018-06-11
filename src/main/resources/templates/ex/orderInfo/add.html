@@ -8,7 +8,7 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
-						<form class="m-t" id="signupForm">
+						<form class="m-t" id="signupForm" action="/ex/orderInfo/proxyExOrderSave" method="post" contentType="application/json;charset=UTF-8">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">
@@ -37,7 +37,7 @@
 									<div class="col-md-3 form-group">
 										<label class="col-sm-3 control-label">交货日期</label>
 										<div class="col-sm-9">
-											<input id="deliveryDate" name="deliveryDate" class="form-control" type="text">
+											<input id="deliveryDate" name="deliveryDate" class="form-control" type="datetime">
 										</div>
 									</div>
 									<div class="col-md-3 form-group">
@@ -431,6 +431,7 @@
 									<button type="submit" class="btn btn-default">取消</button>
 								</div>
 							</div>
+						</form>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">
@@ -441,11 +442,7 @@
 									<table id="exampleTable" data-mobile-responsive="true"/>
 								</div>
 							</div>
-
-						</form>
-
 					</div>
-
 				</div>
 			</div>
 

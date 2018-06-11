@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +29,11 @@ public class OrderInfoController {
         return "ex/orderInfo/orderInfo";
     }
 
+    /**
+     * 代理下单，待受理订单，待专家处理订单，已完成订单页面列表请求
+     * @param params
+     * @return
+     */
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("ex:orderInfo:orderInfo")
@@ -41,7 +45,20 @@ public class OrderInfoController {
         PageUtils pageUtils = new PageUtils(orderHeaderList, total);
         return pageUtils;
     }
-
+    
+    /**
+     *   订单中心-出口订单-代理下单页面点击提交订单按钮后跳转到信息确认页面
+     *         
+     * @return 跳转到信息确认页面视图
+     */
+    @GetMapping("/submitOrder/{exOrderHeaderId}")
+    @RequiresPermissions("ex:orderInfo:edit")
+    String submitOrder(@PathVariable("exOrderHeaderId") Long exOrderHeaderId, Model model){
+        OrderHeaderDO orderHeader = orderHeaderService.get(exOrderHeaderId);
+        model.addAttribute("orderHeader", orderHeader);
+        return "ex/orderInfo/submitOrder";
+    }
+ 
     @GetMapping("/add")
     @RequiresPermissions("ex:orderInfo:add")
     String add(){
@@ -55,7 +72,14 @@ public class OrderInfoController {
         model.addAttribute("orderHeader", orderHeader);
         return "ex/orderInfo/edit";
     }
-
+    /**
+     * 待受理订单页面发来的url，负责跳转到有“受理订单”、提交专家审核、拒绝受理、撤销订单按钮的订单处理页面
+     * @author Hzof
+     */
+    @GetMapping("/handle/{exOrderHeaderId}")
+    public String acceptance(@PathVariable("exOrderHeaderId") Long exOrderHeaderId, Model model) {
+    	return "ex/orderInfo/edit";
+    }
     /**
      * 保存
      */
