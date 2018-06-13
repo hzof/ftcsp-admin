@@ -8,11 +8,13 @@ $.validator.setDefaults({
 	}
 });
 function update() {
+	var _form=$('#signupForm').serialize(); 
+	debugger;
 	$.ajax({
 		cache : true,
 		type : "POST",
 		url : "/common/dict/update",
-		data : $('#signupForm').serialize(),// 你的formid
+		data : {"id":123},// 你的formid
 		async : false,
 		error : function(request) {
 			parent.layer.alert("Connection error");

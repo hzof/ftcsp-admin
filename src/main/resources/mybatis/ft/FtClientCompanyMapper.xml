@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtClientCompanyDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtClientCompanyDO">
+		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`business_license`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company where ft_client_company_id = #{value}
+	</select>
+	
+	<select id="queryIdByNamelist" parameterType="com.cloudht.ft.domain.FtClientCompanyDO" resultType="java.util.HashMap" >
+		select	`ft_client_id` "ftClientId",`company_name` "companyName" from ft_client_company where company_name like '%${companyName}%'
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtClientCompanyDO">
+		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`business_license`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company
+        <where>  
+		  		  <if test="ftClientCompanyId != null and ftClientCompanyId != ''"> and ft_client_company_id = #{ftClientCompanyId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="companyType != null and companyType != ''"> and company_type = #{companyType} </if>
+		  		  <if test="companyName != null and companyName != ''"> and company_name = #{companyName} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="detailedAddress != null and detailedAddress != ''"> and detailed_address = #{detailedAddress} </if>
+		  		  <if test="companyCode != null and companyCode != ''"> and company_code = #{companyCode} </if>
+		  		  <if test="businessLicense != null and businessLicense != ''"> and business_license = #{businessLicense} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_client_company_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_client_company
+		 <where>  
+		  		  <if test="ftClientCompanyId != null and ftClientCompanyId != ''"> and ft_client_company_id = #{ftClientCompanyId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="companyType != null and companyType != ''"> and company_type = #{companyType} </if>
+		  		  <if test="companyName != null and companyName != ''"> and company_name = #{companyName} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="detailedAddress != null and detailedAddress != ''"> and detailed_address = #{detailedAddress} </if>
+		  		  <if test="companyCode != null and companyCode != ''"> and company_code = #{companyCode} </if>
+		  		  <if test="businessLicense != null and businessLicense != ''"> and business_license = #{businessLicense} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtClientCompanyDO" useGeneratedKeys="true" keyProperty="ftClientCompanyId">
+		insert into ft_client_company
+		(
+			`ft_client_id`, 
+			`company_type`, 
+			`company_name`, 
+			`province`, 
+			`city`, 
+			`detailed_address`, 
+			`company_code`, 
+			`business_license`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{companyType}, 
+			#{companyName}, 
+			#{province}, 
+			#{city}, 
+			#{detailedAddress}, 
+			#{companyCode}, 
+			#{businessLicense}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtClientCompanyDO">
+		update ft_client_company 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="companyType != null">`company_type` = #{companyType}, </if>
+			<if test="companyName != null">`company_name` = #{companyName}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="detailedAddress != null">`detailed_address` = #{detailedAddress}, </if>
+			<if test="companyCode != null">`company_code` = #{companyCode}, </if>
+			<if test="businessLicense != null">`business_license` = #{businessLicense}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where ft_client_company_id = #{ftClientCompanyId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_client_company where ft_client_company_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_client_company where ft_client_company_id in 
+		<foreach item="ftClientCompanyId" collection="array" open="(" separator="," close=")">
+			#{ftClientCompanyId}
+		</foreach>
+	</delete>
+
+</mapper>

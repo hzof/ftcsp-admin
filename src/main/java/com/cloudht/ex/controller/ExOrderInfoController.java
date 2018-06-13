@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/ex/orderInfo")
-public class OrderInfoController {
+public class ExOrderInfoController {
 
     @Autowired
     private OrderHeaderService orderHeaderService;
@@ -80,18 +80,21 @@ public class OrderInfoController {
     public String acceptance(@PathVariable("exOrderHeaderId") Long exOrderHeaderId, Model model) {
     	return "ex/orderInfo/edit";
     }
+    
     /**
-     * 保存
+     * 代理下出口订单的保存
      */
     @ResponseBody
-    @PostMapping("/save")
+    @PostMapping("/proxyExOrderSave")
     @RequiresPermissions("ex:orderInfo:add")
     public R save(OrderHeaderDO orderHeader){
+    	System.out.println(orderHeader.toString());
         if(orderHeaderService.save(orderHeader)>0){
             return R.ok();
         }
         return R.error();
     }
+
     /**
      * 修改
      */

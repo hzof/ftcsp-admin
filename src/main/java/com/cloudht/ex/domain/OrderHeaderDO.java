@@ -248,4 +248,14 @@ public class OrderHeaderDO extends OrderBaseDO implements Serializable {
 	public Date getGmtModified() {
 		return gmtModified;
 	}
+	@Override
+	public String toString() {
+		return "OrderHeaderDO [exOrderHeaderId=" + exOrderHeaderId + ", ftClientId=" + ftClientId + ", exportInvoiceNo="
+				+ exportInvoiceNo + ", exportContractNo=" + exportContractNo + ", deliveryDate=" + deliveryDate
+				+ ", consignee=" + consignee + ", contact=" + contact + ", officePhone=" + officePhone + ", phone="
+				+ phone + ", remark=" + remark + ", isSettled=" + isSettled + ", auditStatus=" + auditStatus
+				+ ", processTime=" + processTime + ", isDeleted=" + isDeleted + ", gmtCreate=" + gmtCreate
+				+ ", gmtModified=" + gmtModified + ", createBy=" + createBy + "]";
+	}
+	
 }

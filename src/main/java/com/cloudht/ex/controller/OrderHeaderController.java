@@ -1,7 +1,6 @@
 package com.cloudht.ex.controller;
 
-import java.util.List;
-import java.util.Map;
+
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.ex.domain.OrderHeaderDO;
 import com.cloudht.ex.service.OrderHeaderService;
-import com.cloudht.common.utils.PageUtils;
-import com.cloudht.common.utils.Query;
 import com.cloudht.common.utils.R;
 
 /**
@@ -88,7 +85,7 @@ public class OrderHeaderController {
 	}
 
 	/**
-	 * 删除
+	 * 删除/ex/orderHeader/remove
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
