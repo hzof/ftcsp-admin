@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ex.dao.ExOrderDao">
+
+	<select id="get" resultType="com.cloudht.ex.domain.ExOrderDO">
+		select `ex_order_id`,`ft_client_id`,`company_name`,`export_invoice_no`,`export_contract_no`,`delivery_date`,`order_contact`,`office_phone`,`order_phone`,`consignee`,`order_remark`,`is_settled`,`audit_status`,`process_time`,`trade_country`,`trade_way`,`price_terms`,`freight`,`destination_country`,`currency`,`shipment_deadline`,`transport_mode`,`departure_port`,`transit_port`,`destination_port`,`territory_source_place`,`manufacture_factory`,`factory_contact`,`factory_phone`,`settlement_way`,`credit_no`,`is_settle_exg`,`bill_lading_num`,`invoice_num`,`packing_list_num`,`draft_num`,`quality_certificate_num`,`weight_list_num`,`certificate_origin_num`,`certificate_quarantine_num`,`insurance_policy_num`,`others`,`credentials`,`operation_type`,`service_remark`,`link_name`,`link_status`,`finish_date`,`is_ship_order`,`is_customs_inspection`,`is_customs_declaration`,`is_origin_certificate`,`is_negotiation`,`is_collection`,`is_order_link`,`specify_ship_company`,`appoint_forwarder_type`,`forwarder_company_name`,`forwarder_contact`,`forwarder_phone`,`forwarder_fax`,`forwarder_address`,`customs_broker_name`,`customs_broker_code`,`entry_notice_file_id`,`encasement_type`,`insurance_finance_service`,`pkgs`,`total_volume`,`total_rough_weight`,`total_net_weight`,`total_amount`,`foreign_exg_cost`,`create_by`,`servicer_id`,`servicer_name`,`gmt_create`,`is_deleted` from ex_order where ex_order_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ex.domain.ExOrderDO">
+		select `ex_order_id`,`ft_client_id`,`company_name`,`export_invoice_no`,`export_contract_no`,`delivery_date`,`order_contact`,`office_phone`,`order_phone`,`consignee`,`order_remark`,`is_settled`,`audit_status`,`process_time`,`trade_country`,`trade_way`,`price_terms`,`freight`,`destination_country`,`currency`,`shipment_deadline`,`transport_mode`,`departure_port`,`transit_port`,`destination_port`,`territory_source_place`,`manufacture_factory`,`factory_contact`,`factory_phone`,`settlement_way`,`credit_no`,`is_settle_exg`,`bill_lading_num`,`invoice_num`,`packing_list_num`,`draft_num`,`quality_certificate_num`,`weight_list_num`,`certificate_origin_num`,`certificate_quarantine_num`,`insurance_policy_num`,`others`,`credentials`,`operation_type`,`service_remark`,`link_name`,`link_status`,`finish_date`,`is_ship_order`,`is_customs_inspection`,`is_customs_declaration`,`is_origin_certificate`,`is_negotiation`,`is_collection`,`is_order_link`,`specify_ship_company`,`appoint_forwarder_type`,`forwarder_company_name`,`forwarder_contact`,`forwarder_phone`,`forwarder_fax`,`forwarder_address`,`customs_broker_name`,`customs_broker_code`,`entry_notice_file_id`,`encasement_type`,`insurance_finance_service`,`pkgs`,`total_volume`,`total_rough_weight`,`total_net_weight`,`total_amount`,`foreign_exg_cost`,`create_by`,`servicer_id`,`servicer_name`,`gmt_create`,`is_deleted` from ex_order
+        <where>  
+		  		  <if test="exOrderId != null and exOrderId != ''"> and ex_order_id = #{exOrderId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="companyName != null and companyName != ''"> and company_name = #{companyName} </if>
+		  		  <if test="exportInvoiceNo != null and exportInvoiceNo != ''"> and export_invoice_no = #{exportInvoiceNo} </if>
+		  		  <if test="exportContractNo != null and exportContractNo != ''"> and export_contract_no = #{exportContractNo} </if>
+		  		  <if test="deliveryDate != null and deliveryDate != ''"> and delivery_date = #{deliveryDate} </if>
+		  		  <if test="orderContact != null and orderContact != ''"> and order_contact = #{orderContact} </if>
+		  		  <if test="officePhone != null and officePhone != ''"> and office_phone = #{officePhone} </if>
+		  		  <if test="orderPhone != null and orderPhone != ''"> and order_phone = #{orderPhone} </if>
+		  		  <if test="consignee != null and consignee != ''"> and consignee = #{consignee} </if>
+		  		  <if test="orderRemark != null and orderRemark != ''"> and order_remark = #{orderRemark} </if>
+		  		  <if test="isSettled != null and isSettled != ''"> and is_settled = #{isSettled} </if>
+		  		  <if test="auditStatus != null and auditStatus != ''"> and audit_status = #{auditStatus} </if>
+		  		  <if test="processTime != null and processTime != ''"> and process_time = #{processTime} </if>
+		  		  <if test="tradeCountry != null and tradeCountry != ''"> and trade_country = #{tradeCountry} </if>
+		  		  <if test="tradeWay != null and tradeWay != ''"> and trade_way = #{tradeWay} </if>
+		  		  <if test="priceTerms != null and priceTerms != ''"> and price_terms = #{priceTerms} </if>
+		  		  <if test="freight != null and freight != ''"> and freight = #{freight} </if>
+		  		  <if test="destinationCountry != null and destinationCountry != ''"> and destination_country = #{destinationCountry} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="shipmentDeadline != null and shipmentDeadline != ''"> and shipment_deadline = #{shipmentDeadline} </if>
+		  		  <if test="transportMode != null and transportMode != ''"> and transport_mode = #{transportMode} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="territorySourcePlace != null and territorySourcePlace != ''"> and territory_source_place = #{territorySourcePlace} </if>
+		  		  <if test="manufactureFactory != null and manufactureFactory != ''"> and manufacture_factory = #{manufactureFactory} </if>
+		  		  <if test="factoryContact != null and factoryContact != ''"> and factory_contact = #{factoryContact} </if>
+		  		  <if test="factoryPhone != null and factoryPhone != ''"> and factory_phone = #{factoryPhone} </if>
+		  		  <if test="settlementWay != null and settlementWay != ''"> and settlement_way = #{settlementWay} </if>
+		  		  <if test="creditNo != null and creditNo != ''"> and credit_no = #{creditNo} </if>
+		  		  <if test="isSettleExg != null and isSettleExg != ''"> and is_settle_exg = #{isSettleExg} </if>
+		  		  <if test="billLadingNum != null and billLadingNum != ''"> and bill_lading_num = #{billLadingNum} </if>
+		  		  <if test="invoiceNum != null and invoiceNum != ''"> and invoice_num = #{invoiceNum} </if>
+		  		  <if test="packingListNum != null and packingListNum != ''"> and packing_list_num = #{packingListNum} </if>
+		  		  <if test="draftNum != null and draftNum != ''"> and draft_num = #{draftNum} </if>
+		  		  <if test="qualityCertificateNum != null and qualityCertificateNum != ''"> and quality_certificate_num = #{qualityCertificateNum} </if>
+		  		  <if test="weightListNum != null and weightListNum != ''"> and weight_list_num = #{weightListNum} </if>
+		  		  <if test="certificateOriginNum != null and certificateOriginNum != ''"> and certificate_origin_num = #{certificateOriginNum} </if>
+		  		  <if test="certificateQuarantineNum != null and certificateQuarantineNum != ''"> and certificate_quarantine_num = #{certificateQuarantineNum} </if>
+		  		  <if test="insurancePolicyNum != null and insurancePolicyNum != ''"> and insurance_policy_num = #{insurancePolicyNum} </if>
+		  		  <if test="others != null and others != ''"> and others = #{others} </if>
+		  		  <if test="credentials != null and credentials != ''"> and credentials = #{credentials} </if>
+		  		  <if test="operationType != null and operationType != ''"> and operation_type = #{operationType} </if>
+		  		  <if test="serviceRemark != null and serviceRemark != ''"> and service_remark = #{serviceRemark} </if>
+		  		  <if test="linkName != null and linkName != ''"> and link_name = #{linkName} </if>
+		  		  <if test="linkStatus != null and linkStatus != ''"> and link_status = #{linkStatus} </if>
+		  		  <if test="finishDate != null and finishDate != ''"> and finish_date = #{finishDate} </if>
+		  		  <if test="isShipOrder != null and isShipOrder != ''"> and is_ship_order = #{isShipOrder} </if>
+		  		  <if test="isCustomsInspection != null and isCustomsInspection != ''"> and is_customs_inspection = #{isCustomsInspection} </if>
+		  		  <if test="isCustomsDeclaration != null and isCustomsDeclaration != ''"> and is_customs_declaration = #{isCustomsDeclaration} </if>
+		  		  <if test="isOriginCertificate != null and isOriginCertificate != ''"> and is_origin_certificate = #{isOriginCertificate} </if>
+		  		  <if test="isNegotiation != null and isNegotiation != ''"> and is_negotiation = #{isNegotiation} </if>
+		  		  <if test="isCollection != null and isCollection != ''"> and is_collection = #{isCollection} </if>
+		  		  <if test="isOrderLink != null and isOrderLink != ''"> and is_order_link = #{isOrderLink} </if>
+		  		  <if test="specifyShipCompany != null and specifyShipCompany != ''"> and specify_ship_company = #{specifyShipCompany} </if>
+		  		  <if test="appointForwarderType != null and appointForwarderType != ''"> and appoint_forwarder_type = #{appointForwarderType} </if>
+		  		  <if test="forwarderCompanyName != null and forwarderCompanyName != ''"> and forwarder_company_name = #{forwarderCompanyName} </if>
+		  		  <if test="forwarderContact != null and forwarderContact != ''"> and forwarder_contact = #{forwarderContact} </if>
+		  		  <if test="forwarderPhone != null and forwarderPhone != ''"> and forwarder_phone = #{forwarderPhone} </if>
+		  		  <if test="forwarderFax != null and forwarderFax != ''"> and forwarder_fax = #{forwarderFax} </if>
+		  		  <if test="forwarderAddress != null and forwarderAddress != ''"> and forwarder_address = #{forwarderAddress} </if>
+		  		  <if test="customsBrokerName != null and customsBrokerName != ''"> and customs_broker_name = #{customsBrokerName} </if>
+		  		  <if test="customsBrokerCode != null and customsBrokerCode != ''"> and customs_broker_code = #{customsBrokerCode} </if>
+		  		  <if test="entryNoticeFileId != null and entryNoticeFileId != ''"> and entry_notice_file_id = #{entryNoticeFileId} </if>
+		  		  <if test="encasementType != null and encasementType != ''"> and encasement_type = #{encasementType} </if>
+		  		  <if test="insuranceFinanceService != null and insuranceFinanceService != ''"> and insurance_finance_service = #{insuranceFinanceService} </if>
+		  		  <if test="pkgs != null and pkgs != ''"> and pkgs = #{pkgs} </if>
+		  		  <if test="totalVolume != null and totalVolume != ''"> and total_volume = #{totalVolume} </if>
+		  		  <if test="totalRoughWeight != null and totalRoughWeight != ''"> and total_rough_weight = #{totalRoughWeight} </if>
+		  		  <if test="totalNetWeight != null and totalNetWeight != ''"> and total_net_weight = #{totalNetWeight} </if>
+		  		  <if test="totalAmount != null and totalAmount != ''"> and total_amount = #{totalAmount} </if>
+		  		  <if test="foreignExgCost != null and foreignExgCost != ''"> and foreign_exg_cost = #{foreignExgCost} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="servicerId != null and servicerId != ''"> and servicer_id = #{servicerId} </if>
+		  		  <if test="servicerName != null and servicerName != ''"> and servicer_name = #{servicerName} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="isDeleted != null and isDeleted != ''"> and is_deleted = #{isDeleted} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ex_order_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ex_order
+		 <where>  
+		  		  <if test="exOrderId != null and exOrderId != ''"> and ex_order_id = #{exOrderId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="companyName != null and companyName != ''"> and company_name = #{companyName} </if>
+		  		  <if test="exportInvoiceNo != null and exportInvoiceNo != ''"> and export_invoice_no = #{exportInvoiceNo} </if>
+		  		  <if test="exportContractNo != null and exportContractNo != ''"> and export_contract_no = #{exportContractNo} </if>
+		  		  <if test="deliveryDate != null and deliveryDate != ''"> and delivery_date = #{deliveryDate} </if>
+		  		  <if test="orderContact != null and orderContact != ''"> and order_contact = #{orderContact} </if>
+		  		  <if test="officePhone != null and officePhone != ''"> and office_phone = #{officePhone} </if>
+		  		  <if test="orderPhone != null and orderPhone != ''"> and order_phone = #{orderPhone} </if>
+		  		  <if test="consignee != null and consignee != ''"> and consignee = #{consignee} </if>
+		  		  <if test="orderRemark != null and orderRemark != ''"> and order_remark = #{orderRemark} </if>
+		  		  <if test="isSettled != null and isSettled != ''"> and is_settled = #{isSettled} </if>
+		  		  <if test="auditStatus != null and auditStatus != ''"> and audit_status = #{auditStatus} </if>
+		  		  <if test="processTime != null and processTime != ''"> and process_time = #{processTime} </if>
+		  		  <if test="tradeCountry != null and tradeCountry != ''"> and trade_country = #{tradeCountry} </if>
+		  		  <if test="tradeWay != null and tradeWay != ''"> and trade_way = #{tradeWay} </if>
+		  		  <if test="priceTerms != null and priceTerms != ''"> and price_terms = #{priceTerms} </if>
+		  		  <if test="freight != null and freight != ''"> and freight = #{freight} </if>
+		  		  <if test="destinationCountry != null and destinationCountry != ''"> and destination_country = #{destinationCountry} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="shipmentDeadline != null and shipmentDeadline != ''"> and shipment_deadline = #{shipmentDeadline} </if>
+		  		  <if test="transportMode != null and transportMode != ''"> and transport_mode = #{transportMode} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="territorySourcePlace != null and territorySourcePlace != ''"> and territory_source_place = #{territorySourcePlace} </if>
+		  		  <if test="manufactureFactory != null and manufactureFactory != ''"> and manufacture_factory = #{manufactureFactory} </if>
+		  		  <if test="factoryContact != null and factoryContact != ''"> and factory_contact = #{factoryContact} </if>
+		  		  <if test="factoryPhone != null and factoryPhone != ''"> and factory_phone = #{factoryPhone} </if>
+		  		  <if test="settlementWay != null and settlementWay != ''"> and settlement_way = #{settlementWay} </if>
+		  		  <if test="creditNo != null and creditNo != ''"> and credit_no = #{creditNo} </if>
+		  		  <if test="isSettleExg != null and isSettleExg != ''"> and is_settle_exg = #{isSettleExg} </if>
+		  		  <if test="billLadingNum != null and billLadingNum != ''"> and bill_lading_num = #{billLadingNum} </if>
+		  		  <if test="invoiceNum != null and invoiceNum != ''"> and invoice_num = #{invoiceNum} </if>
+		  		  <if test="packingListNum != null and packingListNum != ''"> and packing_list_num = #{packingListNum} </if>
+		  		  <if test="draftNum != null and draftNum != ''"> and draft_num = #{draftNum} </if>
+		  		  <if test="qualityCertificateNum != null and qualityCertificateNum != ''"> and quality_certificate_num = #{qualityCertificateNum} </if>
+		  		  <if test="weightListNum != null and weightListNum != ''"> and weight_list_num = #{weightListNum} </if>
+		  		  <if test="certificateOriginNum != null and certificateOriginNum != ''"> and certificate_origin_num = #{certificateOriginNum} </if>
+		  		  <if test="certificateQuarantineNum != null and certificateQuarantineNum != ''"> and certificate_quarantine_num = #{certificateQuarantineNum} </if>
+		  		  <if test="insurancePolicyNum != null and insurancePolicyNum != ''"> and insurance_policy_num = #{insurancePolicyNum} </if>
+		  		  <if test="others != null and others != ''"> and others = #{others} </if>
+		  		  <if test="credentials != null and credentials != ''"> and credentials = #{credentials} </if>
+		  		  <if test="operationType != null and operationType != ''"> and operation_type = #{operationType} </if>
+		  		  <if test="serviceRemark != null and serviceRemark != ''"> and service_remark = #{serviceRemark} </if>
+		  		  <if test="linkName != null and linkName != ''"> and link_name = #{linkName} </if>
+		  		  <if test="linkStatus != null and linkStatus != ''"> and link_status = #{linkStatus} </if>
+		  		  <if test="finishDate != null and finishDate != ''"> and finish_date = #{finishDate} </if>
+		  		  <if test="isShipOrder != null and isShipOrder != ''"> and is_ship_order = #{isShipOrder} </if>
+		  		  <if test="isCustomsInspection != null and isCustomsInspection != ''"> and is_customs_inspection = #{isCustomsInspection} </if>
+		  		  <if test="isCustomsDeclaration != null and isCustomsDeclaration != ''"> and is_customs_declaration = #{isCustomsDeclaration} </if>
+		  		  <if test="isOriginCertificate != null and isOriginCertificate != ''"> and is_origin_certificate = #{isOriginCertificate} </if>
+		  		  <if test="isNegotiation != null and isNegotiation != ''"> and is_negotiation = #{isNegotiation} </if>
+		  		  <if test="isCollection != null and isCollection != ''"> and is_collection = #{isCollection} </if>
+		  		  <if test="isOrderLink != null and isOrderLink != ''"> and is_order_link = #{isOrderLink} </if>
+		  		  <if test="specifyShipCompany != null and specifyShipCompany != ''"> and specify_ship_company = #{specifyShipCompany} </if>
+		  		  <if test="appointForwarderType != null and appointForwarderType != ''"> and appoint_forwarder_type = #{appointForwarderType} </if>
+		  		  <if test="forwarderCompanyName != null and forwarderCompanyName != ''"> and forwarder_company_name = #{forwarderCompanyName} </if>
+		  		  <if test="forwarderContact != null and forwarderContact != ''"> and forwarder_contact = #{forwarderContact} </if>
+		  		  <if test="forwarderPhone != null and forwarderPhone != ''"> and forwarder_phone = #{forwarderPhone} </if>
+		  		  <if test="forwarderFax != null and forwarderFax != ''"> and forwarder_fax = #{forwarderFax} </if>
+		  		  <if test="forwarderAddress != null and forwarderAddress != ''"> and forwarder_address = #{forwarderAddress} </if>
+		  		  <if test="customsBrokerName != null and customsBrokerName != ''"> and customs_broker_name = #{customsBrokerName} </if>
+		  		  <if test="customsBrokerCode != null and customsBrokerCode != ''"> and customs_broker_code = #{customsBrokerCode} </if>
+		  		  <if test="entryNoticeFileId != null and entryNoticeFileId != ''"> and entry_notice_file_id = #{entryNoticeFileId} </if>
+		  		  <if test="encasementType != null and encasementType != ''"> and encasement_type = #{encasementType} </if>
+		  		  <if test="insuranceFinanceService != null and insuranceFinanceService != ''"> and insurance_finance_service = #{insuranceFinanceService} </if>
+		  		  <if test="pkgs != null and pkgs != ''"> and pkgs = #{pkgs} </if>
+		  		  <if test="totalVolume != null and totalVolume != ''"> and total_volume = #{totalVolume} </if>
+		  		  <if test="totalRoughWeight != null and totalRoughWeight != ''"> and total_rough_weight = #{totalRoughWeight} </if>
+		  		  <if test="totalNetWeight != null and totalNetWeight != ''"> and total_net_weight = #{totalNetWeight} </if>
+		  		  <if test="totalAmount != null and totalAmount != ''"> and total_amount = #{totalAmount} </if>
+		  		  <if test="foreignExgCost != null and foreignExgCost != ''"> and foreign_exg_cost = #{foreignExgCost} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="servicerId != null and servicerId != ''"> and servicer_id = #{servicerId} </if>
+		  		  <if test="servicerName != null and servicerName != ''"> and servicer_name = #{servicerName} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="isDeleted != null and isDeleted != ''"> and is_deleted = #{isDeleted} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ex.domain.ExOrderDO" useGeneratedKeys="true" keyProperty="exOrderId">
+		insert into ex_order
+		(
+			`ft_client_id`, 
+			`company_name`, 
+			`export_invoice_no`, 
+			`export_contract_no`, 
+			`delivery_date`, 
+			`order_contact`, 
+			`office_phone`, 
+			`order_phone`, 
+			`consignee`, 
+			`order_remark`, 
+			`is_settled`, 
+			`audit_status`, 
+			`process_time`, 
+			`trade_country`, 
+			`trade_way`, 
+			`price_terms`, 
+			`freight`, 
+			`destination_country`, 
+			`currency`, 
+			`shipment_deadline`, 
+			`transport_mode`, 
+			`departure_port`, 
+			`transit_port`, 
+			`destination_port`, 
+			`territory_source_place`, 
+			`manufacture_factory`, 
+			`factory_contact`, 
+			`factory_phone`, 
+			`settlement_way`, 
+			`credit_no`, 
+			`is_settle_exg`, 
+			`bill_lading_num`, 
+			`invoice_num`, 
+			`packing_list_num`, 
+			`draft_num`, 
+			`quality_certificate_num`, 
+			`weight_list_num`, 
+			`certificate_origin_num`, 
+			`certificate_quarantine_num`, 
+			`insurance_policy_num`, 
+			`others`, 
+			`credentials`, 
+			`operation_type`, 
+			`service_remark`, 
+			`link_name`, 
+			`link_status`, 
+			`finish_date`, 
+			`is_ship_order`, 
+			`is_customs_inspection`, 
+			`is_customs_declaration`, 
+			`is_origin_certificate`, 
+			`is_negotiation`, 
+			`is_collection`, 
+			`is_order_link`, 
+			`specify_ship_company`, 
+			`appoint_forwarder_type`, 
+			`forwarder_company_name`, 
+			`forwarder_contact`, 
+			`forwarder_phone`, 
+			`forwarder_fax`, 
+			`forwarder_address`, 
+			`customs_broker_name`, 
+			`customs_broker_code`, 
+			`entry_notice_file_id`, 
+			`encasement_type`, 
+			`insurance_finance_service`, 
+			`pkgs`, 
+			`total_volume`, 
+			`total_rough_weight`, 
+			`total_net_weight`, 
+			`total_amount`, 
+			`foreign_exg_cost`, 
+			`create_by`, 
+			`servicer_id`, 
+			`servicer_name`, 
+			`gmt_create`, 
+			`is_deleted`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{companyName}, 
+			#{exportInvoiceNo}, 
+			#{exportContractNo}, 
+			#{deliveryDate}, 
+			#{orderContact}, 
+			#{officePhone}, 
+			#{orderPhone}, 
+			#{consignee}, 
+			#{orderRemark}, 
+			#{isSettled}, 
+			#{auditStatus}, 
+			#{processTime}, 
+			#{tradeCountry}, 
+			#{tradeWay}, 
+			#{priceTerms}, 
+			#{freight}, 
+			#{destinationCountry}, 
+			#{currency}, 
+			#{shipmentDeadline}, 
+			#{transportMode}, 
+			#{departurePort}, 
+			#{transitPort}, 
+			#{destinationPort}, 
+			#{territorySourcePlace}, 
+			#{manufactureFactory}, 
+			#{factoryContact}, 
+			#{factoryPhone}, 
+			#{settlementWay}, 
+			#{creditNo}, 
+			#{isSettleExg}, 
+			#{billLadingNum}, 
+			#{invoiceNum}, 
+			#{packingListNum}, 
+			#{draftNum}, 
+			#{qualityCertificateNum}, 
+			#{weightListNum}, 
+			#{certificateOriginNum}, 
+			#{certificateQuarantineNum}, 
+			#{insurancePolicyNum}, 
+			#{others}, 
+			#{credentials}, 
+			#{operationType}, 
+			#{serviceRemark}, 
+			#{linkName}, 
+			#{linkStatus}, 
+			#{finishDate}, 
+			#{isShipOrder}, 
+			#{isCustomsInspection}, 
+			#{isCustomsDeclaration}, 
+			#{isOriginCertificate}, 
+			#{isNegotiation}, 
+			#{isCollection}, 
+			#{isOrderLink}, 
+			#{specifyShipCompany}, 
+			#{appointForwarderType}, 
+			#{forwarderCompanyName}, 
+			#{forwarderContact}, 
+			#{forwarderPhone}, 
+			#{forwarderFax}, 
+			#{forwarderAddress}, 
+			#{customsBrokerName}, 
+			#{customsBrokerCode}, 
+			#{entryNoticeFileId}, 
+			#{encasementType}, 
+			#{insuranceFinanceService}, 
+			#{pkgs}, 
+			#{totalVolume}, 
+			#{totalRoughWeight}, 
+			#{totalNetWeight}, 
+			#{totalAmount}, 
+			#{foreignExgCost}, 
+			#{createBy}, 
+			#{servicerId}, 
+			#{servicerName}, 
+			#{gmtCreate}, 
+			#{isDeleted}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ex.domain.ExOrderDO">
+		update ex_order 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="companyName != null">`company_name` = #{companyName}, </if>
+			<if test="exportInvoiceNo != null">`export_invoice_no` = #{exportInvoiceNo}, </if>
+			<if test="exportContractNo != null">`export_contract_no` = #{exportContractNo}, </if>
+			<if test="deliveryDate != null">`delivery_date` = #{deliveryDate}, </if>
+			<if test="orderContact != null">`order_contact` = #{orderContact}, </if>
+			<if test="officePhone != null">`office_phone` = #{officePhone}, </if>
+			<if test="orderPhone != null">`order_phone` = #{orderPhone}, </if>
+			<if test="consignee != null">`consignee` = #{consignee}, </if>
+			<if test="orderRemark != null">`order_remark` = #{orderRemark}, </if>
+			<if test="isSettled != null">`is_settled` = #{isSettled}, </if>
+			<if test="auditStatus != null">`audit_status` = #{auditStatus}, </if>
+			<if test="processTime != null">`process_time` = #{processTime}, </if>
+			<if test="tradeCountry != null">`trade_country` = #{tradeCountry}, </if>
+			<if test="tradeWay != null">`trade_way` = #{tradeWay}, </if>
+			<if test="priceTerms != null">`price_terms` = #{priceTerms}, </if>
+			<if test="freight != null">`freight` = #{freight}, </if>
+			<if test="destinationCountry != null">`destination_country` = #{destinationCountry}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="shipmentDeadline != null">`shipment_deadline` = #{shipmentDeadline}, </if>
+			<if test="transportMode != null">`transport_mode` = #{transportMode}, </if>
+			<if test="departurePort != null">`departure_port` = #{departurePort}, </if>
+			<if test="transitPort != null">`transit_port` = #{transitPort}, </if>
+			<if test="destinationPort != null">`destination_port` = #{destinationPort}, </if>
+			<if test="territorySourcePlace != null">`territory_source_place` = #{territorySourcePlace}, </if>
+			<if test="manufactureFactory != null">`manufacture_factory` = #{manufactureFactory}, </if>
+			<if test="factoryContact != null">`factory_contact` = #{factoryContact}, </if>
+			<if test="factoryPhone != null">`factory_phone` = #{factoryPhone}, </if>
+			<if test="settlementWay != null">`settlement_way` = #{settlementWay}, </if>
+			<if test="creditNo != null">`credit_no` = #{creditNo}, </if>
+			<if test="isSettleExg != null">`is_settle_exg` = #{isSettleExg}, </if>
+			<if test="billLadingNum != null">`bill_lading_num` = #{billLadingNum}, </if>
+			<if test="invoiceNum != null">`invoice_num` = #{invoiceNum}, </if>
+			<if test="packingListNum != null">`packing_list_num` = #{packingListNum}, </if>
+			<if test="draftNum != null">`draft_num` = #{draftNum}, </if>
+			<if test="qualityCertificateNum != null">`quality_certificate_num` = #{qualityCertificateNum}, </if>
+			<if test="weightListNum != null">`weight_list_num` = #{weightListNum}, </if>
+			<if test="certificateOriginNum != null">`certificate_origin_num` = #{certificateOriginNum}, </if>
+			<if test="certificateQuarantineNum != null">`certificate_quarantine_num` = #{certificateQuarantineNum}, </if>
+			<if test="insurancePolicyNum != null">`insurance_policy_num` = #{insurancePolicyNum}, </if>
+			<if test="others != null">`others` = #{others}, </if>
+			<if test="credentials != null">`credentials` = #{credentials}, </if>
+			<if test="operationType != null">`operation_type` = #{operationType}, </if>
+			<if test="serviceRemark != null">`service_remark` = #{serviceRemark}, </if>
+			<if test="linkName != null">`link_name` = #{linkName}, </if>
+			<if test="linkStatus != null">`link_status` = #{linkStatus}, </if>
+			<if test="finishDate != null">`finish_date` = #{finishDate}, </if>
+			<if test="isShipOrder != null">`is_ship_order` = #{isShipOrder}, </if>
+			<if test="isCustomsInspection != null">`is_customs_inspection` = #{isCustomsInspection}, </if>
+			<if test="isCustomsDeclaration != null">`is_customs_declaration` = #{isCustomsDeclaration}, </if>
+			<if test="isOriginCertificate != null">`is_origin_certificate` = #{isOriginCertificate}, </if>
+			<if test="isNegotiation != null">`is_negotiation` = #{isNegotiation}, </if>
+			<if test="isCollection != null">`is_collection` = #{isCollection}, </if>
+			<if test="isOrderLink != null">`is_order_link` = #{isOrderLink}, </if>
+			<if test="specifyShipCompany != null">`specify_ship_company` = #{specifyShipCompany}, </if>
+			<if test="appointForwarderType != null">`appoint_forwarder_type` = #{appointForwarderType}, </if>
+			<if test="forwarderCompanyName != null">`forwarder_company_name` = #{forwarderCompanyName}, </if>
+			<if test="forwarderContact != null">`forwarder_contact` = #{forwarderContact}, </if>
+			<if test="forwarderPhone != null">`forwarder_phone` = #{forwarderPhone}, </if>
+			<if test="forwarderFax != null">`forwarder_fax` = #{forwarderFax}, </if>
+			<if test="forwarderAddress != null">`forwarder_address` = #{forwarderAddress}, </if>
+			<if test="customsBrokerName != null">`customs_broker_name` = #{customsBrokerName}, </if>
+			<if test="customsBrokerCode != null">`customs_broker_code` = #{customsBrokerCode}, </if>
+			<if test="entryNoticeFileId != null">`entry_notice_file_id` = #{entryNoticeFileId}, </if>
+			<if test="encasementType != null">`encasement_type` = #{encasementType}, </if>
+			<if test="insuranceFinanceService != null">`insurance_finance_service` = #{insuranceFinanceService}, </if>
+			<if test="pkgs != null">`pkgs` = #{pkgs}, </if>
+			<if test="totalVolume != null">`total_volume` = #{totalVolume}, </if>
+			<if test="totalRoughWeight != null">`total_rough_weight` = #{totalRoughWeight}, </if>
+			<if test="totalNetWeight != null">`total_net_weight` = #{totalNetWeight}, </if>
+			<if test="totalAmount != null">`total_amount` = #{totalAmount}, </if>
+			<if test="foreignExgCost != null">`foreign_exg_cost` = #{foreignExgCost}, </if>
+			<if test="createBy != null">`create_by` = #{createBy}, </if>
+			<if test="servicerId != null">`servicer_id` = #{servicerId}, </if>
+			<if test="servicerName != null">`servicer_name` = #{servicerName}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="isDeleted != null">`is_deleted` = #{isDeleted}</if>
+		</set>
+		where ex_order_id = #{exOrderId}
+	</update>
+	
+	<delete id="remove">
+		delete from ex_order where ex_order_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ex_order where ex_order_id in 
+		<foreach item="exOrderId" collection="array" open="(" separator="," close=")">
+			#{exOrderId}
+		</foreach>
+	</delete>
+
+</mapper>
