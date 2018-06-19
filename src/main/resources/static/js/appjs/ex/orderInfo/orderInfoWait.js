@@ -5,24 +5,6 @@ var AUDIT_STATUS={'0':'未提交','1':'待受理','2':'待专家受理','3':'拒
  * 待受理订单页面的js文件
  */
 
-//======1.受理订单函数===========
-function AdmissibleOrder() {
-	var rows = $('#exampleTable').bootstrapTable('getSelections');
-	if (rows.length == 0 || rows.length > 1 ) {
-		layer.msg("未选择行或选中超过一行");
-		return;
-	}
-	var perLayer=layer.open({
-		type : 2,
-		title : '受理订单',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : '/ex/orderInfo/admissibleOrder/' + rows[0].exOrderHeaderId // iframe的url
-	});
-    layer.full(perLayer);
-	
-}
 $(function() {
 	load();
 });

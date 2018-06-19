@@ -157,21 +157,14 @@ function add() {
 	});
     layer.full(perLayer);
 }
-//==========给待受理的订单添加商品信息==============
-function addCommodity() {
-	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
-	alert(rows[0].exOrderHeaderId);
-	if (rows.length == 0||rows.length>1) {
-		layer.msg("未选择数据或者超过一行");
-		return;
-	}
+function commodity() {
 	var perLayer=layer.open({
 		type : 2,
 		title : '添加-订单商品',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/commodity/' +rows[0].exOrderHeaderId // iframe的url /ex/orderInfo/commodity/exOrderHeaderId
+		content : prefix + '/commodity' // iframe的url
 	});
     layer.full(perLayer);
 }

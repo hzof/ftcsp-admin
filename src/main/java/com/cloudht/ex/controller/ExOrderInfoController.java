@@ -73,14 +73,12 @@ public class ExOrderInfoController {
         return "ex/orderInfo/edit";
     }
     /**
-     * “受理订单”负责跳转到受理订单信息确认页面
+     * 待受理订单页面发来的url，负责跳转到有“受理订单”、提交专家审核、拒绝受理、撤销订单按钮的订单处理页面
      * @author Hzof
      */
-    @GetMapping("/admissibleOrder/{exOrderHeaderId}")
+    @GetMapping("/handle/{exOrderHeaderId}")
     public String acceptance(@PathVariable("exOrderHeaderId") Long exOrderHeaderId, Model model) {
-    	OrderHeaderDO orderHeader = orderHeaderService.get(exOrderHeaderId);
-    	model.addAttribute("orderHeader",orderHeader);
-    	return "ex/orderInfo/admissibleOrder";//跳转到受理订单的信息确认页面
+    	return "ex/orderInfo/edit";
     }
     
     /**
@@ -107,17 +105,10 @@ public class ExOrderInfoController {
         orderHeaderService.update(orderHeader);
         return R.ok();
     }
-    
-    /**
-     * url:/ex/orderInfo/commodity
-     * 给待受理的订单添加商品信息
-     * @return
-     */
-    @GetMapping("/commodity/{exOrderHeaderId}")
+
+    @GetMapping("/commodity")
     @RequiresPermissions("ex:orderInfo:commodity")
-    String commodity(@PathVariable("exOrderHeaderId") Long exOrderHeaderId,Model model){
-    	OrderHeaderDO orderHeaderDO = orderHeaderService.get(exOrderHeaderId);
-    	
+    String commodity(){
         return "ex/orderInfo/commodity";
     }
     @RequestMapping("/orderInfoExpert")
