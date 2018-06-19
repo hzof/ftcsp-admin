@@ -25,7 +25,7 @@
 										<label class="col-sm-2 control-label">委托方</label>
 										<div class="col-sm-3">	
 											<!--  <input id="ftClientId" class="form-control" type="text" onblur="queryFtClientIdByCilentName(this)"> -->
-											<input id="ftClientId" name="ftClientIdSearch" type="text" class="form-control" placeholder="输入关键字进行搜索" onchange="searchWord(this)">
+											<input id="ftClientId" type="text" class="form-control" placeholder="输入关键字进行搜索" onkeyup="searchWord(this)">
 										    <div id="showDiv" style="display:none; position:absolute;z-index:1000;background:#fff; width:179px;border:1px solid #ccc;"></div>
 										    <input id="ftClientId1" name="ftClientId" type="hidden" value=""/>
 										</div>
@@ -435,14 +435,18 @@
 								</div>
 								<input name="auditStatus" id="auditStatus" type="hidden">
 								<div class="panel-footer" style="text-align: center">
+									<!--  <button class="btn btn-primary" onclick="savesave(0)" type="submit">保存</button>-->
 									<input type="button" class="btn btn-primary" onclick="savesave(0)" value="保存">
+									<script type="text/javascript">
+										function savesave(obj) {
+											$("#auditStatus").val(obj);
+											$("#signupForm").submit();
+										}
+									</script>
 									&nbsp;&nbsp;&nbsp;
 									<input type="button" class="btn btn-primary" onclick="savesave(1)" value="提交">
 									&nbsp;&nbsp;&nbsp;
 									<button type="reset" class="btn btn-default">取消</button>
-									<script type="text/javascript">
-										
-									</script>
 								</div>
 							</div>
 						</form>

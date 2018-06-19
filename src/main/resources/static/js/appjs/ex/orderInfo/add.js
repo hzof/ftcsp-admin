@@ -1,4 +1,3 @@
-var prefix = "/ex/orderCommodity";
 //==========搜索框异步搜索开始行===========
 function overFn(obj){
 	$(obj).css("background","#DBEAF9");
@@ -12,9 +11,6 @@ function clickFn(obj){
 	$("#ftClientId1").val(obj.id);
 }
 function searchWord(par){
-	if(par.value==null){
-		$("#ftClientId1").val("");
-	}
 	var content = "";
 	$.post(
 			"/ft/ftClientCompany/queryIdByNamelist",
@@ -31,8 +27,7 @@ function searchWord(par){
 			"json"
 	);	
 }
-
-
+//===========上一段结束,我是搜索功能结束的分割线=========
 /**
  * ready：在文档加载后的激活函数
  * @returns
@@ -70,9 +65,23 @@ function save() {
 		}
 	});
 }
+function validateRule() {
+	var icon = "<i class='fa fa-times-circle'></i> ";
+	$("#signupForm").validate({
+		rules : {
+			ftClientId : {
+				required : true
+			}
+		},
+		messages : {
+			ftClientId : {
+				required : icon + "请输入姓名"
+			}
+		}
+	})
+}
 
-
-
+var prefix = "/ex/orderCommodity";
 
 
 function reLoad() {
@@ -83,20 +92,14 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			exportInvoiceNo : {
-				required : true
-			},
-			ftClientIdSearch : {
+			name : {
 				required : true
 			}
 		},
 		messages : {
-			exportInvoiceNo : {
-				required : "请输入委托方关键字后点击候选列表中正确的选项"
+			name : {
+				required : icon + "请输入姓名"
 			}
-		},
-		ftClientIdSearch : {
-			required : "请输入委托方关键字后点击候选列表中正确的选项"
 		}
-	});
+	})
 }
