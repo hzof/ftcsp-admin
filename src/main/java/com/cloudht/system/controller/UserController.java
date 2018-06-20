@@ -1,5 +1,6 @@
 package com.cloudht.system.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.cloudht.common.annotation.Log;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.controller.BaseController;
@@ -99,6 +100,17 @@ public class UserController extends BaseController {
 			return R.ok();
 		}
 		return R.error();
+	}
+	/**
+	 * 根据用户表的name属性模糊查询id和name字段
+	 * @param user 含有name属性的user对象
+	 * @return id和name字段的集合
+	 */
+	@ResponseBody
+	@PostMapping("/queryUserIdByUsername")
+	public String queryUserIdByUsername(UserDO user) {
+		List<Map<Long, String>> idAndNameList = userService.queryUserIdByUsername(user);
+		return JSON.toJSONString(idAndNameList);
 	}
 
 

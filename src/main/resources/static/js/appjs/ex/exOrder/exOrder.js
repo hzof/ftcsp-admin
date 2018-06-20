@@ -47,23 +47,32 @@ function load() {
 									checkbox : true
 								},{
 									field : 'companyName', 
-									title : '委托方公司名称' 
+									title : '委托方公司名称' ,
+									align : 'center',
+									formatter : function(value, row, index) {
+										return '<a href="#" onclick="details('+row.exOrderId+')">'+value+'</a> ';;
+									}
 								},{
 									visible : false,
 									field : 'ftClientId', 
-									title : '委托方' 
+									title : '委托方',
+									align : 'center'
 								},{
 									field : 'exportContractNo', 
-									title : '外销合同号' 
+									title : '外销合同号',
+									align : 'center'
 								},{
 									field : 'exportInvoiceNo', 
-									title : '出口发票号' 
+									title : '出口发票号',
+									align : 'center'
 								},{
 									field : 'shipmentDeadline', 
-									title : '装运期限' 
+									title : '装运期限' ,
+									align : 'center'
 								},{
 									field : 'gmtCreate', 
-									title : '创建时间' 
+									title : '创建时间' ,
+									align : 'center'
 								},{
 									field : 'auditStatus', 
 									title : '审核状态',
@@ -361,7 +370,16 @@ function load() {
 										var h = '<a class="btn btn-success btn-sm" href="#" title="复制订单"  mce_href="#" onclick="resetPwd(\''
 											+ row.exOrderId
 											+ '\')"><i class="fa fa-key"></i></a> ';
+										var e0 = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="不可用"><i class="fa fa-edit"></i></a> ';
+										var d0 = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="不可用"  mce_href="#" ><i class="fa fa-remove"></i></a> ';
+										var f0 = '<a class="btn btn-success btn-sm" href="#" title="不可用"  mce_href="#"><i class="fa fa-plus"></i></a> ';
+										var g0 = '<a class="btn btn-success btn-sm" href="#" title="不可用"  mce_href="#"><i class="fa fa-cloud-upload"></i></a> ';
+										//auditStatus{'0':'未提交','1':'待受理','2':'待专家受理','3':'拒绝受理','4':'已撤销','5':'撤回修改','6':'已受理'};
+										if(row.auditStatus==1){
+											return e0 + d0 + f0 + g0 + h ;
+										}
 										return e + d + f + g + h ;
+										
 									}
 								} ]
 					});

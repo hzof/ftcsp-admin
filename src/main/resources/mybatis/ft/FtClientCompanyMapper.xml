@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="queryIdByNamelist" parameterType="com.cloudht.ft.domain.FtClientCompanyDO" resultType="java.util.HashMap" >
-		select	`ft_client_id` "ftClientId",`company_name` "companyName" from ft_client_company where company_name like '%${companyName}%'
+		select	`ft_client_id` "ftClientId",`company_name` "companyName" from ft_client_company where company_name like '%${name}%'
 	</select>
 
 	<select id="list" resultType="com.cloudht.ft.domain.FtClientCompanyDO">

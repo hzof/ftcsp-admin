@@ -31,5 +31,6 @@ public interface UserDao {
 	int batchRemove(Long[] userIds);
 	
 	Long[] listAllDept();
+	List<Map<Long, String>> queryUserIdByUsername(UserDO user);
 
 }

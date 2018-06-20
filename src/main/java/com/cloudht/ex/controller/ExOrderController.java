@@ -57,8 +57,7 @@ public class ExOrderController {
 			String[] split = remove.split(",");
 			params.put("auditStatusArray", split);		
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("该错误无需理会，正常现象");
+			System.out.println("传入的auditStatusArray属性为null或者不规范");
 		}
 		//将当前登录用户id传入条件中
 		params.put("createBy", SessionUtils.getUserDO().getUserId());
@@ -93,6 +92,18 @@ public class ExOrderController {
 		ExOrderDO exOrder = exOrderService.get(exOrderId);
 		model.addAttribute("exOrder", exOrder);
 	    return "ex/exOrder/edit";
+	}
+	/**
+	 * @param exOrderId 要查看订单的主键
+	 * @return 跳转到需要查看的订单的详情页面
+	 * /ex/exOrder/details/{exOrderId}
+	 * @author hzof
+	 */
+	@GetMapping("/details/{exOrderId}")
+	String details(@PathVariable("exOrderId") Long exOrderId,Model model) {
+		ExOrderDO exOrder = exOrderService.get(exOrderId);
+		model.addAttribute("exOrder", exOrder);
+	    return "ex/exOrder/details";
 	}
 	/**
 	 * 跳转到提交订单确认页面

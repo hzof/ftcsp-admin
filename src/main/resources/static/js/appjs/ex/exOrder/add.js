@@ -11,7 +11,6 @@ function clickFn(obj){
 	$("#ftClientId1").val(obj.id);
 }
 function searchWord(par){
-	alert("333"+par.value);
 	var content = "";
 	$.post(
 			"/ft/ftClientCompany/queryIdByNamelist",
@@ -28,6 +27,7 @@ function searchWord(par){
 			"json"
 	);	
 }
+//=====下方为自动生成的代码====
 $().ready(function() {
 	validateRule();
 });

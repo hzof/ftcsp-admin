@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ftClientId" name="ftClientId" th:value="${ftClient.ftClientId}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方用户ID：</label>
+								<div class="col-sm-8">
+									<input id="clientUserId" name="clientUserId" th:value="${ftClient.clientUserId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">营销人员ID：</label>
+								<div class="col-sm-8">
+									<input id="marketerId" name="marketerId" th:value="${ftClient.marketerId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">审核状态:0-新注册，1-已分配营销，2-资质审核中，3-审核不通过，4-审核通过，5-已分配客服，6-已分配操作人员：</label>
+								<div class="col-sm-8">
+									<input id="auditStatus" name="auditStatus" th:value="${ftClient.auditStatus}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">审核备注：</label>
+								<div class="col-sm-8">
+									<input id="auditRemark" name="auditRemark" th:value="${ftClient.auditRemark}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户代码：</label>
+								<div class="col-sm-8">
+									<input id="clientNo" name="clientNo" th:value="${ftClient.clientNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">服务合同号：</label>
+								<div class="col-sm-8">
+									<input id="serviceContractNo" name="serviceContractNo" th:value="${ftClient.serviceContractNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客服人员ID：</label>
+								<div class="col-sm-8">
+									<input id="servicerId" name="servicerId" th:value="${ftClient.servicerId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">操作人员ID：</label>
+								<div class="col-sm-8">
+									<input id="operatorId" name="operatorId" th:value="${ftClient.operatorId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户类型：0-有效客户，1-暂停出货客户，2-未出货客户：</label>
+								<div class="col-sm-8">
+									<input id="clientType" name="clientType" th:value="${ftClient.clientType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${ftClient.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${ftClient.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否删除：0-否，1-是：</label>
+								<div class="col-sm-8">
+									<input id="isDelete" name="isDelete" th:value="${ftClient.isDelete}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftClient/edit.js">
+	</script>
+</body>
+</html>

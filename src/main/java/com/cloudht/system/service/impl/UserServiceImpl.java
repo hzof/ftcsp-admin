@@ -239,4 +239,9 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+	@Override
+	public List<Map<Long, String>> queryUserIdByUsername(UserDO user) {
+		return userMapper.queryUserIdByUsername(user);
+	}
+
 }
