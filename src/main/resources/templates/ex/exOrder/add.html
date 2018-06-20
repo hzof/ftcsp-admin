@@ -23,9 +23,8 @@
 								<div class="panel-body">
 									<div class="col-md-6 form-group">
 										<label class="col-sm-2 control-label">委托方</label>
-										<div class="col-sm-3">	
-											<!--  <input id="ftClientId" class="form-control" type="text" onblur="queryFtClientIdByCilentName(this)"> -->
-											<input id="ftClientId" name="ftClientIdSearch" type="text" class="form-control" placeholder="输入关键字进行搜索" onchange="searchWord(this)">
+										<div class="col-sm-3">
+											<input id="ftClientId" name="companyName" type="text" class="form-control" placeholder="输入关键字进行搜索" onkeyup="searchWord(this)">
 										    <div id="showDiv" style="display:none; position:absolute;z-index:1000;background:#fff; width:179px;border:1px solid #ccc;"></div>
 										    <input id="ftClientId1" name="ftClientId" type="hidden" value=""/>
 										</div>
@@ -45,7 +44,6 @@
 									<div class="col-md-3 form-group">
 										<label class="col-sm-3 control-label">交货日期</label>
 										<div class="col-sm-9">
-											<!-- <input id="deliveryDate" name="deliveryDate" class="form-control" type=""> -->
 											<input type="text" class="laydate-icon layer-date form-control" id="birth" name="deliveryDate" placeholder="请选择交货日期"
                                            onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" style="background-color: #fff;" readonly="readonly"/>
 										</div>
@@ -53,7 +51,7 @@
 									<div class="col-md-3 form-group">
 										<label class="col-sm-3 control-label">联系人</label>
 										<div class="col-sm-9">
-											<input id="contact_1" name="contact" class="form-control" type="text">
+											<input id="contact_1" name="orderContact" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-3 form-group">
@@ -65,7 +63,7 @@
 									<div class="col-md-3 form-group">
 										<label class="col-sm-3 control-label">手机</label>
 										<div class="col-sm-9">
-											<input id="phone" name="phone" class="form-control" type="text">
+											<input id="phone" name="orderPhone" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-9 form-group">
@@ -75,9 +73,9 @@
 										</div>
 									</div>
 									<div class="col-md-3 form-group">
-										<label class="col-sm-3 control-label">备注</label>
+										<label class="col-sm-3 control-label">订单备注</label>
 										<div class="col-sm-9">
-											<textarea id="remark" name="remark" class="form-control" rows="3"></textarea>
+											<textarea id="remark" name="orderRemark" class="form-control" rows="3"></textarea>
 										</div>
 									</div>
 								</div>
@@ -128,7 +126,9 @@
 									<div class="col-md-3 form-group">
 										<label class="col-sm-3 control-label">装运期限</label>
 										<div class="col-sm-9">
-											<input id="shipmentDeadline" name="shipmentDeadline" class="form-control" type="text">
+											<!-- <input id="shipmentDeadline" name="shipmentDeadline" class="form-control" type="text"> -->
+											<input type="text" class="laydate-icon layer-date form-control" id="birth" name="shipmentDeadline" placeholder="请选择装运期限"
+                                           onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" style="background-color: #fff;" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="col-md-3 form-group">
@@ -174,15 +174,15 @@
 										</div>
 									</div>
 									<div class="col-md-3 form-group">
-										<label class="col-sm-3 control-label">联系人</label>
+										<label class="col-sm-3 control-label">厂家联系人</label>
 										<div class="col-sm-9">
-											<input id="contact_2" name="contact" class="form-control" type="text">
+											<input id="contact_2" name="factoryContact" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-3 form-group">
-										<label class="col-sm-3 control-label">联系电话</label>
+										<label class="col-sm-3 control-label">厂家联系电话</label>
 										<div class="col-sm-9">
-											<input id="contactPhone" name="contactPhone" class="form-control" type="text">
+											<input id="contactPhone" name="factoryPhone" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-12 form-group">
@@ -430,19 +430,15 @@
 										<label class="col-sm-1 control-label">客服备注：</label>
 										<div class="col-sm-10">
 											<textarea id="remark_1" name="remark" class="form-control" rows="2"></textarea>
+								<input id="createBy" name="createBy" th:value="${userDO.userId}" class="form-control" type="hidden">
 										</div>
 									</div>
 								</div>
-								<input name="auditStatus" id="auditStatus" type="hidden">
+								<input name="auditStatus" type="hidden" value="0">
 								<div class="panel-footer" style="text-align: center">
-									<input type="button" class="btn btn-primary" onclick="savesave(0)" value="保存">
+									<input type="submit" class="btn btn-primary" value="保存">
 									&nbsp;&nbsp;&nbsp;
-									<input type="button" class="btn btn-primary" onclick="savesave(1)" value="提交">
-									&nbsp;&nbsp;&nbsp;
-									<button type="reset" class="btn btn-default">取消</button>
-									<script type="text/javascript">
-										
-									</script>
+									<input type="reset" class="btn btn-default" value="重置">
 								</div>
 							</div>
 						</form>
@@ -454,13 +450,13 @@
 	</table>
 	<div th:include="include::footer"></div>
 	<script src="/js/plugins/layer/laydate/laydate.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/js/appjs/ex/orderInfo/add.js"></script>
+	<script type="text/javascript" src="/js/appjs/ex/exOrder/add.js"></script>
 	<script type="text/javascript">
-$(function () {
-    laydate({
-        elem : '#birth'
-    });
-});
-</script>
+		$(function () {
+		    laydate({
+		        elem : '#birth'
+		    });
+		});
+	</script>
 </body>
 </html>

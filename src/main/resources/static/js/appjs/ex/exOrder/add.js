@@ -1,4 +1,3 @@
-var prefix = "/ex/orderCommodity";
 //==========搜索框异步搜索开始行===========
 function overFn(obj){
 	$(obj).css("background","#DBEAF9");
@@ -12,9 +11,7 @@ function clickFn(obj){
 	$("#ftClientId1").val(obj.id);
 }
 function searchWord(par){
-	if(par.value==null){
-		$("#ftClientId1").val("");
-	}
+	alert("333"+par.value);
 	var content = "";
 	$.post(
 			"/ft/ftClientCompany/queryIdByNamelist",
@@ -31,28 +28,21 @@ function searchWord(par){
 			"json"
 	);	
 }
-
-
-/**
- * ready：在文档加载后的激活函数
- * @returns
- */
 $().ready(function() {
-	validateRule();//调用表单校验,注销此行无法执行提交
+	validateRule();
 });
 
 $.validator.setDefaults({
-	submitHandler : function() {//保存处理函数
+	submitHandler : function() {
 		save();
 	}
 });
 function save() {
-	var formdata=$('#signupForm').serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/ex/orderInfo/proxyExOrderSave",
-		data : formdata,// 你的formid
+		url : "/ex/exOrder/save",
+		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
 			parent.layer.alert("Connection error");
@@ -67,36 +57,23 @@ function save() {
 			} else {
 				parent.layer.alert(data.msg)
 			}
+
 		}
 	});
+
 }
-
-
-
-
-
-function reLoad() {
-    $('#exampleTable').bootstrapTable('refresh');
-}
-
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			exportInvoiceNo : {
-				required : true
-			},
-			ftClientIdSearch : {
+			name : {
 				required : true
 			}
 		},
 		messages : {
-			exportInvoiceNo : {
-				required : "请输入委托方关键字后点击候选列表中正确的选项"
+			name : {
+				required : icon + "请输入姓名"
 			}
-		},
-		ftClientIdSearch : {
-			required : "请输入委托方关键字后点击候选列表中正确的选项"
 		}
-	});
+	})
 }

@@ -61,7 +61,6 @@ public class FtClientCompanyController {
 	 */
 	@ResponseBody
 	@PostMapping("/queryIdByNamelist")
-	@RequiresPermissions("ex:orderInfo:add")
 	public String queryIdByNamelist(FtClientCompanyDO ftClientCompany){
 		List<Map<Long, String>> idAndNameList = ftClientCompanyService.queryIdByNamelist(ftClientCompany);
 		return JSON.toJSONString(idAndNameList);

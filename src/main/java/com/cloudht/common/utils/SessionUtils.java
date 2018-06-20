@@ -20,4 +20,11 @@ public class SessionUtils {
     	UserDO ud = (UserDO) principalCollection.getPrimaryPrincipal();
     	return ud.getUserId();
 	}
+	/**
+	 * @return 当前登录用户的对象
+	 */
+	public static UserDO getUserDO() {
+		SimplePrincipalCollection principalCollection = (SimplePrincipalCollection)session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+    	return (UserDO) principalCollection.getPrimaryPrincipal();
+	}
 }
