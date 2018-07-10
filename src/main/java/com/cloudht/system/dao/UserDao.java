@@ -32,5 +32,5 @@ public interface UserDao {
 	
 	Long[] listAllDept();
 	List<Map<Long, String>> queryUserIdByUsername(UserDO user);
-
+	String queryNameByUserId(Long userId);
 }

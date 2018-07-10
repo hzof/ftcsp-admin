@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ftClientCompanyId" name="ftClientCompanyId" th:value="${ftClientCompany.ftClientCompanyId}"  type="hidden">
+							<div class="form-group">
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">公司类型：0-境内公司 1-个人注册 2-境外公司：</label>
+								<div class="col-sm-8">
+									<input id="companyType" readonly="readonly" value="境内公司" th:if="${ftClientCompany.companyType}==0" class="form-control" type="text">
+									<input id="companyType" readonly="readonly" value="个人注册" th:if="${ftClientCompany.companyType}==1" class="form-control" type="text">
+									<input id="companyType" readonly="readonly" value="境外公司" th:if="${ftClientCompany.companyType}==2" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">公司名称：</label>
+								<div class="col-sm-8">
+									<input id="companyName" name="companyName" th:value="${ftClientCompany.companyName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">公司所属省：</label>
+								<div class="col-sm-8">
+									<input id="province" name="province" th:value="${ftClientCompany.province}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">公司所属市：</label>
+								<div class="col-sm-8">
+									<input id="city" name="city" th:value="${ftClientCompany.city}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">公司详细地址：</label>
+								<div class="col-sm-8">
+									<input id="detailedAddress" name="detailedAddress" th:value="${ftClientCompany.detailedAddress}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">统一社会信用代码：</label>
+								<div class="col-sm-8">
+									<input id="companyCode" name="companyCode" th:value="${ftClientCompany.companyCode}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftClientCompany/edit.js">
+	</script>
+</body>
+</html>

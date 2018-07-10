@@ -73,7 +73,7 @@ public class FtClientCompanyController {
 	}
 
 	@GetMapping("/edit/{ftClientCompanyId}")
-	@RequiresPermissions("ft:ftClientCompany:edit")
+	@RequiresPermissions("ft:ftClient:edit")
 	String edit(@PathVariable("ftClientCompanyId") Integer ftClientCompanyId,Model model){
 		FtClientCompanyDO ftClientCompany = ftClientCompanyService.get(ftClientCompanyId);
 		model.addAttribute("ftClientCompany", ftClientCompany);
@@ -97,7 +97,7 @@ public class FtClientCompanyController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("ft:ftClientCompany:edit")
+	@RequiresPermissions("ft:ftClient:edit")
 	public R update( FtClientCompanyDO ftClientCompany){
 		ftClientCompanyService.update(ftClientCompany);
 		return R.ok();

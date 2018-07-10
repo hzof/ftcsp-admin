@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @author yuxueling
  * @email 980899486@qq.com
- * @date 2018-06-12 11:32:46
+ * @date 2018-07-03 11:42:19
  */
 public class FtClientCompanyDO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,8 +31,20 @@ public class FtClientCompanyDO implements Serializable {
 	private String detailedAddress;
 	//统一社会信用代码
 	private String companyCode;
-	//营业执照照片正反面url，2个用逗号隔开
-	private String businessLicense;
+	//营业执照url
+	private String businessLicenseUrl;
+	//身份信息面对应文件表的url
+	private String identityCardUrl;
+	//身份证国徽面的url
+	private String identityCardbUrl;
+	//姓名
+	private String name;
+	//性别 0-男 1-女
+	private Integer sex;
+	//手机
+	private String mobilePhone;
+	//公司固话
+	private String companyPhone;
 	//创建时间
 	private Date gmtCreate;
 	//修改时间
@@ -137,16 +149,88 @@ public class FtClientCompanyDO implements Serializable {
 		return companyCode;
 	}
 	/**
-	 * 设置：营业执照照片正反面url，2个用逗号隔开
+	 * 设置：营业执照url
 	 */
-	public void setBusinessLicense(String businessLicense) {
-		this.businessLicense = businessLicense;
+	public void setBusinessLicenseUrl(String businessLicenseUrl) {
+		this.businessLicenseUrl = businessLicenseUrl;
 	}
 	/**
-	 * 获取：营业执照照片正反面url，2个用逗号隔开
+	 * 获取：营业执照url
 	 */
-	public String getBusinessLicense() {
-		return businessLicense;
+	public String getBusinessLicenseUrl() {
+		return businessLicenseUrl;
+	}
+	/**
+	 * 设置：身份信息面对应文件表的url
+	 */
+	public void setIdentityCardUrl(String identityCardUrl) {
+		this.identityCardUrl = identityCardUrl;
+	}
+	/**
+	 * 获取：身份信息面对应文件表的url
+	 */
+	public String getIdentityCardUrl() {
+		return identityCardUrl;
+	}
+	/**
+	 * 设置：身份证国徽面的url
+	 */
+	public void setIdentityCardbUrl(String identityCardbUrl) {
+		this.identityCardbUrl = identityCardbUrl;
+	}
+	/**
+	 * 获取：身份证国徽面的url
+	 */
+	public String getIdentityCardbUrl() {
+		return identityCardbUrl;
+	}
+	/**
+	 * 设置：姓名
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * 获取：姓名
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * 设置：性别 0-男 1-女
+	 */
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+	/**
+	 * 获取：性别 0-男 1-女
+	 */
+	public Integer getSex() {
+		return sex;
+	}
+	/**
+	 * 设置：手机
+	 */
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
+	/**
+	 * 获取：手机
+	 */
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+	/**
+	 * 设置：公司固话
+	 */
+	public void setCompanyPhone(String companyPhone) {
+		this.companyPhone = companyPhone;
+	}
+	/**
+	 * 获取：公司固话
+	 */
+	public String getCompanyPhone() {
+		return companyPhone;
 	}
 	/**
 	 * 设置：创建时间

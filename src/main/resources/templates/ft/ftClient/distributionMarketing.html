@@ -17,9 +17,10 @@
 									<input id="name" name="name" class="form-control" type="text" placeholder="在此输入营销人员名称关键字进行搜索" onkeyup="searchWord(this)">
 									<div id="showDiv" style="display:none; position:absolute;z-index:1000;background:#fff; width:179px;border:1px solid #ccc;"></div>
 									<script type="text/javascript">
+										var nameAndIdList="";	
 										function overFn(obj){
-											$(obj).css("background","#DBEAF9");
-										}
+												$(obj).css("background","#DBEAF9");
+											}
 										function outFn(obj){
 											$(obj).css("background","#fff");
 										}
@@ -37,6 +38,7 @@
 											$.post(
 												"/sys/user/queryUserIdByUsername",{name:par.value},
 												function(data){
+													nameAndIdList=data;
 													if(data.length>0){
 														for(var i=0;i<data.length;i++){
 															content+="<div id="+data[i].userId+" style='padding:5px;cursor:pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].name+"</div>";
@@ -48,8 +50,22 @@
 											);	
 										}
 										function distributionMarketingSave(){
-											alert("好的");
-											$("#signupForm").submit();
+											var id=document.getElementById("marketerId").value;
+											if(id==""||id==null){
+												parent.layer.msg("请输入关键字后点击候选项再来点击该按钮哦");
+												return;
+											}
+											for(var i=0;i<nameAndIdList.length;i++){
+												var userId=nameAndIdList[i].userId;
+												if(userId==id){
+													var name=nameAndIdList[i].name;
+													if(document.getElementById("name").value==name){
+														$("#signupForm").submit();
+														return;
+													}	
+												}
+											}
+											parent.layer.msg("点击候选项后不能修改该输入框的内容，请重新输入关键字点击候选项");
 										}
 									</script>
 								</div>
@@ -67,6 +83,5 @@
 	</div>
 	<div th:include="include::footer"></div>
 	<script type="text/javascript" src="/js/appjs/ft/ftClient/edit.js"></script>
-	
 </body>
 </html>

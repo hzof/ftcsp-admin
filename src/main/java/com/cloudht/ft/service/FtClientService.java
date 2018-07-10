@@ -27,4 +27,6 @@ public interface FtClientService {
 	int remove(Long ftClientId);
 	
 	int batchRemove(Long[] ftClientIds);
+
+	List<Map<String, Object>> clientList(Map<String, Object> map);
 }

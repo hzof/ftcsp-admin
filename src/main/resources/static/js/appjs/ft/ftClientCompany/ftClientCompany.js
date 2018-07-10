@@ -1,16 +1,5 @@
-var prefix = "/ft/ftClient"
-//=========跳转到分配营销人员绑定的函数============
-function distributionMarketing(id){
-	layer.open({
-		type : 2,
-		title : '分配营销人员',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/distributionMarketing/'+id // iframe的url
-	});
-}
-//=======下面的代码自动生成======
+
+var prefix = "/ft/ftClientCompany"
 $(function() {
 	load();
 });
@@ -58,49 +47,37 @@ function load() {
 								{
 									checkbox : true
 								},{
+									field : 'companyType', 
+									title : '公司类型',
+									formatter : function(value,row,index) {
+										var companyType={'0':'境内公司','1':'个人注册','2':'境外公司'};
+										return companyType[value];
+									}
+								},{
 									field : 'companyName', 
 									title : '公司名称' 
 								},{
-									field : 'auditRemark', 
-									title : '审核备注' 
+									field : 'province', 
+									title : '公司所属省' 
 								},{
-									field : 'auditStatus', 
-									title : '审核状态' ,
-									formatter : function(value, row, index) {
-										var CLIENTTYPE = {'0':'新注册','1':'已分配营销','2':'资质审核中','3':'审核不通过','4':'审核通过','5':'已分配客服','6':'已分配操作人员'};
-										return CLIENTTYPE[value] ;
-									}
+									field : 'city', 
+									title : '公司所属市' 
 								},{
-									field : 'clientNo', 
-									title : '客户代码' 
+									field : 'detailedAddress', 
+									title : '公司详细地址' 
 								},{
-									field : 'serviceContractNo', 
-									title : '服务合同号' 
-								},{
-									field : 'clientType', 
-									title : '客户类型' ,
-									formatter : function(value, row, index) {
-										var CLIENTTYPE = {'0':'有效客户','1':'暂停出货客户','2':'未出货客户'};
-										return CLIENTTYPE[value] ;
-									}
-								},{
-									field : 'marketerName', 
-									title : '营销人员' 
+									field : 'companyCode', 
+									title : '统一社会信用代码' 
+								},/*{
+									field : 'businessLicense', 
+									title : '营业执照照片正反面url，2个用逗号隔开' 
 								},
-																/*{
-									field : 'ftClientId', 
+								{
+									field : 'ftClientCompanyId', 
 									title : '主键' 
-								},
-																{
-									field : 'clientUserId', 
-									title : '委托方用户ID' 
-								},
-																{
-									field : 'servicerId', 
-									title : '客服人员ID' 
 								},{
-									field : 'operatorId', 
-									title : '操作人员ID' 
+									field : 'ftClientId', 
+									title : '委托方' 
 								},{
 									field : 'gmtCreate', 
 									title : '创建时间' 
@@ -117,19 +94,15 @@ function load() {
 									align : 'center',
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.ftClientId
+												+ row.ftClientCompanyId
 												+ '\')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-												+ row.ftClientId
+												+ row.ftClientCompanyId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="分配营销人员"  mce_href="#" onclick="distributionMarketing(\''
-												+ row.ftClientId
-												+ '\')"><i class="fa fa-user"></i></a> ';
-										var f0 = '<a class="btn btn-success btn-sm" href="#" title="分配营销人员"  mce_href="#"><i class="fa fa-user"></i></a> ';
-										if(row.marketerId==null||row.marketerId==""){
-											return e + d + f ;
-										}
-										return e + d + f0 ;
+										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
+												+ row.ftClientCompanyId
+												+ '\')"><i class="fa fa-key"></i></a> ';
+										return e + d ;
 									}
 								} ]
 					});
@@ -165,7 +138,7 @@ function remove(id) {
 			url : prefix+"/remove",
 			type : "post",
 			data : {
-				'ftClientId' : id
+				'ftClientCompanyId' : id
 			},
 			success : function(r) {
 				if (r.code==0) {
@@ -194,7 +167,7 @@ function batchRemove() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {
-			ids[i] = row['ftClientId'];
+			ids[i] = row['ftClientCompanyId'];
 		});
 		$.ajax({
 			type : 'POST',

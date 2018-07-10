@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudht.ft.dao.CustomerCenter">
+	<select id="clientList" resultType="java.util.HashMap">
+	    select u.name "marketerName",m.* 
+	    from
+		(select c.ft_client_id "ftClientId",m.ft_client_company_id "ftClientCompanyId",m.company_name "companyName",c.audit_status "auditStatus",
+		       c.client_no "clientNo",c.service_contract_no "serviceContractNo",c.client_type "clientType",c.marketer_id "marketerId",
+		       audit_remark "auditRemark",m.name "clientName",m.sex,m.mobile_phone "mobilePhone",m.company_phone "companyPhone"
+		from ft_client c left join ft_client_company m on c.ft_client_id = m.ft_client_id 
+		where c.is_delete=0) m left join sys_user u on u.user_id=m.marketerId
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+</mapper>

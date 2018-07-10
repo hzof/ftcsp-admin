@@ -41,7 +41,15 @@ public class FtClientDO implements Serializable {
 	private Date gmtModified;
 	//是否删除：0-否，1-是
 	private Integer isDelete;
+	//mybatis映射需要
+	private FtClientCompanyDO ftClientCompanyDO;
 
+	public FtClientCompanyDO getFtClientCompanyDO() {
+		return ftClientCompanyDO;
+	}
+	public void setFtClientCompanyDO(FtClientCompanyDO ftClientCompanyDO) {
+		this.ftClientCompanyDO = ftClientCompanyDO;
+	}
 	/**
 	 * 设置：主键
 	 */

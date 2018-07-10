@@ -1,3 +1,33 @@
+//==========搜索框异步搜索开始行===========
+function overFn(obj){
+	$(obj).css("background","#DBEAF9");
+}
+function outFn(obj){
+	$(obj).css("background","#fff");
+}
+function clickFn(obj){
+	$("#name").val($(obj).html());
+	$("#showDiv").css("display","none");
+	$("#marketerId").val(obj.id);
+}
+function searchWord(par){
+	var content = "";
+	$.post(
+			"/sys/user/queryUserIdByUsername",
+			{companyName:par.value},
+			function(data){
+				if(data.length>0){
+					for(var i=0;i<data.length;i++){
+						content+="<div id="+data[i].userId+" style='padding:5px;cursor:pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].name+"</div>";
+					}
+					$("#showDiv").html(content);
+					$("#showDiv").css("display","block");
+				}	
+			},
+			"json"
+	);	
+}
+//=========下方为自动生成的代码=======
 $().ready(function() {
 	validateRule();
 });

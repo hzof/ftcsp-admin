@@ -103,6 +103,7 @@ public class UserController extends BaseController {
 	}
 	/**
 	 * 根据用户表的name属性模糊查询id和name字段
+	 * /sys/user/queryUserIdByUsername
 	 * @param user 含有name属性的user对象
 	 * @return id和name字段的集合
 	 */
