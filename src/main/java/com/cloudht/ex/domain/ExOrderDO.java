@@ -2,9 +2,6 @@ package com.cloudht.ex.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
-
 
 /**
  * 出口订单

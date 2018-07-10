@@ -12,7 +12,6 @@ import org.activiti.engine.impl.RepositoryServiceImpl;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
-import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.image.ProcessDiagramGenerator;
 import org.activiti.spring.ProcessEngineFactoryBean;
@@ -129,9 +128,6 @@ public class ActTaskServiceImpl implements ActTaskService {
         if (StringUtils.isNotBlank(title)) {
             vars.put("title", title);
         }
-
-        // 启动流程
-        ProcessInstance procIns = runtimeService.startProcessInstanceByKey(procDefKey, businessId, vars);
 
         return null;
     }

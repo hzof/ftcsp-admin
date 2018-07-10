@@ -2,8 +2,6 @@ package com.cloudht.common.exception;
 
 
 import com.cloudht.common.utils.R;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class MainsiteErrorController implements ErrorController {
-    private Logger logger = LoggerFactory.getLogger(getClass());
     private static final String ERROR_PATH = "/error";
 
     @Autowired

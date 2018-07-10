@@ -116,7 +116,6 @@ public class ExOrderInfoController {
     @GetMapping("/commodity/{exOrderHeaderId}")
     @RequiresPermissions("ex:orderInfo:commodity")
     String commodity(@PathVariable("exOrderHeaderId") Long exOrderHeaderId,Model model){
-    	OrderHeaderDO orderHeaderDO = orderHeaderService.get(exOrderHeaderId);
     	
         return "ex/orderInfo/commodity";
     }

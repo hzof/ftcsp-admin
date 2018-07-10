@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +36,6 @@ public class FileController extends BaseController {
 	@GetMapping()
 	@RequiresPermissions("common:sysFile:sysFile")
 	String sysFile(Model model) {
-		Map<String, Object> params = new HashMap<>(16);
 		return "common/file/file";
 	}
 

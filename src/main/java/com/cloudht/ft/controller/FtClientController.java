@@ -21,6 +21,7 @@ import com.cloudht.ft.service.FtClientService;
 import com.cloudht.common.utils.PageUtils;
 import com.cloudht.common.utils.Query;
 import com.cloudht.common.utils.R;
+import com.cloudht.common.utils.ShiroUtils;
 
 /**
  * 委托人信息
@@ -77,6 +78,23 @@ public class FtClientController {
 		}
 	    return "ft/ftClientCompany/edit";
 	}
+	/**
+	 *  跳转到资质审核页面
+	 * @param ftClientId
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/companyAudit/{ftClientId}")
+	@RequiresPermissions("ft:ftClient:edit")
+	String companyAudit(@PathVariable("ftClientId") Long ftClientId,Model model){
+		try {
+			model.addAttribute("ftClient",ftClientService.get(ftClientId));
+		} catch (Exception e) {
+			// 为null的时候get会出异常
+			return null;
+		}
+	    return "ft/ftClient/companyAudit";
+	}
 	@GetMapping("/distributionMarketing/{ftClientId}")
 	String distributionMarketing(@PathVariable("ftClientId") Long ftClientId,Model model){
 		model.addAttribute("ftClientId", ftClientId);
@@ -104,6 +122,18 @@ public class FtClientController {
 	public R update( FtClientDO ftClient){
 		ftClientService.update(ftClient);
 		return R.ok();
+	}
+	/**
+	 * 申请资质审核的函数
+	 * @param ftClient 含有客户id的对象
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/qualificationAudit")
+	@RequiresPermissions("ft:ftClient:edit")
+	public R qualificationAudit( FtClientDO ftClient){
+		ftClient.setAuditStatus(2);//设置为资质审核中
+		return ftClientService.update(ftClient)==1?R.ok():R.error(1,"申请失败");
 	}
 	
 	/**
@@ -134,7 +164,10 @@ public class FtClientController {
 	 * @return
 	 */
 	@GetMapping("/clientSalesManagement")
-	public String clientChec() {
+	public String clientSalesManagement(Model model) {
+		Long userId = ShiroUtils.getUserId();
+		System.out.println(userId);
+		model.addAttribute("userId", userId);
 		return "ft/ftClient/clientSalesManagement";
 	}
 	/**
@@ -147,7 +180,7 @@ public class FtClientController {
 		return "ft/ftClient/clientOperationManage";
 	}
 	/**
-	 * 客户管理-客服管理页面跳转
+	 *  客户管理-客服管理页面跳转
 	 * /ft/client/clientSupportStaff
 	 * @return
 	 */
@@ -156,13 +189,12 @@ public class FtClientController {
 		return "ft/ftClient/clientSupportStaff";
 	}
 	/**
-	 * 客户资质审核页面跳转
+	 *  客户资质审核页面跳转
 	 * @return
 	 */
 	@GetMapping("/clientCheck")
-	@RequiresPermissions("ft:client:client")
+	@RequiresPermissions("ft:ftClient:ftClient")
 	public String clientCheck() {
 		return "ft/ftClient/clientCheck";
 	}
-	
 }
