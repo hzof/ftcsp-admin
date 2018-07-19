@@ -3,7 +3,12 @@ package com.cloudht.common.controller;
 import com.cloudht.common.config.FtcspConfig;
 import com.cloudht.common.domain.FileDO;
 import com.cloudht.common.service.FileService;
-import com.cloudht.common.utils.*;
+import com.sxyht.common.utils.FileType;
+import com.sxyht.common.utils.FileUtil;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
+
 import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

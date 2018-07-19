@@ -9,7 +9,7 @@ import com.cloudht.common.dao.LogDao;
 import com.cloudht.common.domain.LogDO;
 import com.cloudht.common.domain.PageDO;
 import com.cloudht.common.service.LogService;
-import com.cloudht.common.utils.Query;
+import com.sxyht.common.utils.Query;
 
 @Service
 public class LogServiceImpl implements LogService {

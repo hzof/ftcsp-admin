@@ -11,33 +11,33 @@
 						<form class="form-horizontal m-t" id="signupForm">
 						<input id="ftClientId" name="ftClientId" th:value="${ftClient.ftClientId}"  type="hidden">
 							<div class="form-group">	
-								<label class="col-sm-3 control-label">营销人员ID：</label>
+								<label class="col-sm-3 control-label">营销人员：</label>
 								<div class="col-sm-8">
-									<input id="marketerId" name="marketerId" th:value="${ftClient.marketerId}" class="form-control" type="text">
+									<input id="marketerId" readonly="readonly" th:value="${ftClient.marketerName}" class="form-control" type="text">
 								</div>
 							</div>
 														<div class="form-group">	
 								<label class="col-sm-3 control-label">客户代码：</label>
 								<div class="col-sm-8">
-									<input id="clientNo" name="clientNo" th:value="${ftClient.clientNo}" class="form-control" type="text">
+									<input id="clientNo" readonly="readonly" th:value="${ftClient.clientNo}" class="form-control" type="text" >
 								</div>
 							</div>
 														<div class="form-group">	
 								<label class="col-sm-3 control-label">客服人员ID：</label>
 								<div class="col-sm-8">
-									<input id="servicerId" name="servicerId" th:value="${ftClient.servicerId}" class="form-control" type="text">
+									<input id="servicerId" readonly="readonly" th:value="${ftClient.servicerId}" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">操作人员ID：</label>
 								<div class="col-sm-8">
-									<input id="operatorId" name="operatorId" th:value="${ftClient.operatorId}" class="form-control" type="text">
+									<input id="operatorId" readonly="readonly" th:value="${ftClient.operatorId}" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">服务合同号：</label>
 								<div class="col-sm-8">
-									<input id="serviceContractNo" name="serviceContractNo" th:value="${ftClient.serviceContractNo}" class="form-control" type="text">
+									<input id="serviceContractNo" readonly="readonly" th:value="${ftClient.serviceContractNo}" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">	
@@ -65,7 +65,7 @@
 	</div>
 	</div>
 	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/ft/ftClient/edit.js">
+	<script type="text/javascript" src="/js/appjs/ft/ftClient/companyAudit.js">
 	</script>
 </body>
 </html>

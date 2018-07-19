@@ -3,9 +3,10 @@ package com.cloudht.system.controller;
 import com.cloudht.common.annotation.Log;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.controller.BaseController;
-import com.cloudht.common.utils.R;
 import com.cloudht.system.domain.RoleDO;
 import com.cloudht.system.service.RoleService;
+import com.sxyht.common.utils.R;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

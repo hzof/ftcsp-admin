@@ -3,10 +3,11 @@ package com.cloudht.common.exception;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.domain.LogDO;
 import com.cloudht.common.service.LogService;
-import com.cloudht.common.utils.HttpServletUtils;
-import com.cloudht.common.utils.R;
-import com.cloudht.common.utils.ShiroUtils;
 import com.cloudht.system.domain.UserDO;
+import com.sxyht.common.utils.HttpServletUtils;
+import com.sxyht.common.utils.R;
+import com.sxyht.common.utils.ShiroUtils;
+
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +69,7 @@ public class BDExceptionHandler {
         logDO.setOperation(Constant.LOG_ERROR);
         logDO.setMethod(request.getRequestURL().toString());
         logDO.setParams(e.toString());
-        UserDO current = ShiroUtils.getUser();
+        UserDO current = (UserDO)ShiroUtils.getUser();
         if(null!=current){
             logDO.setUserId(current.getUserId());
             logDO.setUsername(current.getUsername());

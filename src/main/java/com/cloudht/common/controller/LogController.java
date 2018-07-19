@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloudht.common.domain.LogDO;
 import com.cloudht.common.domain.PageDO;
 import com.cloudht.common.service.LogService;
-import com.cloudht.common.utils.Query;
-import com.cloudht.common.utils.R;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
 
 @RequestMapping("/common/log")
 @Controller

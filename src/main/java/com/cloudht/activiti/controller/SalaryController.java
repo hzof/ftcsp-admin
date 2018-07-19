@@ -5,10 +5,12 @@ import com.cloudht.activiti.service.SalaryService;
 import com.cloudht.activiti.utils.ActivitiUtils;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.controller.BaseController;
-import com.cloudht.common.utils.PageUtils;
-import com.cloudht.common.utils.Query;
-import com.cloudht.common.utils.R;
-import com.cloudht.common.utils.ShiroUtils;
+import com.cloudht.system.domain.UserDO;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
+import com.sxyht.common.utils.ShiroUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,8 +75,8 @@ public class SalaryController extends BaseController{
         }
         salary.setCreateDate(new Date());
         salary.setUpdateDate(new Date());
-        salary.setCreateBy(ShiroUtils.getUserId().toString());
-        salary.setUpdateBy(ShiroUtils.getUserId().toString());
+        salary.setCreateBy(((UserDO)ShiroUtils.getUser()).getUserId().toString());
+        salary.setUpdateBy(((UserDO)ShiroUtils.getUser()).getUserId().toString());
         salary.setDelFlag("1");
         if (salaryService.save(salary) > 0) {
             return R.ok();

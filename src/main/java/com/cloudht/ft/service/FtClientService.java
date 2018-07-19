@@ -1,6 +1,7 @@
 package com.cloudht.ft.service;
 
 import com.cloudht.ft.domain.FtClientDO;
+import com.sxyht.common.utils.Query;
 
 import java.util.List;
 import java.util.Map;
@@ -29,4 +30,10 @@ public interface FtClientService {
 	int batchRemove(Long[] ftClientIds);
 
 	List<Map<String, Object>> clientList(Map<String, Object> map);
+
+	String getClientCode();
+
+	FtClientDO getNewServiceContractNo(FtClientDO ftClientDO);
+
+	List<Map<String, Object>> contractSuperviseList(Query query);
 }

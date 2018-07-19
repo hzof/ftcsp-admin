@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.cloudht.common.domain.LogDO;
 import com.cloudht.common.domain.PageDO;
-import com.cloudht.common.utils.Query;
+import com.sxyht.common.utils.Query;
 @Service
 public interface LogService {
 	void save(LogDO logDO);

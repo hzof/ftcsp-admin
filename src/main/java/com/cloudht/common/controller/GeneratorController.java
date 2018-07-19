@@ -3,7 +3,8 @@ package com.cloudht.common.controller;
 import com.alibaba.fastjson.JSON;
 import com.cloudht.common.service.GeneratorService;
 import com.cloudht.common.utils.GenUtils;
-import com.cloudht.common.utils.R;
+import com.sxyht.common.utils.R;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;

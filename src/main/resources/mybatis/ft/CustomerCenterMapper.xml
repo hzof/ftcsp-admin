@@ -7,14 +7,33 @@
 		(select c.ft_client_id "ftClientId",m.ft_client_company_id "ftClientCompanyId",
 			m.company_name "companyName",c.audit_status "auditStatus",
 			c.client_no "clientNo",c.service_contract_no "serviceContractNo",
-			c.client_type "clientType",c.marketer_id "marketerId",
-		    audit_remark "auditRemark",m.name "clientName",m.sex,
+			c.client_type "clientType",c.marketer_id "marketerId",c.operator_id "operatorId",
+		    audit_remark "auditRemark",m.name "clientName",m.sex,c.servicer_id "servicerId",
 		    m.mobile_phone "mobilePhone",m.company_phone "companyPhone"
 		from ft_client c left join ft_client_company m on c.ft_client_id = m.ft_client_id 
 		where c.is_delete=0
+		<if test="servicerId != null and servicerId != ''"> and c.servicer_id = #{servicerId} </if>
 		<if test="marketerId != null and marketerId != ''"> and c.marketer_id = #{marketerId} </if>
+		<if test="operatorId != null and operatorId != ''"> and c.operator_id = #{operatorId} </if>
 		<if test="auditRemark != null and auditRemark != ''"> and audit_remark = #{auditRemark} </if>
 		) m left join sys_user u on u.user_id=m.marketerId
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<select id="contractSuperviseList" resultType="java.util.HashMap">	
+		select
+			<!-- 两张表的主键 --> 
+			c.ft_client_id "ftClientId",m.ft_client_company_id "ftClientCompanyId",
+			<!-- 甲方名称、甲方地址 -->
+			m.company_name "companyName",CONCAT(IFNULL(m.province,''),IFNULL(m.city,''),IFNULL(m.detailed_address,'')) "companyAddress",
+			<!-- 乙方名称、乙方地址 -->
+			'山西云汇通数字科技有限公司' as "PartyBName",'山西省晋中市榆次区定阳路汇通风情广场' as "PartyBAddress",
+			<!-- 合同编号、签订地点、合同备注 --> 
+			c.service_contract_no "serviceContractNo",c.signed_at "signedAt",c.contract_remark "contractRemark",
+			<!-- 生效日期、失效日期、签订日期 、合同状态-->
+			c.effect_date "effectDate", c.invalid_date "invalidDate", c.signing_date "signingDate",c.contract_state "contractState"
+		from ft_client c left join ft_client_company m on c.ft_client_id=m.ft_client_id
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>

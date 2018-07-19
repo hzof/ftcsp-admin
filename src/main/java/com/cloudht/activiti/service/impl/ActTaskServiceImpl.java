@@ -2,8 +2,10 @@ package com.cloudht.activiti.service.impl;
 
 import com.cloudht.activiti.domain.ActivitiDO;
 import com.cloudht.activiti.service.ActTaskService;
-import com.cloudht.common.utils.ShiroUtils;
-import com.cloudht.common.utils.StringUtils;
+import com.cloudht.system.domain.UserDO;
+import com.sxyht.common.utils.ShiroUtils;
+import com.sxyht.common.utils.StringUtils;
+
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricActivityInstance;
@@ -51,7 +53,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 
     @Override
     public List<ActivitiDO> listTodo(ActivitiDO act) {
-        String userId = String.valueOf(ShiroUtils.getUserId());
+        String userId = String.valueOf(((UserDO)ShiroUtils.getUser()).getUserId());
         List<ActivitiDO> result = new ArrayList<ActivitiDO>();
         return result;
     }
@@ -114,7 +116,7 @@ public class ActTaskServiceImpl implements ActTaskService {
      */
     @Override
     public String startProcess(String procDefKey, String businessTable, String businessId, String title, Map<String, Object> vars) {
-        String userId = ShiroUtils.getUser().getUsername();//ObjectUtils.toString(UserUtils.getUser().getId())
+        String userId = ((UserDO)ShiroUtils.getUser()).getUsername();//ObjectUtils.toString(UserUtils.getUser().getId())
 
         // 用来设置启动流程的人员ID，引擎会自动把用户ID保存到activiti:initiator中
         identityService.setAuthenticatedUserId(userId);

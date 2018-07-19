@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.ft.domain.FtClientCompanyDO;
 import com.cloudht.ft.service.FtClientCompanyService;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
 import com.alibaba.fastjson.JSON;
-import com.cloudht.common.utils.PageUtils;
-import com.cloudht.common.utils.Query;
-import com.cloudht.common.utils.R;
 
 /**
  * 委托方公司表

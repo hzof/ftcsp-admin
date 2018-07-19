@@ -13,6 +13,11 @@ import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.service.RoleService;
 import com.cloudht.system.service.UserService;
 import com.cloudht.system.vo.UserVO;
+import com.sxyht.common.utils.MD5Utils;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;

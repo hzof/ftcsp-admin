@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.doc.domain.ExCollectionDO;
 import com.cloudht.doc.service.ExCollectionService;
-import com.cloudht.common.utils.PageUtils;
-import com.cloudht.common.utils.Query;
-import com.cloudht.common.utils.R;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
 
 /**
  * 托收收汇

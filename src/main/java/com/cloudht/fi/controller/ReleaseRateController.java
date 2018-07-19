@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.fi.domain.ReleaseRateDO;
 import com.cloudht.fi.service.ReleaseRateService;
-import com.cloudht.common.utils.PageUtils;
-import com.cloudht.common.utils.Query;
-import com.cloudht.common.utils.R;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
 
 /**
  * 汇率发布

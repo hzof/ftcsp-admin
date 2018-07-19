@@ -17,10 +17,10 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import com.cloudht.common.utils.ShiroUtils;
 import com.cloudht.system.dao.UserDao;
 import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.service.MenuService;
+import com.sxyht.common.utils.ShiroUtils;
 
 public class UserRealm extends AuthorizingRealm {
 /*	@Autowired
@@ -30,7 +30,7 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-		Long userId = ShiroUtils.getUserId();
+		Long userId = ((UserDO)ShiroUtils.getUser()).getUserId();
 		MenuService menuService = ApplicationContextRegister.getBean(MenuService.class);
 		Set<String> perms = menuService.listPerms(userId);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

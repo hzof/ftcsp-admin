@@ -4,6 +4,9 @@ package com.cloudht.common.utils;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.domain.ColumnDO;
 import com.cloudht.common.domain.TableDO;
+import com.sxyht.common.utils.BDException;
+import com.sxyht.common.utils.DateUtils;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -51,8 +54,7 @@ public class GenUtils {
      */
 
 
-    public static void generatorCode(Map<String, String> table,
-                                     List<Map<String, String>> columns, ZipOutputStream zip) {
+    public static void generatorCode(Map<String, String> table, List<Map<String, String>> columns, ZipOutputStream zip) {
         //配置信息
         Configuration config = getConfig();
         //表信息

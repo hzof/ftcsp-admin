@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtFileDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtFileDO">
+		select `ft_file_id`,`ft_client_id`,`file_source`,`ref_key`,`type`,`url`,`is_visible`,`create_date` from ft_file where ft_file_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtFileDO">
+		select `ft_file_id`,`ft_client_id`,`file_source`,`ref_key`,`type`,`url`,`is_visible`,`create_date` from ft_file
+        <where>  
+		  		  <if test="ftFileId != null and ftFileId != ''"> and ft_file_id = #{ftFileId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="fileSource != null and fileSource != ''"> and file_source = #{fileSource} </if>
+		  		  <if test="refKey != null and refKey != ''"> and ref_key = #{refKey} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="isVisible != null and isVisible != ''"> and is_visible = #{isVisible} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_file_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_file
+		 <where>  
+		  		  <if test="ftFileId != null and ftFileId != ''"> and ft_file_id = #{ftFileId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="fileSource != null and fileSource != ''"> and file_source = #{fileSource} </if>
+		  		  <if test="refKey != null and refKey != ''"> and ref_key = #{refKey} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="isVisible != null and isVisible != ''"> and is_visible = #{isVisible} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtFileDO" useGeneratedKeys="true" keyProperty="ftFileId">
+		<selectKey resultType="Long" keyProperty="ftFileId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ft_file
+		(
+			`ft_client_id`, 
+			`file_source`, 
+			`ref_key`, 
+			`type`, 
+			`url`, 
+			`is_visible`, 
+			`create_date`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{fileSource}, 
+			#{refKey}, 
+			#{type}, 
+			#{url}, 
+			#{isVisible}, 
+			#{createDate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtFileDO">
+		update ft_file 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="fileSource != null">`file_source` = #{fileSource}, </if>
+			<if test="refKey != null">`ref_key` = #{refKey}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="url != null">`url` = #{url}, </if>
+			<if test="isVisible != null">`is_visible` = #{isVisible}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}</if>
+		</set>
+		where ft_file_id = #{ftFileId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_file where ft_file_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_file where ft_file_id in 
+		<foreach item="ftFileId" collection="array" open="(" separator="," close=")">
+			#{ftFileId}
+		</foreach>
+	</delete>
+
+</mapper>

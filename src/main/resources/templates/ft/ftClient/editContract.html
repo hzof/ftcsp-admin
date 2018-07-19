@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"/>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ftClientId" name="ftClientId" th:value="${ftClient.ftClientId}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">审核状态：</label>
+								<div class="col-sm-8">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==0" class="form-control" type="text" value="新注册">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==1" class="form-control" type="text" value="已分配营销">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==2" class="form-control" type="text" value="资质审核中">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==3" class="form-control" type="text" value="审核不通过">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==4" class="form-control" type="text" value="审核通过">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==5" class="form-control" type="text" value="已分配客服">
+									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==6" class="form-control" type="text" value="已分配操作人员">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">审核备注：</label>
+								<div class="col-sm-8">
+									<input id="auditRemark" name="auditRemark" th:value="${ftClient.auditRemark}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">服务合同号：</label>
+								<div class="col-sm-8">
+									<input id="serviceContractNo" name="serviceContractNo" th:value="${ftClient.serviceContractNo}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">合同状态：</label>
+								<div class="col-sm-8">
+									<input id="contractState" name="contractState" th:if="${ftClient.contractState}==0" value="无效" class="form-control" type="text">
+									<input id="contractState" name="contractState" th:if="${ftClient.contractState}==1" value="有效" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">合同签订地址：</label>
+								<div class="col-sm-8">
+									<input id="signedAt" name="signedAt" th:value="${ftClient.signedAt}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">合同备注：</label>
+								<div class="col-sm-8">
+									<input id="contractRemark" name="contractRemark" th:value="${ftClient.contractRemark}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">签订日期：</label>
+								<div class="col-sm-8">
+									<input id="signingDate" name="signingDate" th:value="${ftClient.signingDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">生效日期：</label>
+								<div class="col-sm-8">
+									<input id="effectDate" name="effectDate" th:value="${ftClient.effectDate}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">失效日期：</label>
+								<div class="col-sm-8">
+									<input id="invalidDate" name="invalidDate" th:value="${ftClient.invalidDate}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">上传附件：</label>
+								<div class="col-sm-8">
+									<button type="button" class="layui-btn" id="test1">
+										<i class="fa fa-cloud"></i>点此上传
+									</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<link href="/css/layui.css" rel="stylesheet">
+	<script type="text/javascript" src="/js/appjs/ft/ftClient/edit.js"></script>
+	<script src="/js/layui.js"></script>
+	<script>
+		layui.use('upload', function () {
+			var upload = layui.upload;
+			//执行实例
+			var uploadInst = upload.render({
+				elem: '#test1', //绑定元素
+				url: '/ft/ftFile/upload', //上传接口
+				size: 1000,
+				accept: 'file',
+				done: function (r) {
+					layer.msg(r.msg);
+					app.getData();
+				},
+				error: function (r) {
+					layer.msg(r.msg);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

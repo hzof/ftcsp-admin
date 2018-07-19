@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cloudht.common.utils.R;
 import com.cloudht.system.domain.UserOnline;
 import com.cloudht.system.service.SessionService;
+import com.sxyht.common.utils.R;
 
 @RequestMapping("/sys/online")
 @Controller

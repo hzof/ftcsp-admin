@@ -4,9 +4,10 @@ import com.cloudht.common.annotation.Log;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.controller.BaseController;
 import com.cloudht.common.domain.Tree;
-import com.cloudht.common.utils.R;
 import com.cloudht.system.domain.MenuDO;
 import com.cloudht.system.service.MenuService;
+import com.sxyht.common.utils.R;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

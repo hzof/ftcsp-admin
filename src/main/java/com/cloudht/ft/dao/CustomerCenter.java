@@ -18,4 +18,10 @@ public interface CustomerCenter {
 	 * @return 
 	 */
 	List<Map<String,Object>> clientList(Map<String,Object> map);
+	/**
+	 * 客户中心下合同管理展示页
+	 * @param map 筛选的条件
+	 * @return 合同的结果集
+	 */
+	List<Map<String,Object>> contractSuperviseList(Map<String,Object> map);
 }

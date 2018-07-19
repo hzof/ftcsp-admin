@@ -16,11 +16,11 @@ import org.springframework.stereotype.Component;
 
 import com.cloudht.common.annotation.Log;
 import com.cloudht.common.domain.LogDO;
-import com.cloudht.common.utils.HttpContextUtils;
-import com.cloudht.common.utils.IPUtils;
-import com.cloudht.common.utils.JSONUtils;
-import com.cloudht.common.utils.ShiroUtils;
 import com.cloudht.system.domain.UserDO;
+import com.sxyht.common.utils.HttpContextUtils;
+import com.sxyht.common.utils.IPUtils;
+import com.sxyht.common.utils.JSONUtils;
+import com.sxyht.common.utils.ShiroUtils;
 
 @Aspect
 @Component
@@ -72,7 +72,7 @@ public class LogAspect {
         // 设置IP地址
         sysLog.setIp(IPUtils.getIpAddr(request));
         // 用户名
-        UserDO currUser = ShiroUtils.getUser();
+        UserDO currUser = (UserDO)ShiroUtils.getUser();
         if (null == currUser) {
             if (null != sysLog.getParams()) {
                 sysLog.setUserId(-1L);
@@ -82,8 +82,8 @@ public class LogAspect {
                 sysLog.setUsername("获取用户信息为空");
             }
         } else {
-            sysLog.setUserId(ShiroUtils.getUserId());
-            sysLog.setUsername(ShiroUtils.getUser().getUsername());
+            sysLog.setUserId(((UserDO)ShiroUtils.getUser()).getUserId());
+            sysLog.setUsername(((UserDO)ShiroUtils.getUser()).getUsername());
         }
         sysLog.setTime((int) time);
         // 系统当前时间

@@ -46,12 +46,48 @@ function load() {
 								{
 									checkbox : true
 								},{
-									visible : false,
-									field : 'registerType',
-									title : '公司类型'
-								},{
 									field : 'companyName', 
 									title : '公司名称' 
+								},{
+									field : 'clientName', 
+									title : '姓名' 
+								},{
+									field : 'sex', 
+									title : '性别',
+									formatter : function(value, row, index) {
+										return {"0":"男","1":"女"}[value];
+									}
+								},{
+									field : 'companyPhone', 
+									title : '联系电话' 
+								},{
+									field : 'mobilePhone', 
+									title : '手机' 
+								},{
+									field : 'auditStatus', 
+									title : '审核状态',
+									formatter : function(value, row, index) {
+										return {"0":"新注册","1":"已分配营销","2":"资质审核中","3":"审核不通过","4":"审核通过","5":"已分配客服","6":"已分配操作人员"}[value];
+									}
+								},{
+									field : 'auditRemark', 
+									title : '审核备注' 
+								},{
+									field : 'clientNo', 
+									title : '客户代码' 
+								},{
+									field : 'serviceContractNo', 
+									title : '服务合同号' 
+								},{
+									field : 'clientType', 
+									title : '客户类型',
+									formatter : function(value, row, index) {
+										return {"0":"有效客户","1":"暂停出货客户","2":"未出货客户"}[value];
+									}
+								},{
+									visible : false,
+									field : 'marketerId', 
+									title : '营销人员ID' 
 								},{
                                     visible : false,
 									field : 'province', 
@@ -65,37 +101,6 @@ function load() {
 									field : 'detailedAddress', 
 									title : '详细地址' 
 								},{
-									field : 'fullName', 
-									title : '姓名' 
-								},{
-									field : 'sex', 
-									title : '性别',
-									formatter : function(value, row, index) {
-										return {"0":"男","1":"女"}[value];
-									}
-								},{
-									field : 'telephone', 
-									title : '联系电话' 
-								},{
-									field : 'phone', 
-									title : '手机' 
-								},{
-                                    visible : true,
-									field : 'marketerId', 
-									title : '营销人员ID' 
-								},{
-									field : 'auditStatus', 
-									title : '审核状态'
-								},{
-									field : 'auditRemark', 
-									title : '审核备注' 
-								},{
-									field : 'clientNo', 
-									title : '客户代码' 
-								},{
-									field : 'serviceContractNo', 
-									title : '服务合同号' 
-								},{
                                     visible : false,
 									field : 'servicerId', 
 									title : '客服人员ID' 
@@ -104,8 +109,9 @@ function load() {
 									field : 'operatorId', 
 									title : '操作人员ID' 
 								},{
-									field : 'clientType', 
-									title : '客户类型'
+									visible : false,
+									field : 'registerType',
+									title : '公司类型'
 								},{
 									title : '操作',
 									field : 'id',

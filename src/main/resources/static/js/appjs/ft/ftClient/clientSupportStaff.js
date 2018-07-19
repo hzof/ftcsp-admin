@@ -1,5 +1,6 @@
 //客户管理-客服管理页面js
-var prefix = "/ft/ftClient"
+var prefix = "/ft/ftClient";
+debugger;
 $(function() {
 	load();
 });
@@ -46,94 +47,90 @@ function load() {
 						columns : [
 								{
 									checkbox : true
-								},
-																{
-                                    visible : false,
-									field : 'ftClientId', 
-									title : '主键' 
-								},
-																{
-																	visible : false,
-									field : 'registerType',
-									title : '公司类型'
-								},
-																{
+								},{
 									field : 'companyName', 
 									title : '公司名称' 
-								},
-																{
-                                                                    visible : false,
-									field : 'province', 
-									title : '省' 
-								},
-																{
-                                                                    visible : false,
-									field : 'city', 
-									title : '市' 
-								},
-																{
-                                                                    visible : false,
-									field : 'detailedAddress', 
-									title : '详细地址' 
 								},{
-									field : 'fullName', 
+									field : 'clientName', 
 									title : '姓名' 
-								},
-																{
+								},{
 									field : 'sex', 
-									title : '性别'
-								},
-																{
-									field : 'telephone', 
+									title : '性别',
+									formatter : function(value, row, index) {
+										return {"0":"男","1":"女"}[value];
+									}
+								},{
+									field : 'companyPhone', 
 									title : '联系电话' 
 								},{
-									field : 'phone', 
+									field : 'mobilePhone', 
 									title : '手机' 
 								},{
 									field : 'auditRemark', 
 									title : '审核备注' 
 								},{
-                                    visible : false,
-									field : 'marketerId', 
-									title : '营销人员ID' 
-								},
-																{
 									field : 'auditStatus', 
-									title : '审核状态'
-								},
-																{
+									title : '审核状态',
+									formatter : function(value, row, index) {
+										return {"0":"新注册","1":"已分配营销","2":"资质审核中","3":"审核不通过","4":"审核通过","5":"已分配客服","6":"已分配操作人员"}[value];
+									}
+								},{
 									field : 'clientNo', 
 									title : '客户代码' 
-								},
-																{
+								},{
 									field : 'serviceContractNo', 
 									title : '服务合同号' 
 								},
-																{
-                                                                    visible : false,
+								{
+									field : 'servicerName', 
+									title : '客服名字' 
+								},{
+									field : 'clientType', 
+									title : '客户类型',
+									formatter : function(value, row, index) {
+										return {"0":"有效客户","1":"暂停出货客户","2":"未出货客户"}[value];
+									}
+								},{
+									visible : false,
+									field : 'registerType',
+									title : '公司类型'
+								},{
+                                    visible : false,
+									field : 'ftClientId', 
+									title : '主键' 
+								},{
+                                    visible : false,
+									field : 'province', 
+									title : '省' 
+								},{
+                                    visible : false,
+									field : 'city', 
+									title : '市' 
+								},{
+                                    visible : false,
+									field : 'detailedAddress', 
+									title : '详细地址' 
+								},{
+                                    visible : false,
 									field : 'servicerId', 
 									title : '客服人员ID' 
-								},
-																{
-                                                                    visible : false,
+								},{
+                                    visible : false,
 									field : 'operatorId', 
 									title : '操作人员ID' 
-								},
-																{
-									field : 'clientType', 
-									title : '客户类型'
-								},
-																{
-                                                                    visible : false,
+								},{
+                                    visible : false,
 									field : 'gmtCreate', 
 									title : '创建时间' 
-								},
-																{
-                                                                    visible : false,
+								},{
+                                    visible : false,
+									field : 'marketerId', 
+									title : '营销人员ID' 
+								},{
+                                    visible : false,
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
-																{
+								},{
 									title : '操作',
 									field : 'id',
 									align : 'center',
@@ -144,10 +141,10 @@ function load() {
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
 												+ row.ftClientId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
+										var f = '<a class="btn btn-success btn-sm" href="#" title="分配客服人员"  mce_href="#" onclick="distributionCustomerService(\''
 												+ row.ftClientId
 												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d ;
+										return e + d + f ;
 									}
 								} ]
 					});
@@ -197,7 +194,15 @@ function remove(id) {
 	})
 }
 
-function resetPwd(id) {
+function distributionCustomerService(id) {
+	layer.open({
+		type : 2,
+		title : '分配客服',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/distributionCustomerService/' + id // iframe的url
+	});
 }
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组

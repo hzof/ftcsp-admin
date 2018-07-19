@@ -19,10 +19,10 @@ import com.cloudht.ex.domain.ExOrderDO;
 import com.cloudht.ex.service.ExOrderCommodityService;
 import com.cloudht.ex.service.ExOrderService;
 import com.cloudht.system.domain.UserDO;
-import com.cloudht.common.utils.PageUtils;
-import com.cloudht.common.utils.Query;
-import com.cloudht.common.utils.R;
-import com.cloudht.common.utils.SessionUtils;
+import com.sxyht.common.utils.PageUtils;
+import com.sxyht.common.utils.Query;
+import com.sxyht.common.utils.R;
+import com.sxyht.common.utils.ShiroUtils;
 
 /**
  * 出口订单
@@ -59,7 +59,7 @@ public class ExOrderController {
 			System.out.println("传入的auditStatusArray属性为null或者不规范");
 		}
 		//将当前登录用户id传入条件中
-		params.put("createBy", SessionUtils.getUserDO().getUserId());
+		params.put("createBy", ((UserDO)ShiroUtils.getUser()).getUserId());
 		//查询列表数据
         Query query = new Query(params);
 		List<ExOrderDO> exOrderList = exOrderService.list(query);
@@ -75,8 +75,7 @@ public class ExOrderController {
 	@GetMapping("/add")
 	@RequiresPermissions("ex:exOrder:add")
 	public String add(Model model){
-		UserDO userDO = SessionUtils.getUserDO();
-		model.addAttribute("userDO",userDO);
+		model.addAttribute("userDO",(UserDO)ShiroUtils.getUser());
 	    return "ex/exOrder/add";
 	}
 

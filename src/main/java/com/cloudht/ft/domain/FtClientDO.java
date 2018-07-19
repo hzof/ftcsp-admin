@@ -14,7 +14,6 @@ import java.util.Date;
  */
 public class FtClientDO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	//主键
 	private Long ftClientId;
 	//委托方用户ID
@@ -41,6 +40,115 @@ public class FtClientDO implements Serializable {
 	private Date gmtModified;
 	//是否删除：0-否，1-是
 	private Integer isDelete;
+	//营销人员名字，数据库里没有该字段
+	private String marketerName;
+	//客服人员名字，数据库里没有该字段
+	private String servicerName;
+	//操作人员名字，数据库里没有该字段，用于辅助效验传入数据的合法性
+	private String operatorName;
+	//合同状态 0-无效 1-有效
+	private Integer contractState;
+	public void setContractState(Integer contractState) {
+		this.contractState = contractState;
+	}
+	//合同签订地址
+	private String signedAt;
+	//合同备注
+	private String contractRemark;
+	//签订日期
+	private Date signingDate;
+	//生效日期
+	private Date effectDate;
+	//失效日期
+	private Date invalidDate;
+	/**
+	 * 获取：合同状态 0-无效 1-有效
+	 */
+	public Integer getContractState() {
+		return contractState;
+	}
+	/**
+	 * 设置：合同签订地址
+	 */
+	public void setSignedAt(String signedAt) {
+		this.signedAt = signedAt;
+	}
+	/**
+	 * 获取：合同签订地址
+	 */
+	public String getSignedAt() {
+		return signedAt;
+	}
+	/**
+	 * 设置：合同备注
+	 */
+	public void setContractRemark(String contractRemark) {
+		this.contractRemark = contractRemark;
+	}
+	/**
+	 * 获取：合同备注
+	 */
+	public String getContractRemark() {
+		return contractRemark;
+	}
+	/**
+	 * 设置：签订日期
+	 */
+	public void setSigningDate(Date signingDate) {
+		this.signingDate = signingDate;
+	}
+	/**
+	 * 获取：签订日期
+	 */
+	public Date getSigningDate() {
+		return signingDate;
+	}
+	/**
+	 * 设置：生效日期
+	 */
+	public void setEffectDate(Date effectDate) {
+		this.effectDate = effectDate;
+	}
+	/**
+	 * 获取：生效日期
+	 */
+	public Date getEffectDate() {
+		return effectDate;
+	}
+	/**
+	 * 设置：失效日期
+	 */
+	public void setInvalidDate(Date invalidDate) {
+		this.invalidDate = invalidDate;
+	}
+	/**
+	 * 获取：失效日期
+	 */
+	public Date getInvalidDate() {
+		return invalidDate;
+	}
+	public String getOperatorName() {
+		return operatorName;
+	}
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
+	}
+	public String getServicerName() {
+		return servicerName;
+	}
+	/**
+	 *  设置客服人员名字，数据库里没有该字段，用于辅助接收和效验
+	 * @param servicerName 
+	 */
+	public void setServicerName(String servicerName) {
+		this.servicerName = servicerName;
+	}
+	public String getMarketerName() {
+		return marketerName;
+	}
+	public void setMarketerName(String marketerName) {
+		this.marketerName = marketerName;
+	}
 	//mybatis映射需要
 	private FtClientCompanyDO ftClientCompanyDO;
 

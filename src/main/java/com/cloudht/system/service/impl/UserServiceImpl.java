@@ -8,6 +8,10 @@ import com.cloudht.common.domain.FileDO;
 import com.cloudht.common.service.FileService;
 import com.cloudht.common.utils.*;
 import com.cloudht.system.vo.UserVO;
+import com.sxyht.common.utils.FileType;
+import com.sxyht.common.utils.FileUtil;
+import com.sxyht.common.utils.MD5Utils;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

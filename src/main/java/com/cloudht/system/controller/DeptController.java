@@ -3,9 +3,10 @@ package com.cloudht.system.controller;
 import com.cloudht.common.config.Constant;
 import com.cloudht.common.controller.BaseController;
 import com.cloudht.common.domain.Tree;
-import com.cloudht.common.utils.R;
 import com.cloudht.system.domain.DeptDO;
 import com.cloudht.system.service.DeptService;
+import com.sxyht.common.utils.R;
+
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- 客户中心-操作管理模块 -->
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -10,16 +9,10 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="ft:client:add" type="button" class="btn  btn-primary" onclick="add()">
+							<button shiro:hasPermission="ft:ftClient:add" type="button" class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
 							</button>
-							<button  type="button" class="btn  btn-primary" >
-								<i class="fa fa-plus" aria-hidden="true"></i>分配操作
-							</button>
-							<button  type="button" class="btn  btn-primary" >
-								<i class="fa fa-plus" aria-hidden="true"></i>操作跟踪
-							</button>
-							<button shiro:hasPermission="ft:client:batchRemove" type="button" class="btn  btn-danger"
+							<button shiro:hasPermission="ft:ftClient:batchRemove" type="button" class="btn  btn-danger"
 								onclick="batchRemove()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
@@ -46,23 +39,23 @@
 				var s_resetPwd_h = 'hidden';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:client:edit">
+		<div shiro:hasPermission="ft:ftClient:edit">
 			<script type="text/javascript">
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:client:remove">
+		<div shiro:hasPermission="ft:ftClient:remove">
 			<script type="text/javascript">
 				var s_remove_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:client:resetPwd">
+		<div shiro:hasPermission="ft:ftClient:resetPwd">
 			<script type="text/javascript">
 				var s_resetPwd_h = '';
 			</script>
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/ft/client/clientOperationManage.js"></script>
+	<script type="text/javascript" src="/js/appjs/ft/ftClient/contractSupervise.js"></script>
 </body>
 </html>

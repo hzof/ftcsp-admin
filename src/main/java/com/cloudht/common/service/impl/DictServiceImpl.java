@@ -1,7 +1,8 @@
 package com.cloudht.common.service.impl;
 
-import com.cloudht.common.utils.StringUtils;
 import com.cloudht.system.domain.UserDO;
+import com.sxyht.common.utils.StringUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,13 +1,13 @@
 package com.cloudht.common.controller;
 
 import org.springframework.stereotype.Controller;
-import com.cloudht.common.utils.ShiroUtils;
 import com.cloudht.system.domain.UserDO;
+import com.sxyht.common.utils.ShiroUtils;
 
 @Controller
 public class BaseController {
 	public UserDO getUser() {
-		return ShiroUtils.getUser();
+		return (UserDO)ShiroUtils.getUser();
 	}
 
 	public Long getUserId() {

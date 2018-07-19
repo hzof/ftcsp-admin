@@ -2,20 +2,28 @@
 <html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+<!-- 操作跟踪页面 -->
 <body class="gray-bg">
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#">操作跟踪</a>
+					</li>
+					<li >
+						<a href="/ft/ftClient/distributionOperation">分配操作</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="wrapper wrapper-content ">
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="ft:ftClientContract:add" type="button" class="btn  btn-primary" onclick="add()">
-								<i class="fa fa-plus" aria-hidden="true"></i>添加
-							</button>
-							<button shiro:hasPermission="ft:ftClientContract:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
-								<i class="fa fa-trash" aria-hidden="true"></i>删除
-							</button>
 						</div>
 						<div class="columns pull-right">
 							<button class="btn btn-success" onclick="reLoad()">查询</button>
@@ -39,23 +47,27 @@
 				var s_resetPwd_h = 'hidden';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:ftClientContract:edit">
+		<div shiro:hasPermission="ft:client:edit">
 			<script type="text/javascript">
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:ftClientContract:remove">
+		<div shiro:hasPermission="ft:client:remove">
 			<script type="text/javascript">
 				var s_remove_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:ftClientContract:resetPwd">
+		<div shiro:hasPermission="ft:client:resetPwd">
 			<script type="text/javascript">
 				var s_resetPwd_h = '';
 			</script>
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/ft/ftClientContract/ftClientContract.js"></script>
+	<script type="text/javascript" src="/js/appjs/ft/ftClient/operationTrack.js"></script>
+	<script th:inline="javascript">
+		var userId = [[${userId}]];
+		console.log(message);
+	</script>
 </body>
 </html>

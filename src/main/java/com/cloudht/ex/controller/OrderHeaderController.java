@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.ex.domain.OrderHeaderDO;
 import com.cloudht.ex.service.OrderHeaderService;
-import com.cloudht.common.utils.R;
+import com.sxyht.common.utils.R;
 
 /**
  * 出口订单头信息

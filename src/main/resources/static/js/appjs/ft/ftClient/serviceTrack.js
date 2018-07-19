@@ -1,5 +1,17 @@
+var prefix = "/ft/ftClient"
+//=========跳转到分配营销人员绑定的函数============
+function distributionMarketing(id){
+	layer.open({
+		type : 2,
+		title : '分配营销人员',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/distributionMarketing/'+id // iframe的url
+	});
+}
 
-var prefix = "/ft/ftClientContract"
+//=======下面的代码自动生成======
 $(function() {
 	load();
 });
@@ -32,7 +44,8 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
+								offset:params.offset,
+								servicerId:userId
 					           // name:$('#searchName').val(),
 					           // username:$('#searchName').val()
 							};
@@ -43,79 +56,38 @@ function load() {
 						// pageSize, pageNumber, searchText, sortName,
 						// sortOrder.
 						// 返回false将会终止请求
-						columns : [
-								{
-									checkbox : true
+						columns : [{
+									field : 'companyName', 
+									title : '公司名称' 
 								},{
-									field : 'contractNo', 
-									title : '合同编号' 
+									field : 'serviceContractNo', 
+									title : '服务合同号' 
 								},{
-									field : 'firstPartyName', 
-									title : '甲方名称' 
-								},{
-									field : 'firstPartyAddress', 
-									title : '甲方地址' 
-								},{
-									field : 'secondPartyName', 
-									title : '乙方名称' 
-								},{
-									field : 'secondPartyAddress', 
-									title : '乙方地址' 
-								},{
-									field : 'signedAt', 
-									title : '签订地点' 
-								},{
-									field : 'effectDate', 
-									title : '生效日期' 
-								},{
-									field : 'invalidDate', 
-									title : '失效日期' 
-								},{
-									field : 'signingDate', 
-									title : '签订日期' 
-								},{
-									field : 'remark', 
-									title : '备注' 
-								},{
-									field : 'filePath', 
-									title : '附件，不超过1m的图片' 
-								},
-																/*{
-									field : 'ftClientContractId', 
-									title : '合同管理id' 
-								},{
-									field : 'ftClientId', 
-									title : '委托方' 
-								},{
-									field : 'ftClientCompantId', 
-									title : '合同甲方，引用公司表的主键' 
-								},{
-									field : 'gmtCreate', 
-									title : '创建时间' 
-								},{
-									field : 'gmtModified', 
-									title : '修改时间' 
-								},{
-									field : 'isDelete', 
-									title : '是否删除：0-否，1-是' 
-								},*/
-																{
-									title : '操作',
-									field : 'id',
-									align : 'center',
+									field : 'auditStatus', 
+									title : '审核状态' ,
 									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.ftClientContractId
-												+ '\')"><i class="fa fa-edit"></i></a> ';
-										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-												+ row.ftClientContractId
-												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-												+ row.ftClientContractId
-												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d ;
+										var CLIENTTYPE = {'0':'新注册','1':'已分配营销','2':'资质审核中','3':'审核不通过','4':'审核通过','5':'已分配客服','6':'已分配操作人员'};
+										return CLIENTTYPE[value] ;
 									}
-								} ]
+								},{
+									field : 'clientType', 
+									title : '客户类型' ,
+									formatter : function(value, row, index) {
+										var CLIENTTYPE = {'0':'有效客户','1':'暂停出货客户','2':'未出货客户'};
+										return CLIENTTYPE[value] ;
+									}
+								},{
+									field : 'marketerName', 
+									title : '营销人员' 
+								},{
+									field : 'servicerName', 
+									title : '客服人员' 
+								},
+								/*{
+									{
+									field : 'operatorId', 
+									title : '操作人员ID' 
+								},*/ ]
 					});
 }
 function reLoad() {
@@ -149,7 +121,7 @@ function remove(id) {
 			url : prefix+"/remove",
 			type : "post",
 			data : {
-				'ftClientContractId' : id
+				'ftClientId' : id
 			},
 			success : function(r) {
 				if (r.code==0) {
@@ -178,7 +150,7 @@ function batchRemove() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {
-			ids[i] = row['ftClientContractId'];
+			ids[i] = row['ftClientId'];
 		});
 		$.ajax({
 			type : 'POST',
