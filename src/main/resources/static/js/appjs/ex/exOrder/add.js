@@ -11,6 +11,9 @@ function clickFn(obj){
 	$("#ftClientId1").val(obj.id);
 }
 function searchWord(par){
+	if(par.value==""){
+		return ;
+	}
 	var content = "";
 	$.post(
 			"/ft/ftClientCompany/queryIdByNamelist",

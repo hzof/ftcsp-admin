@@ -56,14 +56,14 @@ public class FtClientCompanyController {
 	/**
 	 * 根据公司名称模糊查询公司列表
 	 * url:/ft/ftClientCompany/queryIdByNamelist
-	 * @param params 键companyName 值：公司名称的关键字
-	 * @return 含有公司id和公司名称的集合
+	 * @param ftClientCompany 键companyName 值：公司名称的关键字
+	 * @return 含有输入参数的公司名称的集合
 	 */
 	@ResponseBody
-	@PostMapping("/queryIdByNamelist")
-	public String queryIdByNamelist(FtClientCompanyDO ftClientCompany){
-		List<Map<Long, String>> idAndNameList = ftClientCompanyService.queryIdByNamelist(ftClientCompany);
-		return JSON.toJSONString(idAndNameList);
+	@PostMapping(value= {"/queryIdByNamelist"})
+	@RequiresPermissions("ft:ftClientCompany:ftClientCompany")
+	public List<FtClientCompanyDO> queryIdByNamelist(FtClientCompanyDO ftClientCompany){
+		return this.ftClientCompanyService.queryClientByLikeCompanyName(ftClientCompany.getCompanyName());
 	}
 	
 	@GetMapping("/add")

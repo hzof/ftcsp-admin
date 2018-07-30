@@ -9,7 +9,7 @@
 		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`business_license`,`name`,`sex`,`mobile_phone`,`company_phone`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company where ft_client_company_id = #{value}
 	</select>
 
-	<select id="queryClientByLikeCompanyName" resultType="com.cloudht.ft.domain.FtClientCompanyDO">
+	<select id="listLikeCompanyName" resultType="com.cloudht.ft.domain.FtClientCompanyDO">
 		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`name`,`sex`,`mobile_phone`,`company_phone`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company
         <where>  
 		  		  <if test="ftClientCompanyId != null and ftClientCompanyId != ''"> and ft_client_company_id = #{ftClientCompanyId} </if>

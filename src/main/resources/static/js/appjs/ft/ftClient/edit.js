@@ -57,7 +57,6 @@ function update() {
 			} else {
 				parent.layer.alert(data.msg)
 			}
-
 		}
 	});
 
