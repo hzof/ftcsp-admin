@@ -199,6 +199,9 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.cloudht.ex.domain.ExOrderDO" useGeneratedKeys="true" keyProperty="exOrderId">
+		<selectKey resultType = "Long" keyProperty="exOrderId" order="AFTER">
+		SELECT LAST_INSERT_ID()
+		</selectKey>
 		insert into ex_order
 		(
 			`ft_client_id`, 

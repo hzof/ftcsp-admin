@@ -9,6 +9,39 @@
 		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`business_license`,`name`,`sex`,`mobile_phone`,`company_phone`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company where ft_client_company_id = #{value}
 	</select>
 
+	<select id="queryClientByLikeCompanyName" resultType="com.cloudht.ft.domain.FtClientCompanyDO">
+		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`name`,`sex`,`mobile_phone`,`company_phone`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company
+        <where>  
+		  		  <if test="ftClientCompanyId != null and ftClientCompanyId != ''"> and ft_client_company_id = #{ftClientCompanyId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="companyType != null and companyType != ''"> and company_type = #{companyType} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="detailedAddress != null and detailedAddress != ''"> and detailed_address = #{detailedAddress} </if>
+		  		  <if test="companyCode != null and companyCode != ''"> and company_code = #{companyCode} </if>
+		  		  <if test="businessLicense != null and businessLicense != ''"> and business_license = #{businessLicense} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
+		  		  <if test="mobilePhone != null and mobilePhone != ''"> and mobile_phone = #{mobilePhone} </if>
+		  		  <if test="companyPhone != null and companyPhone != ''"> and company_phone = #{companyPhone} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+				  <if test="companyName != null and companyName != ''"> and company_name like '%${companyName}%'</if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_client_company_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
 	<select id="list" resultType="com.cloudht.ft.domain.FtClientCompanyDO">
 		select `ft_client_company_id`,`ft_client_id`,`company_type`,`company_name`,`province`,`city`,`detailed_address`,`company_code`,`name`,`sex`,`mobile_phone`,`company_phone`,`gmt_create`,`gmt_modified`,`is_delete` from ft_client_company
         <where>  

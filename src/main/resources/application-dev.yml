@@ -1,5 +1,5 @@
 ftcsp:
-  uploadPath: D:/var/uploaded_files/
+  uploadPath: D:/applog/
 logging:
   level:
     root: info

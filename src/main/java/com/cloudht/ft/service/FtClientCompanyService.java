@@ -34,4 +34,10 @@ public interface FtClientCompanyService {
 	 * @return Map
 	 */
 	public List<Map<Long,String>> queryIdByNamelist(FtClientCompanyDO ftClientCompany);
+	/**
+	 * 根据含有公司名称关键字的字符串模糊查询公司信息
+	 * @param likeCompanyName 含有公司名称关键字的字符串
+	 * @return 公司对象集合
+	 */
+	List<FtClientCompanyDO> queryClientByLikeCompanyName(String likeCompanyName);
 }

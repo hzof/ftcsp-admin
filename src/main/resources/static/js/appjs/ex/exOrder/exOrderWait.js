@@ -347,18 +347,18 @@ function load() {
 									field : 'id',
 									align : 'center',
 									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-success btn-sm" href="#" title="受理订单"  mce_href="#" onclick="resetPwd(\''
+										var e = '<a class="btn btn-success btn-sm" href="#" title="受理订单"  mce_href="#" onclick="skipAcceptanceOrder(\''
 											+ row.exOrderId
-											+ '\')"><i class="fa fa-key"></i></a> ';
+											+ '\')"><i class="fa fa-check"></i></a> ';
 										var d = '<a class="btn btn-success btn-sm" href="#" title="提交专家审核"  mce_href="#" onclick="resetPwd(\''
 											+ row.exOrderId
-											+ '\')"><i class="fa fa-key"></i></a> ';
+											+ '\')"><i class="fa fa-user-circle"></i></a> ';
 										var f = '<a class="btn btn-success btn-sm" href="#" title="拒绝受理"  mce_href="#" onclick="resetPwd(\''
 											+ row.exOrderId
-											+ '\')"><i class="fa fa-key"></i></a> ';
+											+ '\')"><i class="fa fa-close"></i></a> ';
 										var g = '<a class="btn btn-success btn-sm" href="#" title="撤销订单"  mce_href="#" onclick="resetPwd(\''
 											+ row.exOrderId
-											+ '\')"><i class="fa fa-key"></i></a> ';
+											+ '\')"><i class="fa fa-mail-reply-all"></i></a> ';
 										return e + d + f + g ;
 									}
 								} ]

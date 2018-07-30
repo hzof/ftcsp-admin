@@ -3,8 +3,6 @@ package com.cloudht.ft.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudht.ft.domain.FtFileDO;
 import com.cloudht.ft.service.FtFileService;
@@ -45,7 +42,6 @@ public class FtFileController {
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("ft:ftFile:ftFile")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -114,23 +110,5 @@ public class FtFileController {
 	public R remove(@RequestParam("ids[]") Long[] ftFileIds){
 		ftFileService.batchRemove(ftFileIds);
 		return R.ok();
-	}
-	/**
-	 * /ft/ftFile/upload
-	 * @param file
-	 * @param request
-	 * @return
-	 */
-	@ResponseBody
-	@PostMapping("/upload")
-	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-		try {
-			FtFileDO saveFile = this.ftFileService.saveFile(file, "D:/applog/", 1, 2l, 2l);
-			if(saveFile!=null)
-				return R.ok();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return R.error();
 	}
 }

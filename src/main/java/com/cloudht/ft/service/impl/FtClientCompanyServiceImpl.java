@@ -3,6 +3,7 @@ package com.cloudht.ft.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,8 +54,20 @@ public class FtClientCompanyServiceImpl implements FtClientCompanyService {
 	}
 
 	@Override
+	@Deprecated
 	public List<Map<Long,String>> queryIdByNamelist(FtClientCompanyDO ftClientCompany) {
 		return ftClientCompanyDao.queryIdByNamelist(ftClientCompany);
+	}
+	/**
+	 * 根据含有公司名称关键字的字符串模糊查询公司信息
+	 * @param likeCompanyName 含有公司名称关键字的字符串
+	 * @return 公司对象集合
+	 */
+	@Override
+	public List<FtClientCompanyDO> queryClientByLikeCompanyName(String likeCompanyName){
+		HashMap<String,Object> hashMap = new HashMap<String,Object>();
+		hashMap.put("companyName", likeCompanyName);
+		return this.ftClientCompanyDao.listLikeCompanyName(hashMap);
 	}
 	
 }

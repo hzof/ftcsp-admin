@@ -74,10 +74,10 @@ function load() {
 												+ row.ftClientId
 												+ '\')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="修改合同状态"  mce_href="#" onclick="remove(\''+ row.ftClientId + '\',\''+ row.contractState + '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
+										var f = '<a class="btn btn-success btn-sm" href="#" title="查看附件"  mce_href="#" onclick="displayAttachments (\''
 												+ row.ftClientId
 												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d ;
+										return e + d + f ;
 									}
 								} ]
 					});
@@ -109,7 +109,6 @@ function remove(id,contractState) {
 	layer.confirm('确定要修改选中的合同状态吗？', {
 		btn : [ '确定', '取消' ]
 	}, function() {
-		debugger;
 		if (contractState==1) {
 			contractState=0;//如果是有效，此处修改为无效
 		} else {
@@ -134,7 +133,15 @@ function remove(id,contractState) {
 	})
 }
 
-function resetPwd(id) {
+function displayAttachments(id) {
+	layer.open({
+		type : 2,
+		title : '展示合同附件',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/displayAttachments/' + id // iframe的url
+	});
 }
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组

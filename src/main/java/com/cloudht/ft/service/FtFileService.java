@@ -39,4 +39,12 @@ public interface FtFileService {
 	 * @return 保存成功时返回FtFileDO对象，保存失败时返回null
 	 */
 	FtFileDO saveFile(MultipartFile file, String filePath, Integer fileSource, Long refKey, Long ftClientId);
+	/**
+	 * 
+	 * @param fileSource 必輸項，嚴禁輸入null，
+	 * @param refKey 引用表的主鍵
+	 * @param ftClientId 客戶表的主鍵
+	 * @return
+	 */
+	List<FtFileDO> getClientContractFile(Integer fileSource, Long refKey, Long ftClientId);
 }

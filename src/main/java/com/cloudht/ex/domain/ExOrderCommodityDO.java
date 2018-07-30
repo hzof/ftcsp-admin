@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @author yuxueling
  * @email 980899486@qq.com
- * @date 2018-06-15 16:42:43
+ * @date 2018-07-26 15:49:12
  */
 public class ExOrderCommodityDO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -66,11 +66,9 @@ public class ExOrderCommodityDO implements Serializable {
 	//采购总价
 	private Long purchaseTotalPrice;
 	//出口单价
-	private Integer 
-exportUnitPrice;
+	private Integer exportUnitPrice;
 	//出口总价
-	private Long 
-exportTotalPrice;
+	private Long exportTotalPrice;
 	//创建时间
 	private Date gmtCreate;
 	//修改时间
@@ -379,25 +377,25 @@ exportTotalPrice;
 	/**
 	 * 设置：出口单价
 	 */
-	public void setexportUnitPrice(Integer exportUnitPrice) {
+	public void setExportUnitPrice(Integer exportUnitPrice) {
 		this.exportUnitPrice = exportUnitPrice;
 	}
 	/**
 	 * 获取：出口单价
 	 */
-	public Integer getexportUnitPrice() {
+	public Integer getExportUnitPrice() {
 		return exportUnitPrice;
 	}
 	/**
 	 * 设置：出口总价
 	 */
-	public void setexportTotalPrice(Long exportTotalPrice) {
+	public void setExportTotalPrice(Long exportTotalPrice) {
 		this.exportTotalPrice = exportTotalPrice;
 	}
 	/**
 	 * 获取：出口总价
 	 */
-	public Long getexportTotalPrice() {
+	public Long getExportTotalPrice() {
 		return exportTotalPrice;
 	}
 	/**

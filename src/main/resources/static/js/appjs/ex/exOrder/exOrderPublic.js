@@ -43,6 +43,29 @@ function submissionConfirmationSave(par){
 		});
 	})
 }
+//======跳转到受理订单页面的公共函数=================
+function skipAcceptanceOrder(par){
+	var perLayer=layer.open({
+		type : 2,
+		title : '查看订单详情',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : '/ex/exOrder/jumpAcceptanceOrder/'+par// iframe的url
+	});
+    layer.full(perLayer);	
+}
+//======点击受理订单之后的保存事件============
+function skipAcceptanceOrderSave(par){
+	$.post(
+		"/ex/exOrder/update",
+		{'exOrderId' : par , 'auditStatus' : 6},
+		function(data){
+			alert(data);
+		},
+		"json"
+	);	
+}
 //======出口订单模块查看订单详情的公共函数========
 function details(par){
 	var perLayer=layer.open({
@@ -89,7 +112,8 @@ function load2() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
+								offset:params.offset,
+								exOrderId:$('#exOrderId').val()
 					           // name:$('#searchName').val(),
 					           // username:$('#searchName').val()
 							};
@@ -101,6 +125,33 @@ function load2() {
 						// sortOrder.
 						// 返回false将会终止请求
 						columns : [{
+									field : 'chineseName', 
+									title : '中文品名' 
+								},{
+									field : 'englishName', 
+									title : '英文品名' 
+								},{
+									field : 'totalQuantity', 
+									title : '总数量' 
+								},{
+									field : 'pkgs', 
+									title : '包装数量' 
+								},{
+									field : 'totalRoughWeight', 
+									title : '总毛重kg' 
+								},{
+									field : 'totalNetWeight', 
+									title : '总净重kg' 
+								},{
+									field : 'totalVolume', 
+									title : '总体积m*m*m' 
+								},{
+									field : 'purchaseUnitPrice', 
+									title : '采购单价' 
+								},{
+									field : 'purchaseTotalPrice', 
+									title : '采购总价' 
+								},{
 									field : 'exOrderId', 
 									title : '出口订单主键' 
 								},{
@@ -109,106 +160,48 @@ function load2() {
 								},{
 									field : 'manufacturerCode', 
 									title : '生产厂家编号' 
-								},
-																{
+								},{
 									field : 'factoryArticleNo', 
 									title : '公司货号' 
-								},
-																{
+								},{
 									field : 'customsCode', 
 									title : '海关编码' 
-								},
-																{
+								},{
 									field : 'taxRefundRate', 
 									title : '退税率%' 
-								},
-																{
+								},{
 									field : 'shipMarkInfo', 
 									title : '唛头信息' 
-								},
-																{
-									field : 'chineseName', 
-									title : '中文品名' 
-								},
-																{
-									field : 'englishName', 
-									title : '英文品名' 
-								},
-																{
+								},{
 									field : 'declareElement', 
 									title : '申报要素' 
-								},
-																{
-									field : 'pkgs', 
-									title : '包装数量' 
-								},
-																{
+								},{
 									field : 'pkgsUnit', 
 									title : '包装数量单位' 
-								},
-																{
-									field : 'totalQuantity', 
-									title : '总数量' 
-								},
-																{
+								},{
 									field : 'totalQuantityUnit', 
 									title : '总数量单位' 
-								},
-																{
+								},{
 									field : 'packSizeLength', 
 									title : '包装尺寸-长mm' 
-								},
-																{
+								},{
 									field : 'packSizeWidth', 
 									title : '包装尺寸-宽mm' 
-								},
-																{
+								},{
 									field : 'packSizeHeight', 
 									title : '包装尺寸-高mm' 
-								},
-																{
-									field : 'totalVolume', 
-									title : '总体积m*m*m' 
-								},
-																{
+								},{
 									field : 'unitRoughWeight', 
 									title : '单位毛重kg' 
-								},
-																{
-									field : 'totalRoughWeight', 
-									title : '总毛重kg' 
-								},
-																{
+								},{
 									field : 'unitNetWeight', 
 									title : '单位净重kg' 
-								},
-																{
-									field : 'totalNetWeight', 
-									title : '总净重kg' 
-								},
-																{
-									field : 'purchaseUnitPrice', 
-									title : '采购单价' 
-								},
-																{
-									field : 'purchaseTotalPrice', 
-									title : '采购总价' 
-								},
-																{
+								},{
 									field : 'exportUnitPrice', 
 									title : '出口单价' 
-								},
-																{
+								},{
 									field : 'exportTotalPrice', 
 									title : '出口总价' 
-								},
-																{
-									field : 'gmtCreate', 
-									title : '创建时间' 
-								},
-																{
-									field : 'gmtModified', 
-									title : '修改时间' 
 								}]
 					});
 }

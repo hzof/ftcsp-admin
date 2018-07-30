@@ -10,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cloudht.ex.domain.OrderCommodityDO;
-import com.cloudht.ex.service.OrderCommodityService;
+import com.cloudht.ex.domain.ExOrderCommodityDO;
+import com.cloudht.ex.service.ExOrderCommodityService;
 import com.sxyht.common.utils.PageUtils;
 import com.sxyht.common.utils.Query;
 import com.sxyht.common.utils.R;
@@ -25,45 +26,45 @@ import com.sxyht.common.utils.R;
  * 
  * @author yuxueling
  * @email 980899486@qq.com
- * @date 2018-05-18 11:36:14
+ * @date 2018-07-26 15:49:12
  */
  
 @Controller
-@RequestMapping("/ex/orderCommodity")
-public class OrderCommodityController {
+@RequestMapping("/ex/exOrderCommodity")
+public class ExOrderCommodityController {
 	@Autowired
-	private OrderCommodityService orderCommodityService;
+	private ExOrderCommodityService exOrderCommodityService;
 	
 	@GetMapping()
-	@RequiresPermissions("ex:orderCommodity:orderCommodity")
-	String OrderCommodity(){
-	    return "ex/orderCommodity/orderCommodity";
+	@RequiresPermissions("ex:exOrderCommodity:exOrderCommodity")
+	String ExOrderCommodity(){
+	    return "ex/exOrderCommodity/exOrderCommodity";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("ex:orderCommodity:orderCommodity")
+	@RequiresPermissions("ex:exOrder:exOrder")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
-		List<OrderCommodityDO> orderCommodityList = orderCommodityService.list(query);
-		int total = orderCommodityService.count(query);
-		PageUtils pageUtils = new PageUtils(orderCommodityList, total);
+		List<ExOrderCommodityDO> exOrderCommodityList = exOrderCommodityService.list(query);
+		int total = exOrderCommodityService.count(query);
+		PageUtils pageUtils = new PageUtils(exOrderCommodityList, total);
 		return pageUtils;
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("ex:orderCommodity:add")
+	@RequiresPermissions("ex:exOrderCommodity:add")
 	String add(){
-	    return "ex/orderCommodity/add";
+	    return "ex/exOrderCommodity/add";
 	}
 
 	@GetMapping("/edit/{exOrderCommodityId}")
-	@RequiresPermissions("ex:orderCommodity:edit")
+	@RequiresPermissions("ex:exOrderCommodity:edit")
 	String edit(@PathVariable("exOrderCommodityId") Long exOrderCommodityId,Model model){
-		OrderCommodityDO orderCommodity = orderCommodityService.get(exOrderCommodityId);
-		model.addAttribute("orderCommodity", orderCommodity);
-	    return "ex/orderCommodity/edit";
+		ExOrderCommodityDO exOrderCommodity = exOrderCommodityService.get(exOrderCommodityId);
+		model.addAttribute("exOrderCommodity", exOrderCommodity);
+	    return "ex/exOrderCommodity/edit";
 	}
 	
 	/**
@@ -71,9 +72,9 @@ public class OrderCommodityController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("ex:orderCommodity:add")
-	public R save( OrderCommodityDO orderCommodity){
-		if(orderCommodityService.save(orderCommodity)>0){
+	@RequiresPermissions("ex:exOrderCommodity:add")
+	public R save( ExOrderCommodityDO exOrderCommodity){
+		if(exOrderCommodityService.save(exOrderCommodity)>0){
 			return R.ok();
 		}
 		return R.error();
@@ -83,9 +84,9 @@ public class OrderCommodityController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("ex:orderCommodity:edit")
-	public R update( OrderCommodityDO orderCommodity){
-		orderCommodityService.update(orderCommodity);
+	@RequiresPermissions("ex:exOrderCommodity:edit")
+	public R update( ExOrderCommodityDO exOrderCommodity){
+		exOrderCommodityService.update(exOrderCommodity);
 		return R.ok();
 	}
 	
@@ -94,9 +95,9 @@ public class OrderCommodityController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("ex:orderCommodity:remove")
+	@RequiresPermissions("ex:exOrderCommodity:remove")
 	public R remove( Long exOrderCommodityId){
-		if(orderCommodityService.remove(exOrderCommodityId)>0){
+		if(exOrderCommodityService.remove(exOrderCommodityId)>0){
 		return R.ok();
 		}
 		return R.error();
@@ -107,9 +108,9 @@ public class OrderCommodityController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("ex:orderCommodity:batchRemove")
+	@RequiresPermissions("ex:exOrderCommodity:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] exOrderCommodityIds){
-		orderCommodityService.batchRemove(exOrderCommodityIds);
+		exOrderCommodityService.batchRemove(exOrderCommodityIds);
 		return R.ok();
 	}
 	

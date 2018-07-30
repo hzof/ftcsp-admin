@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,13 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.cloudht.ft.domain.FtClientCompanyDO;
 import com.cloudht.ft.domain.FtClientDO;
+import com.cloudht.ft.domain.FtFileDO;
 import com.cloudht.ft.service.FtClientCompanyService;
 import com.cloudht.ft.service.FtClientService;
+import com.cloudht.ft.service.FtFileService;
 import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.service.UserService;
+import com.sxyht.common.interfaces.FileSourceEnum;
 import com.sxyht.common.utils.PageUtils;
 import com.sxyht.common.utils.Query;
 import com.sxyht.common.utils.R;
@@ -43,7 +48,8 @@ public class FtClientController {
 	private FtClientCompanyService ftClientCompanyService;
 	@Autowired
 	private UserService  userService;
-	
+	@Autowired
+	private FtFileService  ftFileService;
 	@GetMapping()
 	@RequiresPermissions("ft:ftClient:ftClient")
 	String FtClient(){
@@ -357,9 +363,30 @@ public class FtClientController {
 	public String contractSupervise() {
 		return "ft/ftClient/contractSupervise";
 	}
+	/**
+	 * 上傳到客戶合同
+	 * /ft/ftClient/uploadContract
+	 * @param file
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
-	@PostMapping("/uploadFile")
-	public R uploadFile(){
-		return null;
+	@PostMapping("/uploadContract")
+	public R uploadFile(@RequestParam("file") MultipartFile file, Long ftClientId){
+		try {
+			FtFileDO saveFile = this.ftFileService.saveFile(file, "clientContract/", FileSourceEnum.CLIENT_CONTRACT_ATTACHMENT, ftClientId, ftClientId);
+			if(saveFile!=null)
+				return R.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return R.error();
 	}
+	@GetMapping("/displayAttachments/{ftClientId}")
+	@RequiresPermissions("ft:ftClient:edit")
+	String displayAttachments(@PathVariable("ftClientId") Long ftClientId,Model model){
+		model.addAttribute("ftClientId", ftClientId);
+	    return "ft/ftClient/displayAttachments";
+	}
+	
 }

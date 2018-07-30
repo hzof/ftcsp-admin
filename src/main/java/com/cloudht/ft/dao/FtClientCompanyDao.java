@@ -32,8 +32,17 @@ public interface FtClientCompanyDao {
 	
 	/**
 	 * 根据公司名称关键字模糊查询
+	 * 
+	 * 此方法已经过时，应该使用listLikeCompanyName替代
 	 * @param ftClientCompany
 	 * @return
 	 */
+	@Deprecated
 	List<Map<Long,String>> queryIdByNamelist(FtClientCompanyDO ftClientCompany);
+	/**
+	 * 根据公司名称模糊查询公司信息
+	 * @param map 含有companyName(公司名称关键字)的集合，集合内可以包含分页等其他筛选条件
+	 * @return 公司信息对象的集合
+	 */
+	List<FtClientCompanyDO> listLikeCompanyName(Map<String,Object> map);
 }

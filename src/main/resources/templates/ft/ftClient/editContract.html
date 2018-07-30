@@ -13,13 +13,13 @@
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">审核状态：</label>
 								<div class="col-sm-8">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==0" class="form-control" type="text" value="新注册">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==1" class="form-control" type="text" value="已分配营销">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==2" class="form-control" type="text" value="资质审核中">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==3" class="form-control" type="text" value="审核不通过">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==4" class="form-control" type="text" value="审核通过">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==5" class="form-control" type="text" value="已分配客服">
-									<input id="auditStatus" name="auditStatus" th:if="${ftClient.auditStatus}==6" class="form-control" type="text" value="已分配操作人员">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==0" class="form-control" type="text" value="新注册">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==1" class="form-control" type="text" value="已分配营销">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==2" class="form-control" type="text" value="资质审核中">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==3" class="form-control" type="text" value="审核不通过">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==4" class="form-control" type="text" value="审核通过">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==5" class="form-control" type="text" value="已分配客服">
+									<input id="auditStatus" th:if="${ftClient.auditStatus}==6" class="form-control" type="text" value="已分配操作人员">
 								</div>
 							</div>
 														<div class="form-group">	
@@ -37,8 +37,8 @@
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">合同状态：</label>
 								<div class="col-sm-8">
-									<input id="contractState" name="contractState" th:if="${ftClient.contractState}==0" value="无效" class="form-control" type="text">
-									<input id="contractState" name="contractState" th:if="${ftClient.contractState}==1" value="有效" class="form-control" type="text">
+									<input id="contractState" th:if="${ftClient.contractState}==0" value="无效" class="form-control" type="text">
+									<input id="contractState" th:if="${ftClient.contractState}==1" value="有效" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">	
@@ -94,18 +94,22 @@
 	<link href="/css/layui.css" rel="stylesheet">
 	<script type="text/javascript" src="/js/appjs/ft/ftClient/edit.js"></script>
 	<script src="/js/layui.js"></script>
-	<script>
+	<script th:inline="javascript">
+	</script>
+	<script th:inline="javascript">
+		var ftClientId = [[${ftClient.ftClientId}]];
+		debugger;
 		layui.use('upload', function () {
 			var upload = layui.upload;
 			//执行实例
 			var uploadInst = upload.render({
 				elem: '#test1', //绑定元素
-				url: '/ft/ftFile/upload', //上传接口
+				url: '/ft/ftClient/uploadContract', //上传接口
+				data : {"ftClientId":ftClientId},
 				size: 1000,
 				accept: 'file',
 				done: function (r) {
 					layer.msg(r.msg);
-					app.getData();
 				},
 				error: function (r) {
 					layer.msg(r.msg);
