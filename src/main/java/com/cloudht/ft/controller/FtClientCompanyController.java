@@ -61,7 +61,7 @@ public class FtClientCompanyController {
 	 */
 	@ResponseBody
 	@PostMapping(value= {"/queryIdByNamelist"})
-	@RequiresPermissions("ft:ftClientCompany:ftClientCompany")
+	@RequiresPermissions("ft:ftClient:ftClient")
 	public List<FtClientCompanyDO> queryIdByNamelist(FtClientCompanyDO ftClientCompany){
 		return this.ftClientCompanyService.queryClientByLikeCompanyName(ftClientCompany.getCompanyName());
 	}

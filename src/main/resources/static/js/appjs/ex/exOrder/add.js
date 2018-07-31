@@ -1,35 +1,91 @@
 //==========搜索框异步搜索开始行===========
+/**
+ * 候选项绑定的鼠标离焦事件
+ * @param obj 触发该方法的元素
+ */
 function overFn(obj){
+	//设置候选项为不加亮显示
 	$(obj).css("background","#DBEAF9");
 }
+/**
+ * 候选项绑定的鼠标聚焦事件
+ * @param obj 触发该方法的元素
+ */
 function outFn(obj){
+	//设置候选项为加亮显示
 	$(obj).css("background","#fff");
 }
+/**
+ * 候选项绑定的单击事件
+ * @param obj
+ */
 function clickFn(obj){
-	$("#ftClientId").val($(obj).html());
+	//控制搜索输入框的内容改变为点击选项的内容
+	$("#ftClientId").val(searchData[obj].companyName);
+	//点击之后将搜索列表隐藏
 	$("#showDiv").css("display","none");
-	$("#ftClientId1").val(obj.id);
+	//修改表单隐藏域的值
+	$("#ftClientId1").val(searchData[obj].ftClientId);
+	//设置手机
+	$("#phone").val(searchData[obj].mobilePhone);
+	//设置联系人
+	$("#contact_1").val(searchData[obj].name);
+	//设置办公室电话
+	$("#officePhone").val(searchData[obj].companyPhone);
 }
+/**
+ * 搜索框绑定的键盘抬起事件
+ * @param par 输入框元素
+ */
 function searchWord(par){
+	//改变域中的值后首先将候选项下拉框设置为隐藏
+	$("#showDiv").css("display","none");
+	var content = "";
+	//将隐藏域中的值置为空
+	$("#ftClientId1").val(content);
+	//如果传入的是空字符串，则结束方法
+	if(par.value==""){
+		return ;
+	}
+	$.post(
+		"/ft/ftClientCompany/queryIdByNamelist",
+		{companyName:par.value},
+		function(data){
+			if(data.length>0){
+				searchData=data;//将数据赋值给成员变量
+				for(var i=0;i<data.length;i++){
+					//id为下标，val为companyName
+					content+="<div id="+i+" style='padding:5px;cursor:pointer' onclick='clickFn(this.id)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].companyName+"</div>";
+				}
+				//将生成的候选项写入到隐藏的候选项下拉框中
+				$("#showDiv").html(content);
+				//设置候选项下拉框为显示
+				$("#showDiv").css("display","block");
+			}
+		},
+		"json"
+	);	
+}
+/*function searchWord(par){
 	if(par.value==""){
 		return ;
 	}
 	var content = "";
 	$.post(
-			"/ft/ftClientCompany/queryIdByNamelist",
-			{companyName:par.value},
-			function(data){
-				if(data.length>0){
-					for(var i=0;i<data.length;i++){
-						content+="<div id="+data[i].ftClientId+" style='padding:5px;cursor:pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].companyName+"</div>";
-					}
-					$("#showDiv").html(content);
-					$("#showDiv").css("display","block");
-				}	
-			},
-			"json"
+		"/ft/ftClientCompany/queryIdByNamelist",
+		{companyName:par.value},
+		function(data){
+			if(data.length>0){
+				for(var i=0;i<data.length;i++){
+					content+="<div id="+data[i].ftClientId+" style='padding:5px;cursor:pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].companyName+"</div>";
+				}
+				$("#showDiv").html(content);
+				$("#showDiv").css("display","block");
+			}
+		},
+		"json"
 	);	
-}
+}*/
 //=====下方为自动生成的代码====
 $().ready(function() {
 	validateRule();
