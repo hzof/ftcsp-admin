@@ -1,3 +1,28 @@
+/**
+ * 货代是否显示绑定的方法
+ */
+function displayFreightForwarder(obj){
+	if(obj.value==0)
+		//设置为不显示
+		$("#displayFreightForwarder").css("display","none");
+	else
+		//设置为显示
+		$("#displayFreightForwarder").css("display","block");
+}
+/**
+ * 结汇单证是否显示按钮绑定的方法
+ */
+function displayIsSettleExg(obj){
+	if(obj.value==0){
+		obj.value=1;
+		//设置结汇单证为显示
+		$("#displayIsSettleExg").css("display","block");
+	}else{
+		obj.value=0;
+		//设置结汇单证为不显示
+		$("#displayIsSettleExg").css("display","none");
+	}
+}
 //==========搜索框异步搜索开始行===========
 /**
  * 候选项绑定的鼠标离焦事件
@@ -32,6 +57,14 @@ function clickFn(obj){
 	$("#contact_1").val(searchData[obj].name);
 	//设置办公室电话
 	$("#officePhone").val(searchData[obj].companyPhone);
+	$.post(
+		"/ft/ftClient/queryExitInvoiceNo",
+		{ftClientId:searchData[obj].ftClientId},
+		function(data){
+			$("#exportInvoiceNo").val(data.exitInvoiceNo);
+		},
+		"json"
+	);
 }
 /**
  * 搜索框绑定的键盘抬起事件
@@ -64,29 +97,14 @@ function searchWord(par){
 			}
 		},
 		"json"
-	);	
+	);
 }
-/*function searchWord(par){
-	if(par.value==""){
-		return ;
-	}
-	var content = "";
-	$.post(
-		"/ft/ftClientCompany/queryIdByNamelist",
-		{companyName:par.value},
-		function(data){
-			if(data.length>0){
-				for(var i=0;i<data.length;i++){
-					content+="<div id="+data[i].ftClientId+" style='padding:5px;cursor:pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].companyName+"</div>";
-				}
-				$("#showDiv").html(content);
-				$("#showDiv").css("display","block");
-			}
-		},
-		"json"
-	);	
-}*/
 //=====下方为自动生成的代码====
+$(function () {
+	laydate({
+		elem : '#birth'
+	});
+});
 $().ready(function() {
 	validateRule();
 });

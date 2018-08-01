@@ -388,5 +388,10 @@ public class FtClientController {
 		model.addAttribute("ftClientId", ftClientId);
 	    return "ft/ftClient/displayAttachments";
 	}
-	
+	@ResponseBody
+	@PostMapping("/queryExitInvoiceNo")
+	public Map<String, Object> queryExitInvoiceNo(@RequestParam Map<String, Object> params) {
+		String valueOf = String.valueOf(params.get("ftClientId"));
+		return this.ftClientService.queryExitInvoiceNo(Long.parseLong(valueOf));
+	}
 }

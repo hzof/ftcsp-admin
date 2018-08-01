@@ -3,6 +3,8 @@ package com.cloudht.ft.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -129,5 +131,21 @@ public class FtClientServiceImpl implements FtClientService {
 	public List<Map<String, Object>> contractSuperviseList(Query query) {
 		return this.customerCenter.contractSuperviseList(query);
 		
+	}
+	public static int count=0;
+	/**
+	 * 根据用户传过来的用户id自动生成出口发票号
+	 */
+	@Override
+	@SuppressWarnings("deprecation")
+	public synchronized Map<String, Object> queryExitInvoiceNo(Long ftClientId) {
+		String clientNo = this.ftClientDao.get(ftClientId).getClientNo();
+		HashMap<String,Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("ftClientId", ftClientId);
+		int count = this.ftClientDao.count(hashMap)+this.count;
+		hashMap.remove("ftClientId");
+		hashMap.put("exitInvoiceNo", "TY"+(new Date().getYear()-100)+clientNo+count);
+		this.count++;
+		return hashMap;
 	}
 }

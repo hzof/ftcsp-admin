@@ -36,4 +36,6 @@ public interface FtClientService {
 	FtClientDO getNewServiceContractNo(FtClientDO ftClientDO);
 
 	List<Map<String, Object>> contractSuperviseList(Query query);
+
+	Map<String, Object> queryExitInvoiceNo(Long ftClientId);
 }

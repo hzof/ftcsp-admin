@@ -1,6 +1,7 @@
 package com.cloudht.ex.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
@@ -84,9 +85,11 @@ public class ExOrderController {
 	 * /ex/exOrder/add
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	@GetMapping("/add")
 	@RequiresPermissions("ex:exOrder:add")
 	public String add(Model model){
+		//置入用户对象
 		model.addAttribute("userDO",(UserDO)ShiroUtils.getUser());
 	    return "ex/exOrder/add";
 	}
